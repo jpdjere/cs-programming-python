@@ -1,0 +1,964 @@
+0
+00:00:00,000 --> 00:00:03,600
+ERIC GRIMSON: Welcome to the 6.00x, often referred to as
+
+1
+00:00:03,600 --> 00:00:06,900
+the introduction to computer science and programming.
+
+2
+00:00:06,900 --> 00:00:09,940
+It&#39;s odd to have both of those terms in the title, but both
+
+3
+00:00:09,940 --> 00:00:11,220
+of them are important.
+
+4
+00:00:11,220 --> 00:00:14,230
+This course is going to be not just about teaching you how to
+
+5
+00:00:14,230 --> 00:00:16,930
+program a computer, how to tell the computer instructions
+
+6
+00:00:16,930 --> 00:00:18,480
+that it can understand.
+
+7
+00:00:18,480 --> 00:00:21,440
+It&#39;s also going to be really important to create within you
+
+8
+00:00:21,440 --> 00:00:24,240
+a capability to think computationally.
+
+9
+00:00:24,240 --> 00:00:27,100
+So our goal is to let you become skillful at not only
+
+10
+00:00:27,100 --> 00:00:29,790
+getting the computer to do something, but to do that
+
+11
+00:00:29,790 --> 00:00:33,060
+thing that you want it to, to get it to solve a problem.
+
+12
+00:00:33,060 --> 00:00:35,690
+By the end of this course, we hope that your first instinct
+
+13
+00:00:35,690 --> 00:00:38,130
+when faced with any interesting challenge is to
+
+14
+00:00:38,130 --> 00:00:41,070
+first think about how could I capture that challenge, that
+
+15
+00:00:41,070 --> 00:00:44,350
+problem in an algorithmic or mechanical description of
+
+16
+00:00:44,350 --> 00:00:47,050
+steps such that I could get the computer to do
+
+17
+00:00:47,050 --> 00:00:47,970
+the work for me.
+
+18
+00:00:47,970 --> 00:00:50,940
+If you can do that, it&#39;s going to give you a great deal of
+
+19
+00:00:50,940 --> 00:00:53,180
+advantage as you face any kind of problem.
+
+20
+00:00:53,180 --> 00:00:55,120
+And those are the skills that you&#39;re going to see throughout
+
+21
+00:00:55,120 --> 00:00:56,190
+this course.
+
+22
+00:00:56,190 --> 00:01:00,690
+Now if our goal is to have you learn how to get a computer to
+
+23
+00:01:00,690 --> 00:01:03,090
+do something for you, how to talk to the computer, how to
+
+24
+00:01:03,090 --> 00:01:04,519
+think algorithmically.
+
+25
+00:01:04,519 --> 00:01:07,140
+1 of the questions we can ask is, so what&#39;s the computer
+
+26
+00:01:07,140 --> 00:01:08,220
+going to do for us?
+
+27
+00:01:08,220 --> 00:01:10,000
+What&#39;s it actually good at?
+
+28
+00:01:10,000 --> 00:01:11,850
+That seems like probably an odd question.
+
+29
+00:01:11,850 --> 00:01:14,870
+After all, we know computers could do a ton of things.
+
+30
+00:01:14,870 --> 00:01:17,470
+But it&#39;s still important to go back to a very fundamental and
+
+31
+00:01:17,470 --> 00:01:18,750
+basic point.
+
+32
+00:01:18,750 --> 00:01:20,680
+What does a computer do?
+
+33
+00:01:20,680 --> 00:01:23,640
+In fact it does 2 things and 2 things only.
+
+34
+00:01:23,640 --> 00:01:27,770
+It performs some calculations, and it remembers results so
+
+35
+00:01:27,770 --> 00:01:29,310
+that it can reuse them.
+
+36
+00:01:29,310 --> 00:01:32,390
+Now you&#39;d say, OK, so it performs calculations.
+
+37
+00:01:32,390 --> 00:01:33,470
+That seems fine.
+
+38
+00:01:33,470 --> 00:01:35,990
+But what kinds of calculations.
+
+39
+00:01:35,990 --> 00:01:39,230
+Well, it turns out that every computer comes with a simple
+
+40
+00:01:39,230 --> 00:01:42,220
+set of primitive calculations, things that we call built in.
+
+41
+00:01:42,220 --> 00:01:44,620
+They&#39;re provided by the manufacturer as the basic
+
+42
+00:01:44,620 --> 00:01:46,200
+elements that a computer could use.
+
+43
+00:01:46,200 --> 00:01:48,350
+We&#39;ll see some examples of that shortly.
+
+44
+00:01:48,350 --> 00:01:51,490
+If that&#39;s all we have, that&#39;s pretty limiting.
+
+45
+00:01:51,490 --> 00:01:54,120
+So a key thing, as we go through the material in this
+
+46
+00:01:54,120 --> 00:01:57,680
+course, is to learn how we can create our own methods for
+
+47
+00:01:57,680 --> 00:02:00,950
+computing something, how we can capture the computational
+
+48
+00:02:00,950 --> 00:02:03,060
+way of thinking about something in a manner that
+
+49
+00:02:03,060 --> 00:02:06,160
+could be used by the computer, and to do it in a way whereby
+
+50
+00:02:06,160 --> 00:02:08,280
+the computer can abstract that.
+
+51
+00:02:08,280 --> 00:02:11,050
+By that we mean that the computer can figure out how to
+
+52
+00:02:11,050 --> 00:02:13,950
+take what you tell it and turn it into something that it can
+
+53
+00:02:13,950 --> 00:02:16,160
+now treat as if it were a primitive, something that was
+
+54
+00:02:16,160 --> 00:02:19,400
+provided by the manufacturer, and reuse that throughout its
+
+55
+00:02:19,400 --> 00:02:20,480
+computations.
+
+56
+00:02:20,480 --> 00:02:23,520
+So our computers are going to do calculations for us, using
+
+57
+00:02:23,520 --> 00:02:26,070
+a set of built-in primitives, plus things that we add.
+
+58
+00:02:26,070 --> 00:02:29,210
+Now you might ask, gee, is that enough?
+
+59
+00:02:29,210 --> 00:02:31,650
+If it turns out that a computer can just perform
+
+60
+00:02:31,650 --> 00:02:34,860
+primitives calculations, it&#39;s not sufficient.
+
+61
+00:02:34,860 --> 00:02:37,950
+Well, as I&#39;m sure you already realize, modern computers can
+
+62
+00:02:37,950 --> 00:02:40,845
+perform most calculations incredibly quickly.
+
+63
+00:02:40,845 --> 00:02:44,140
+And so one question is if we can do them fast enough is
+
+64
+00:02:44,140 --> 00:02:46,640
+that sufficient to do interesting things?
+
+65
+00:02:46,640 --> 00:02:48,490
+Let&#39;s look at both parts of that.
+
+66
+00:02:48,490 --> 00:02:50,520
+First of all, how quickly does a modern
+
+67
+00:02:50,520 --> 00:02:52,650
+computer actually run?
+
+68
+00:02:52,650 --> 00:02:54,990
+Well, let me give you a simple little thought example.
+
+69
+00:02:54,990 --> 00:02:57,100
+If I were to take a little gooseneck lamp and put it
+
+70
+00:02:57,100 --> 00:03:00,860
+right here, a foot above my desk, and I were to time
+
+71
+00:03:00,860 --> 00:03:04,500
+things perfectly so that as I hit the switch on the lamp I
+
+72
+00:03:04,500 --> 00:03:06,880
+hit a key on my computer and started them both up at
+
+73
+00:03:06,880 --> 00:03:10,230
+exactly the same time, in the length of time it takes the
+
+74
+00:03:10,230 --> 00:03:13,790
+light to go from the lamp to the desk your computer will
+
+75
+00:03:13,790 --> 00:03:16,576
+execute two operations.
+
+76
+00:03:16,576 --> 00:03:17,846
+That&#39;s amazing.
+
+77
+00:03:17,846 --> 00:03:21,150
+It does two operations, two of those primitive operations in
+
+78
+00:03:21,150 --> 00:03:24,710
+the amount of time it takes light to go basically a foot.
+
+79
+00:03:24,710 --> 00:03:26,290
+Unbelievable.
+
+80
+00:03:26,290 --> 00:03:27,495
+Here&#39;s another way of thinking about it.
+
+81
+00:03:27,495 --> 00:03:31,090
+Imagine I take a simple child&#39;s rubber ball and I
+
+82
+00:03:31,090 --> 00:03:34,960
+suspend it about a meter off the ground and I drop it.
+
+83
+00:03:34,960 --> 00:03:39,210
+If I let it drop, by the time it hits the ground, assuming
+
+84
+00:03:39,210 --> 00:03:43,070
+gravity behaves normally, your computer will have executed
+
+85
+00:03:43,070 --> 00:03:45,610
+1,000,000,000 operations.
+
+86
+00:03:45,610 --> 00:03:46,820
+Unbelievable.
+
+87
+00:03:46,820 --> 00:03:48,380
+1,000,000,000 operations by the time that
+
+88
+00:03:48,380 --> 00:03:50,290
+ball hits the ground.
+
+89
+00:03:50,290 --> 00:03:53,460
+Now, that suggests that in fact these computers are
+
+90
+00:03:53,460 --> 00:03:54,360
+incredibly fast.
+
+91
+00:03:54,360 --> 00:03:56,370
+And even though they&#39;re computing very simple things,
+
+92
+00:03:56,370 --> 00:03:58,240
+they&#39;re doing incredibly quickly.
+
+93
+00:03:58,240 --> 00:04:00,190
+They are.
+
+94
+00:04:00,190 --> 00:04:01,730
+We say computers do simple operations.
+
+95
+00:04:01,730 --> 00:04:04,310
+We also said that they have some storage.
+
+96
+00:04:04,310 --> 00:04:07,070
+So how big is the storage inside of a computer?
+
+97
+00:04:07,070 --> 00:04:10,280
+Well, every element of storage is called a byte.
+
+98
+00:04:10,280 --> 00:04:14,230
+And if we were to assume that a byte weighed 1 ounce --
+
+99
+00:04:14,230 --> 00:04:16,570
+I know bytes don&#39;t really weigh ounces, but assume they
+
+100
+00:04:16,570 --> 00:04:17,619
+weigh 1 ounce.
+
+101
+00:04:17,619 --> 00:04:20,140
+A typical computer has hundreds of
+
+102
+00:04:20,140 --> 00:04:22,410
+gigabytes of storage.
+
+103
+00:04:22,410 --> 00:04:26,390
+And that says if each one of those bytes weighs 1 ounce a
+
+104
+00:04:26,390 --> 00:04:28,770
+computer would be able to store the equivalent of
+
+105
+00:04:28,770 --> 00:04:34,110
+300,000,000 tons of storage.
+
+106
+00:04:34,110 --> 00:04:34,320
+OK.
+
+107
+00:04:34,320 --> 00:04:35,630
+They don&#39;t really store it that way.
+
+108
+00:04:35,630 --> 00:04:37,150
+But you get the idea.
+
+109
+00:04:37,150 --> 00:04:39,560
+Incredible amount of storage, can remember a lot of things,
+
+110
+00:04:39,560 --> 00:04:42,900
+and incredibly quick in terms of doing the computation.
+
+111
+00:04:42,900 --> 00:04:45,880
+So, that sounds really good.
+
+112
+00:04:45,880 --> 00:04:48,950
+The question is if they&#39;re only primitive operations is
+
+113
+00:04:48,950 --> 00:04:49,920
+that enough?
+
+114
+00:04:49,920 --> 00:04:51,770
+Are these simple calculations sufficient?
+
+115
+00:04:51,770 --> 00:04:53,180
+Well, they&#39;re going to do a lot as we see.
+
+116
+00:04:53,180 --> 00:04:55,620
+But we&#39;re also going to see that they&#39;re not quite enough
+
+117
+00:04:55,620 --> 00:04:57,190
+to do everything we&#39;d like.
+
+118
+00:04:57,190 --> 00:04:59,220
+Let me give you 2 examples.
+
+119
+00:04:59,220 --> 00:05:01,265
+I&#39;m sure all of you have gone to the World Wide Web to look
+
+120
+00:05:01,265 --> 00:05:02,220
+up a piece of information.
+
+121
+00:05:02,220 --> 00:05:04,800
+You&#39;ve searched the web to try and find things that you&#39;d
+
+122
+00:05:04,800 --> 00:05:06,580
+like to know about.
+
+123
+00:05:06,580 --> 00:05:08,870
+The question is if a computer is just doing this the
+
+124
+00:05:08,870 --> 00:05:11,040
+straightforward way how quickly would
+
+125
+00:05:11,040 --> 00:05:12,190
+it search the web?
+
+126
+00:05:12,190 --> 00:05:15,260
+Well, it turns out there are about 45,000,000,000
+
+127
+00:05:15,260 --> 00:05:18,030
+searchable pages on the web at the moment.
+
+128
+00:05:18,030 --> 00:05:21,820
+If we assume that it takes about 1,000 words, or there
+
+129
+00:05:21,820 --> 00:05:23,550
+are about 1,000 words per page.
+
+130
+00:05:23,550 --> 00:05:25,380
+Some, of course, are much more than that, some of less, but
+
+131
+00:05:25,380 --> 00:05:27,070
+about a thousand words per page.
+
+132
+00:05:27,070 --> 00:05:29,180
+And just for sake of argument, we&#39;re going to assume it takes
+
+133
+00:05:29,180 --> 00:05:33,400
+about 100 operations per word to find the word on the page
+
+134
+00:05:33,400 --> 00:05:35,000
+and to decide it&#39;s the right thing.
+
+135
+00:05:35,000 --> 00:05:35,960
+100 is actually high.
+
+136
+00:05:35,960 --> 00:05:36,490
+Let&#39;s make it a little less.
+
+137
+00:05:36,490 --> 00:05:39,200
+Let&#39;s just assume it&#39;s only 10 operations per word.
+
+138
+00:05:39,200 --> 00:05:42,110
+How long does it take to actually execute that search?
+
+139
+00:05:42,110 --> 00:05:43,340
+Well, we can do the math.
+
+140
+00:05:43,340 --> 00:05:44,400
+You can grind it through.
+
+141
+00:05:44,400 --> 00:05:47,730
+You have 45,000,000,000 pages.
+
+142
+00:05:47,730 --> 00:05:48,590
+You have that many operations.
+
+143
+00:05:48,590 --> 00:05:51,270
+You know how quickly we&#39;re doing these actual operations.
+
+144
+00:05:51,270 --> 00:05:54,050
+If you put it all together, what you find is it&#39;s going to
+
+145
+00:05:54,050 --> 00:06:01,030
+take you about 5.2 days to find something on the web.
+
+146
+00:06:01,030 --> 00:06:02,450
+That&#39;s a slow browser.
+
+147
+00:06:02,450 --> 00:06:04,580
+That&#39;s not going to work very well.
+
+148
+00:06:04,580 --> 00:06:07,020
+And that basically is giving us a hint that even with
+
+149
+00:06:07,020 --> 00:06:08,850
+really fast computers we have to be smarter.
+
+150
+00:06:08,850 --> 00:06:11,190
+Let me give you a second example.
+
+151
+00:06:11,190 --> 00:06:13,240
+Playing chess, something that&#39;s seen as a very
+
+152
+00:06:13,240 --> 00:06:14,355
+difficult task.
+
+153
+00:06:14,355 --> 00:06:17,070
+It&#39;s impressive that about 10 or 15 years ago a computer
+
+154
+00:06:17,070 --> 00:06:18,310
+program actually beat the world
+
+155
+00:06:18,310 --> 00:06:19,900
+champion in a chess match.
+
+156
+00:06:19,900 --> 00:06:22,820
+And 1 of the questions is, well, OK, is it just because
+
+157
+00:06:22,820 --> 00:06:24,500
+the computers are really fast?
+
+158
+00:06:24,500 --> 00:06:25,680
+Well, we can look at this two ways.
+
+159
+00:06:25,680 --> 00:06:28,250
+In a typical chess game, there are about 35
+
+160
+00:06:28,250 --> 00:06:30,260
+moves at any one time.
+
+161
+00:06:30,260 --> 00:06:33,410
+And so the question you could ask is to say, OK, if I want
+
+162
+00:06:33,410 --> 00:06:37,040
+to have my computer program look ahead 6 moves, 3 moves by
+
+163
+00:06:37,040 --> 00:06:40,900
+me, 3 moves by my opponent, how many different options are
+
+164
+00:06:40,900 --> 00:06:43,080
+there if there are about 35 moves each?
+
+165
+00:06:43,080 --> 00:06:48,040
+And the answer is about 1.8 billion different sets of the
+
+166
+00:06:48,040 --> 00:06:49,910
+chess board that I&#39;d have to look at.
+
+167
+00:06:49,910 --> 00:06:53,770
+If I can check each move out in about 100 operations per
+
+168
+00:06:53,770 --> 00:06:56,790
+move, then that says it&#39;s going to take me about a half
+
+169
+00:06:56,790 --> 00:06:59,420
+hour to actually look at each move.
+
+170
+00:06:59,420 --> 00:07:00,680
+That&#39;s pretty slow.
+
+171
+00:07:00,680 --> 00:07:01,940
+And this is pointing to a problem that
+
+172
+00:07:01,940 --> 00:07:03,020
+we want to get at.
+
+173
+00:07:03,020 --> 00:07:06,650
+And the problem is that, yes, computers are really fast, but
+
+174
+00:07:06,650 --> 00:07:09,180
+we need good algorithmic design as well.
+
+175
+00:07:09,180 --> 00:07:12,430
+To deal with interesting problems, we need algorithms
+
+176
+00:07:12,430 --> 00:07:15,380
+that are clever, are intelligent, are smart about
+
+177
+00:07:15,380 --> 00:07:16,940
+how they actually do the work.
+
+178
+00:07:16,940 --> 00:07:19,120
+And that&#39;s a lot of what we&#39;re going to talk about this
+
+179
+00:07:19,120 --> 00:07:20,340
+during this term.
+
+180
+00:07:20,340 --> 00:07:22,830
+By the way, we also said space was a big issue.
+
+181
+00:07:22,830 --> 00:07:24,615
+And we got a lot of space in the computer.
+
+182
+00:07:24,615 --> 00:07:27,520
+If you go back to the chess example, you can ask the
+
+183
+00:07:27,520 --> 00:07:29,730
+following question: How many different games
+
+184
+00:07:29,730 --> 00:07:31,236
+are there in chess?
+
+185
+00:07:31,236 --> 00:07:35,880
+Experts will tell you there about 10^123 different chess
+
+186
+00:07:35,880 --> 00:07:37,610
+games that are possible.
+
+187
+00:07:37,610 --> 00:07:39,750
+Is that too big for storing in your computer?
+
+188
+00:07:39,750 --> 00:07:43,930
+Well there are only 10^80 atoms in
+
+189
+00:07:43,930 --> 00:07:45,700
+the observable universe.
+
+190
+00:07:45,700 --> 00:07:47,750
+So we can&#39;t just store away all the games
+
+191
+00:07:47,750 --> 00:07:49,050
+and look them up.
+
+192
+00:07:49,050 --> 00:07:51,080
+And both of these are pointing to why we&#39;re going to use this
+
+193
+00:07:51,080 --> 00:07:54,280
+course to actually learn about thinking algorithmically.
+
+194
+00:07:54,280 --> 00:07:58,020
+Now this suggests it&#39;s just a matter of putting together
+
+195
+00:07:58,020 --> 00:07:59,900
+enough speed and enough smartness.
+
+196
+00:07:59,900 --> 00:08:01,910
+But one can be a little bit more distinct and say, are
+
+197
+00:08:01,910 --> 00:08:03,670
+there actual limitations to what we
+
+198
+00:08:03,670 --> 00:08:05,440
+can do with the computer?
+
+199
+00:08:05,440 --> 00:08:08,010
+And in fact despite its speed and its size and the
+
+200
+00:08:08,010 --> 00:08:10,340
+cleverness of the algorithm, our computer still has some
+
+201
+00:08:10,340 --> 00:08:11,010
+limitations.
+
+202
+00:08:11,010 --> 00:08:12,880
+Here are a couple of examples.
+
+203
+00:08:12,880 --> 00:08:13,980
+First of all, there are some problems that
+
+204
+00:08:13,980 --> 00:08:15,780
+are just too complex.
+
+205
+00:08:15,780 --> 00:08:17,700
+We don&#39;t have enough speed, enough storage.
+
+206
+00:08:17,700 --> 00:08:19,940
+And they may get tackle as things improve.
+
+207
+00:08:19,940 --> 00:08:22,170
+But examples here would be things like predicting weather
+
+208
+00:08:22,170 --> 00:08:23,450
+at a very local scale.
+
+209
+00:08:23,450 --> 00:08:25,540
+I&#39;d love to know what&#39;s exactly going to happen
+
+210
+00:08:25,540 --> 00:08:27,640
+outside my window for the next half hour or next
+
+211
+00:08:27,640 --> 00:08:29,280
+hour or next 3 hours.
+
+212
+00:08:29,280 --> 00:08:31,890
+The size of the problem simply too big for a computer to be
+
+213
+00:08:31,890 --> 00:08:33,970
+able to model well enough and solve in a
+
+214
+00:08:33,970 --> 00:08:35,512
+reasonable amount of time.
+
+215
+00:08:35,511 --> 00:08:37,260
+It turns out some of these complex problems
+
+216
+00:08:37,260 --> 00:08:38,600
+actually help us.
+
+217
+00:08:38,600 --> 00:08:41,730
+Modern cryptography, the way in which information is
+
+218
+00:08:41,730 --> 00:08:45,930
+securely transmitted across the net, relies on having some
+
+219
+00:08:45,930 --> 00:08:48,550
+problems that are simply too difficult to compute and,
+
+220
+00:08:48,550 --> 00:08:50,640
+therefore, too difficult to break the code.
+
+221
+00:08:50,640 --> 00:08:52,510
+So we actually get some benefits about the problems
+
+222
+00:08:52,510 --> 00:08:54,146
+that are too complex.
+
+223
+00:08:54,146 --> 00:08:56,740
+But as we&#39;re also going to see later on the course, there are
+
+224
+00:08:56,740 --> 00:08:59,980
+some problems that are just fundamentally impossible to
+
+225
+00:08:59,980 --> 00:09:02,850
+compute no matter how big the computer is.
+
+226
+00:09:02,850 --> 00:09:04,495
+And some of those are really heavy.
+
+227
+00:09:04,495 --> 00:09:07,700
+Here is one example, being able to predict whether a
+
+228
+00:09:07,700 --> 00:09:12,480
+piece of code will always stop with an answer for any input.
+
+229
+00:09:12,480 --> 00:09:14,740
+By that I don&#39;t mean just you run it and see if it stops,
+
+230
+00:09:14,740 --> 00:09:17,750
+being able to write a piece of code and then have some other
+
+231
+00:09:17,750 --> 00:09:20,640
+piece of code inspect it to say, this will always work.
+
+232
+00:09:20,640 --> 00:09:22,980
+It will always stop, and it will always give us an answer.
+
+233
+00:09:22,980 --> 00:09:25,780
+This turns out to not be possible to solve.
+
+234
+00:09:25,780 --> 00:09:29,640
+And this is known as Turing&#39;s Halting Problem.
+
+235
+00:09:29,640 --> 00:09:33,080
+And we&#39;ll talk briefly about that later on in the term.
+
+236
+00:09:33,080 --> 00:09:35,470
+But it says that there are some problems that are simply
+
+237
+00:09:35,470 --> 00:09:38,260
+too hard to solve period.
+
+238
+00:09:38,260 --> 00:09:40,470
+Nonetheless, in this course, we&#39;re going to start talking
+
+239
+00:09:40,470 --> 00:09:42,690
+about how do we think algorithmically and get the
+
+240
+00:09:42,690 --> 00:09:44,710
+computer to do interesting things for us.
+

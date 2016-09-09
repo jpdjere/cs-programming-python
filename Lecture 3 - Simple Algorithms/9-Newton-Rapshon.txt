@@ -1,0 +1,136 @@
+So we're going to do one last example in this sequence.
+We've been looking at approximation algorithms.
+We've been looking at guess and check, exhaustive
+enumeration.
+We saw when we wanted to move to floating point, we needed
+to be a little more clever, and that led us to the idea of
+bisection as a smart way of reducing the computation at
+each stage, especially when we have functions or problems
+where there's a monotonic relationship between the value
+we're looking for and the guesses we're making.
+There's one other, very powerful, algorithm for doing
+approximations, due to Sir Isaac Newton, often called the
+Newton-Raphson algorithm because it was found at the
+same time by Newton and by Raphson.
+Here's the basic idea behind it.
+We want to find the root of a polynomial.
+I'll remind you a polynomial, p(x), is some sequence of
+coefficients and powers, so it's a_n * x to the n-th power
++ a_n - 1 * x to the n minus first power and so on.
+It's just a sequence of numbers times powers of x, and
+what we often want to do is find a value r such that p(r)
+is equal to 0.
+We want to find the root, the place where, on that x-axis,
+that graph crosses 0.
+Now, that sounds like a lot of math.
+Let's make it a little simpler.
+A simple way to think about this is if we want to define,
+for example, the square root of 24, we just need to find
+the root of the polynomial x^2 - 24.
+Makes sense, if we combine the value of x such that x^2 - 24
+is equal to 0, we're done because that's
+the thing we want.
+Now, what Newton showed was that for things like
+polynomials, if g is an approximation to the root, the
+place where it's equal to 0, then g - p(g) / p'(g) is a
+better approximation, where p' is just the derivative of p.
+And if you haven't done calculus,
+don't worry about it.
+We'll show you in a second what that means, but this is a
+powerful tool.
+Newton proved this, that given an approximation, g - p(g) /
+p'(g) is a much better approximation.
+OK, so what does this have to do with things?
+Well, let's look at an example, a really simple case.
+Suppose our polynomial is just some coefficient c times x^2 +
+k, then its first derivative is just 2cx.
+And in particular, if the polynomial is just something
+simple, like x^2 + k, then the derivative is just 2x.
+Why is that nice?
+Well, Newton-Raphson says that given a guess g for the root,
+a better guess is just shown right here, is g - g^2 - k,
+all divided by 2g.
+And remember, we were using this form to find square
+roots, because it says if k is the value of the square root I
+want to find, then that's the polynomial I want to use.
+So this little formula says here's a better way of finding
+a guess for the square root of k.
+All right, let's put that together.
+We can now have another way of generating guesses, which we
+can check, which turns out to be very efficient, so here's
+some code that would do it.
+Again, I've got a little epsilon that tells me how
+close I want to get.
+Let's assume I'm looking for the square root of 24.
+We'll try some other examples in a second.
+I'm going to give an initial guess, which
+will just be y / 2.
+It's not a very good guess, but it's
+reasonable place to go.
+And look at the code.
+Very crisp, very clean, very efficient.
+It basically says check to see am I close enough.
+Is the difference between the guess^2 and y less than or
+equal to the epsilon.
+If it's bigger than that, I'm not close enough.
+And then Newton says get a new guess by taking the old value
+of guess, taking guess^2 - 1, divide it by 2 * guess, which
+is the derivative, and use that to create a
+new binding for guess.
+You just keep updating.
+Do that until I get close enough, and when I'm done,
+just print out the result.
+Nice and crisp.
+What's this doing?
+It's generating guesses.
+There's the generation.
+But it's not doing it exhaustively.
+It's using this property of mathematics together, and then
+it's testing, right here, to see if I'm done.
+So it's another example of a generate and test kind of
+algorithm, and let's look at what happens if we run it.
+So in my IDLE, I've got just a version of that.
+I'm going to do it with 24 to start with.
+And if I evaluate this, it prints out its guesses, starts
+with a value of 14, and then goes to 7, 5.
+And you see, in just 4 guesses, it gets
+a pretty good answer.
+Let's try a different example.
+Let's try our good old example of 25.
+Again, if I evaluate that one, you'll see again, in basically
+five steps because the first one was using 12 and a half,
+it gets to a quite good approximation of it.
+Let's try something even bigger.
+I'll go back over here.
+Let's do my example of 12345 and let's evaluate that.
+And if we do that--
+huh.
+What did it take me?
+1, 2, 3, 4, 5, 6, 7, 8, 9-- in 10 steps, it got to a really
+good solution.
+So this is what?
+This is another way of simply figuring out how to generate
+good guesses and then testing them.
+So we've now seen several examples.
+We've got this idea of iterative algorithms.
+We're using the same piece of code over and over again.
+We're using that to build up this idea of a guess and check
+method where we guess solutions and then check them.
+We use a looping construct to generate the guesses, and then
+we just check and keep going.
+And what have we seen?
+We've seen we could do exhaustive enumeration, where
+we just do a whole bunch of trials.
+We could cut down on the search in a clever way by
+simply using bisection, bisecting the range of places
+where we're looking for guesses until we get to
+something close enough.
+Or for the group finding case, which it turns out to be a
+very general case, we can be really efficient by taking
+advantage of a mathematical property to very quickly cut
+down on where the solution lies.
+Those are examples of iterative algorithms, and
+they're examples, in particular, of guess and check
+methods that turned out to be really powerful.
+And we're going to give you a chance to explore those as we
+move through the class.

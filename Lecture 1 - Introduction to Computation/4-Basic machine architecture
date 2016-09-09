@@ -1,0 +1,168 @@
+ERIC GRIMSON: We've been talking about recipes,
+mechanical process, how-to methods for capturing ways of
+getting the computer to do something for us.
+Now we can ask the question how do we actually get that
+recipe into a mechanical process
+inside of the computer.
+What kind of things will we need to have the computer do
+that work for us, do that little Heron of Alexandria
+algorithm for computing square roots.
+We actually got a couple of choices here.
+First one is we could build a machine specifically to
+compute square roots.
+It might sound odd.
+We probably don't need something quite that
+particular.
+But in fact early computers were exactly this.
+They were instances of what were called
+fixed program computers.
+And a fixed program computer was something that did a
+specific calculation and was designed to do exactly that.
+In fact you've seen a fixed program computer.
+A calculator is exactly that.
+It does a set of arithmetic computation.
+That's all it does.
+It could be more complicated.
+In fact some of the early computers were.
+Atanasoff and Berry in 1941 built a computer for solving
+systems of linear equations.
+And even despite the fact that the technology wasn't quite as
+sophisticated as it is today, it did quite
+well at doing that.
+During the war, Alan Turing, one of the most famous
+computer scientists, built what was called the bombe,
+which was used to decode Enigma codes during World War
+II, again, a computer built specifically for that purpose
+but solving a very complex task.
+The problem with a fixed program computer is that it
+does only that thing it was designed to do.
+What we'd really like is a computer they can do anything
+we tell it to do.
+And for that, we want a machine that can both store
+and manipulate sequences of instructions.
+And those are called stored program computers.
+And that's what almost every modern computer is.
+It's a stored program computer.
+So what does that say?
+What does it mean?
+Well, the idea behind a stored program computer is that we
+can take a sequence of instructions-- we're going to
+talk in a second about how we create them-- but a sequence
+of instructions, think of it as a program, that is going to
+capture the steps of our algorithm in order.
+And we're going to be able to input that sequence of
+instructions inside the computer.
+That sequence of instructions will be built from a
+predefined set of primitives.
+Ah, that goes back to what we talked about earlier.
+In most cases, those primitives will be very simple
+things, simple arithmetic, simple logic, simple tests on
+both numbers and characters, and the ability to move data
+around inside of the machine.
+Very primitive operations.
+We're going to see how to use those in a clever way, but
+that sequence of instructions is what we're going to read
+into the computer and store there.
+Once we've done that, then inside the computer there will
+be a special program called an interpreter.
+And that program basically walks through those sequences
+of instructions in order, executing each one in turn.
+It's going to use the tests to change the flow of control
+through the sequence and to decide when to
+stop once we're done.
+But it's going to simply execute a very simple set of
+instructions.
+So the idea is we can read or load the
+instructions in the computer.
+We might be able to change them around.
+And then we can ask the computer to start at the
+beginning and walk through the sequence executing some
+computation.
+Let's look at that in a bit more detail.
+So here's a simple architecture for a computer.
+It's got a memory.
+It's got what's called an ALU or an arithmetic logic unit,
+which is going to do those primitive operations for us.
+And it's got a control unit that keeps track of where
+things are and asks the ALU to do work.
+So when we read in some code, a program, it's basically
+going to create a set of instructions
+up here in the memory.
+And inside the control unit, there's a special thing called
+a program counter that initially points to the first
+instruction in that sequence.
+When we ask the program to run, when we ask the
+interpreter to execute the program, it starts by going to
+that instruction and executing it.
+And that instruction will typically be something that
+takes some value out of memory, runs it into the ALU,
+does some computation, and stores it back in memory.
+Having done that, the program counter increases by 1, which
+means it goes to the next instruction.
+And it executes that instruction which, again,
+typically will be to take some values in memory, run them
+through ALU, do a simple computation, and
+store them back here.
+And it simply keeps doing that, moving through the
+sequence of instructions 1 at a time, doing those very
+simple arithmetic and logic kinds of computations.
+Every once in a while, it'll get to an
+instruction that is the test.
+It's going to compare a number, to see if it's greater
+than 0 , for example, or compare a character.
+But it's going to do a simple test.
+If that test turns out to be true, that test is going to
+actually change the program counter, causing the system to
+jump back to or jump forward to some other place in the
+code, changing where we are in the code.
+And it's going to keep doing that.
+And it will do that until, in fact, it reaches a point where
+it says, I'm done, at which point it will output the
+result here.
+Those are the basic elements of a computer, a control unit
+here that has us follow through a sequence of
+instructions up here, causing data to flow through the ALU
+and back into memory, and occasionally using tests to
+jump around in the code.
+And we're going to see very shortly how to start building
+up programs to do exactly that.
+But that's what the computer does.
+OK, that sounds neat.
+So what are the primitives?
+Essentially says if we can have a stored program computer
+we need to set a primitives.
+We're going to need some way of controlling them, which
+we'll get to, but what are the primitives?
+Well, it turns out that same guy, Alan Turing, showed that
+using just 6 primitives it's possible to compute anything
+that's computable.
+That's amazing.
+6 simple primitives are sufficient to compute anything
+that's computable.
+And in fact we refer to that property as saying that any
+computer, any interpreter that has that property is what we
+call Turing complete, which by the way says anything you
+compute in 1 programming language you can compute in
+any other programming language.
+Now having only 6 primitive sounds cool, but it also
+sounds like, man, if I've got to program everything by
+reducing it down to some really larger sequence of
+primitive operations, this is going to be a serious pain in
+some parts of the anatomy.
+And it is.
+So, fortunately, modern programming languages have a
+more convenient set of primitives.
+And in the next lecture sequence, we're going to start
+talking about what those are in Python, the language we're
+going to use.
+Not only do we have a more convenient set of primitives,
+but a key thing a programming language will have is some way
+of being able to abstract methods, that is, take a
+description, that sequence of code that we've written, and
+use it to create a new primitive, thereby adding to
+the set of primitives that the system can use.
+But nonetheless, as we've seen, just starting from 6
+primitives, we can build up an entire array of computation.
+And anything computable in one language is going to be
+computable in any other programming language.
+And that's amazing.

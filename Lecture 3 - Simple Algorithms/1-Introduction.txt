@@ -1,0 +1,18 @@
+Eric Grimson: In this third lecture we are going to start building on our
+ability to write simple programs.
+In particular, we're going to introduce the concept of iteration, or
+how to repeat a method multiple times in order to reuse the computation to
+execute something an arbitrary number of times.
+Once we have iteration, we can start doing some interesting classes of
+algorithms.
+Starting with guess and check methods, the guess and answer, check it, and
+then use the results to improve the guess.
+This will lead naturally to the idea of loop constructs, or mechanisms in
+our language that let us generalize the idea of repeating a computation
+until a particular condition is reached.
+This will let us generalize our guess and check methods to a broader group
+of algorithms called successive approximation, and especially to a
+very common and very powerful method called bisection search.
+At the end of this lecture you will be able to write simple algorithms that
+solve numerical problems by improving approximate estimates of the answer to
+get successively better guesses.

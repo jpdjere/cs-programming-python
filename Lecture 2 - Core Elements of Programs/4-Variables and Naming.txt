@@ -1,0 +1,101 @@
+ERIC GRIMSON: OK.
+So we've now seen how to create simple expressions.
+We can take objects that are numbers
+like integers or floats.
+We can combine them together with operators, so we say 3
+plus 4 or 3 plus 4 all in parentheses times 5.
+That gives us a way of doing some simple computations, but
+it's pretty boring.
+It basically says we got a calculator.
+So we can type in expressions and get out values.
+But we like to obviously do more
+complicated kinds of things.
+One thing we need in order to make that happen is what we
+call a means of abstraction.
+While we can certainly write arbitrary expressions, it
+would be valuable having written it down and gotten the
+value of an expression to be able to remember, to save it
+away by giving it a name, and then using the name to get the
+value back whenever we needed it.
+Fortunately, we have that ability.
+It's called assignment.
+And in Python, the format of that is shown here.
+We type in word or a sequence of characters followed by an
+equal sign followed by some expression whose value will
+then be associated with that word.
+So if I go over to my Python shell, I can do things like
+I'm going to say, give the name pi 3.14159.
+And notice when it print it out, it doesn't mean anything.
+It simply has done that assignment.
+That is it basically--
+as we're going to see later on-- created a binding of the
+name pi to that value.
+If I want to see the value of pi, I can simply ask the
+Python interpreter to give it to me, and it
+prints it back out.
+So I could do another binding.
+I can say, I've got a radius of 11.2.
+Again, notice that it doesn't print anything out.
+If I want to get the value of radius, I can ask for it.
+But I can also now do things like create expressions.
+So I'm going to assign the name area to.
+And I can now write an expression as I would have
+before with now not just numbers but names whose values
+are also numbers.
+So the area is pi r squared, where r is my radius.
+And I can say, OK, what is the value of area?
+And it did that computation.
+So I have an assignment statement.
+And notice here I'm using a single equal sign, which is
+why we use the double equal sign for comparison.
+A word or a name, an equal sign, and expression says, get
+the value of that expression and bind to it or bind it to
+if you like the value of the name associated on the left
+hand side of that expression.
+So let's look at that in a little more detail.
+We say that we're binding a variable or a name to a value.
+And what does that mean?
+That statement pi equals 3.14159 literally assigns the
+name pi to the value of the expression to the right hand
+side of the equal.
+And you can think of this as literally creating a binding
+between a name and a value stored
+somewhere in the computer.
+So over here are all the values that are stored away in
+the computer.
+And I have somewhere within the computer a listing of all
+the names whose bindings I have done.
+As we just saw, we can retrieve the value associated
+with the name by simply invoking the name, just asking
+for what is the value pi or pi.
+Now I can change the bindings.
+So having the bound a variable name, I can do another
+assignment statement.
+So, for example, if I go back over to my Python shell, I
+could change the value of radius.
+Remember, initially we had radius of 11.2.
+Let's change it to something different.
+Let's changes it to in fact--
+I'm going to make this 14.3.
+So how do I do that?
+I say let's have radius be 14.3.
+Now what's my value of radius?
+There it is.
+What that's done in my diagram over here is it's change the
+binding for radius.
+Remember before it was 11.2.
+It has now changed into something else.
+But notice that area hasn't changed.
+And in fact I can confirm that.
+The area is still 3.94 point a whole bunch of stuff.
+And that's because my evaluation of the binding for
+area having been done earlier has simply
+stored away that value.
+As you can see right here, it doesn't have an
+expression of value.
+And it is the particular value.
+So rebinding radius does not change the binding
+associated with area.
+An easy place to make a bug or have a mistake and something
+that you want to keep an eye out on as you move forward in
+terms of using these ideas.

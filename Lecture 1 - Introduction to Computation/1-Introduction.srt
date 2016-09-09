@@ -1,0 +1,44 @@
+0
+00:00:00,320 --> 00:00:02,410
+Eric Grimson: Welcome to 600x.
+
+1
+00:00:02,410 --> 00:00:05,780
+In this first lecture, we&#39;re going to talk about some of the fundamental
+
+2
+00:00:05,780 --> 00:00:09,590
+principles of computation and computational thinking.
+
+3
+00:00:09,590 --> 00:00:12,790
+For example, what does a computer actually do?
+
+4
+00:00:12,790 --> 00:00:16,239
+What are its fundamental operations?
+
+5
+00:00:16,239 --> 00:00:19,880
+How do those fundamental operations support what we call imperative
+
+6
+00:00:19,880 --> 00:00:23,280
+knowledge or how-to methods?
+
+7
+00:00:23,280 --> 00:00:26,270
+What are the basic elements of a computer that enable it to compute
+
+8
+00:00:26,270 --> 00:00:31,070
+things, described by algorithms, or how-to recipes?
+
+9
+00:00:31,070 --> 00:00:34,940
+And finally, how can we use a language, a programming language in
+
+10
+00:00:34,940 --> 00:00:37,100
+our case, to describe those recipes?
+

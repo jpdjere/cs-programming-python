@@ -1,0 +1,248 @@
+ERIC GRIMSON: So let's get going.
+We want to start programming in Python.
+So we're going to write programs.
+In the program, or sometimes called a script, is going to
+be a sequence of definitions and commands.
+The definitions are things that get evaluated and stored
+away, and commands are things that actually get executed by
+the Python interpreter in what's called a shell.
+And that shell is just a program that allows users to
+type commands in that are directly executed by the
+operating system of the computer.
+It's called a shell because it covers up the details of the
+operating system and just lets us interact with things.
+We'll come back to definitions later on, but right now we
+want to start by just simple things.
+So what are commands or statements?
+Well they're things that instruct the
+interpreter to do something.
+And we can, therefore, begin by talking about some simple
+Python commands.
+OK, so let's get going.
+To deal with giving commands to the computer we also to
+think about what are we going to manipulate.
+And so the first thing we have to do is describe data objects
+inside of a computer.
+These are the things that capture information and that
+can be then manipulated in some way by the computer to
+determine more information.
+So at heart every program is going to
+manipulate a data object.
+In each of these data objects has a type that defines the
+kinds of things that programs can do to it.
+We'll see that data objects are typically either scalar,
+that is they cannot be subdivided.
+Or, obviously, if they're not scalar they're non-scalar,
+something that has an internal structure that
+can actually be accessed.
+And as we start building up our collection of data objects
+we're going to talk about each one of these kinds of things.
+But let's start with the simplest ones.
+So scalar objects.
+Basically inside of Python there are three different
+kinds of scalar objects.
+There are integers or ints.
+These are used to represent the kinds of whole numbers
+we're used to.
+There are floats, or floating point numbers which are used
+to represent real numbers, things that have decimal
+points and partions to them.
+We also have what we call Boolean, often referred to as
+having a type bool which are used to represent the truth
+values of true and false.
+We're going to talk about how to use each of these things,
+but for now we can simply look at some simple examples.
+So let me go over to my Python evaluator.
+I've got a Python shell running over here.
+So I can type in something like 3.
+And it gives me back that value.
+I can type in a real number.
+I can even type in, if I can type it, I can type in, oh and
+I did not type it properly.
+So let's type it in that way.
+I can type in a Boolean value.
+We'll come back to why I got an error in a second.
+As I said, I can also ask Python to tell me what is the
+type of an object.
+So I type in, in a bad pun that special keyword type
+followed by an open parenthesis.
+This is because this is a function.
+We'll come back to that later on.
+I can give it an expression.
+And it tells me that this is an object of type int.
+Or you could say 3.0.
+And this tells me this is an object type float.
+So I've got simple data objects.
+OK let's go back here and carry on.
+What can I do with data objects?
+Well I want to create commands.
+I want to do things with them.
+So I can start building up expressions.
+And expressions are composed of operators and
+objects, data objects.
+They can be combined to denote doing something
+different to them.
+And the syntax for most simple expressions is simply what's
+shown here.
+We have an object, an operator, and another object.
+Objects are those simple things we started with,
+although we can see that they could be more compound
+expressions that reduce to objects.
+And so what are the kinds of operators?
+Well, simple things we can do.
+Let's start with just numerical kinds
+of things, all right?
+So I can add two data objects together if they're ints.
+I can add.
+I can subtract.
+I can take products.
+Now let's start with simple things.
+If the objects are both ints, the result is going to be an
+int or an integer.
+But if either one of them is a float the result is going to
+be a float.
+Again, go over to my scheme, or my little scheme over here
+for dealing with Python.
+And I could type in things like 3 plus 4 two ints
+and I get out 7.
+If one of them is a float it gives me back a float.
+And we'll talk about what it does in a second.
+I can take the difference between two things.
+That gives me the result I would expect.
+And I can take the product of two things.
+So 3 times 4 is 12.
+Now, coming back over to my slides here I've done sums.
+I've done differences.
+I've done products.
+Division is a little different.
+Division if they're floating point numbers will do the
+thing we do expect.
+But if they're both integers the result
+is simply an integer.
+And it's the quotient without taking the remainder.
+So let's look at that.
+If I take 3.0 divided by 2.0 I get out 1 and 1/2 which is
+what I expect.
+If I take 3.0 divided by 2 I also get 1 and 1/2.
+But if I take 3 divided by 2 it gives me back the quotient
+part of the division, or if you like the whole number part
+of 1 and 1/2.
+If I want to get the remainder I use the percent sign.
+3 remainder 2 gives me back the component that's left
+behind after I've done that.
+And then finally what I can do is I can
+take things to a power.
+So I can take 3 to the second power.
+And I get 3 times 3, which is of course 3
+squared, which gives 9.
+So I now have a set of things that I can actually run in
+terms of creating expressions that are integers or floats
+combined with some operator.
+All right, what might I do with that?
+Well let's look at some simple examples here.
+I've already done some examples, but I
+certainly add things.
+I can multiply things.
+But I can also do things like say take 2 plus 3 add them
+together and multiply by 4.
+And the way Python is going to deal with this it it's going
+to take the expression inside the parentheses, the 2 plus 3,
+this portion here and reduce that or get that value which
+is 5 before it does the multiplication.
+Now what happens if I say 2 plus 3 times 4 without the
+parentheses?
+Well we can run it.
+That gives me 14.
+And what's happening here is that, in fact, I'm first
+executing that example before I do the remainder.
+And this is basically something that says I've got
+some order in terms of how I would deal with things.
+So let's look at that in a little more detail.
+The parentheses basically define sub-computations.
+I want to complete those to get values before I go on to
+evaluate a larger expression.
+So in my first example I reduce the 2 plus 3 to 5
+because it's inside the parens and then do the
+multiplication.
+On the other hand, if I don't have parentheses then the
+operators are executed in a particular order.
+There's a precedence to them.
+Which means go from left to right, but we start first with
+exponentiation.
+Having done all of those then we'll do
+multiplication and division.
+And having all of those we'll then do the addition and
+subtraction.
+Which is why without the parentheses I do the 3 times 4
+first and having gotten 12 I then add 2 to it to get the
+next component that I want.
+OK, so we can create simple expressions.
+What else might we want to do?
+Well we'd like to compare things.
+We'd like to be able to do comparisons of different kinds
+of numbers.
+For this I have again, a sequence of
+simple arithmetic things.
+I have ways of saying something is greater than.
+Something is greater than or equal to.
+Less than.
+Less than or equal to.
+And those are my first four here.
+So greater than, greater than or equal to, less than, less
+than or equal to.
+Let's look at some examples.
+I can ask, is 3 greater than 4?
+Of course the answer is no.
+Is 3 greater than 3?
+The answer is no.
+But 3 is greater than or equal to 3.
+So I get out true.
+I have the same thing doing the last line comparisons.
+If I want to see if two things are equal I use this kind of
+strange looking thing here with the double equal sign.
+And we'll see why.
+So I can say is 3 equal to 3.
+And the answer is true.
+And to see if something is not equal to I use what's often
+called bang or the exclamation point followed
+by the equal sign.
+So I can say is 3 not equal to 3.
+That's false.
+But 3 we know is not equal to 4.
+And that's true.
+So what do I have now?
+I can do simple comparisons.
+And I can do that on integers.
+I can do that on floats.
+So I'm now ready to start doing simple
+arithmetic kinds of things.
+I also have though Boolean values, truth values.
+So I have some simple operations on those.
+I have, for example, an expression that says given two
+expressions who are Boolean I can take the and of those and
+that will be true if both a and b are also true.
+I can also take the or of two Booleans a and b
+And the or of those two booleans is true
+if either a is true or b is true or both are true.
+And, of course, I can take the complement.
+It a is true, then not a is false.
+If a is false then not a is true.
+We'll come back to those later on, but those are simple
+operations on Boolean.
+What else might I have?
+Well the last piece I need is that sometimes I want to convert an
+object of one type into an object of another type.
+This is called type casting or type conversion.
+And that is something that we can do in Python.
+We can convert an integer into a floating point basically
+creating a 0 after the decimal point.
+And to do that we use the special function float to
+which we can give an integer.
+And it gives us back the floating point value.
+Going the other direction we can also do we can take a
+floating point number and take the integer part which gives
+us back that quotient component, that part before
+the decimal point losing the remainder.
+With that we're now set.
+We can actually start moving on to put all these pieces
+together which we're going to do in the next part.

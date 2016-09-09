@@ -1,0 +1,123 @@
+ERIC GRIMSON: OK, we're almost ready to start getting our
+computer to do things for us.
+As we've said, we want to take that idea of computational
+thinking, taking a problem and breaking it down into a
+sequence of mechanical steps that will let us deduce
+solutions to that problem.
+And we want to be able to take that description and somehow
+convert it into a form that the computer can do
+the work for us.
+That says we need a way of describing those sequences of
+steps, and that's where the programming language comes in.
+Programming language is going to define both the syntax and
+semantics that we need to translate our computational
+ideas into mechanical steps.
+Syntax, I'll remind you, says how we put together legal
+expressions?
+Semantics says, how do we deduce the meanings associated
+with those expressions, which is going to let us solve the
+problems that we want.
+We're almost ready to start talking about a programming
+language, but we need to make one more choice.
+And that choice comes down to the kind
+of programming language.
+One way to think about this is, no matter which language
+we use, the interaction with the computer will all be
+roughly the same.
+We're going to take an input and
+provide it to the computer.
+That's what we call the source code.
+That input is then going to go through some kind of
+computational process.
+And when we're done, we'd like to get a result printed out or
+returned by the computer.
+And right here is where that computational process is going
+to take place.
+And we have some choices here in terms of how the computer
+actually deals with taking our input and
+reducing it to an output.
+And let's look at what those choices might say.
+One choice is that we can use what's called a low level
+programming language.
+Low level says that the instructions we type in or
+that we enter into the computer are very similar to
+the internal control unit we saw last time.
+Those instructions might be at the level of saying, move data
+from one location of memory to another, or execute a simple
+ALU, or arithmetic logic unit operation, like
+add, subtract, compare.
+It might also involve jumping to a new point in the sequence
+of instructions based on that comparison.
+But the programming would be done in a very low level.
+Once you make that decision to use this kind of a programming
+language, then the stages within the computer are pretty
+straightforward.
+There is a process called a checker, which takes that low
+level code and just confirms that the syntax is correct and
+that the static semantics are correct.
+And then, it passes the sequence of instructions on
+through a process called the interpreter that simply
+follows that sequence, much as we saw last time, ending up
+with some output that gets printed back out to us.
+So on a low level language, we're programming, basically,
+at the level of the machine.
+That's one option.
+There's a second option, though, which is to use what's
+called a high level language.
+And a high level language uses more abstract kinds of terms.
+We might want to talk about having the computer think
+about, invert a matrix, compute a function, compare
+two complex data structures.
+We'd like to be able to program, if you'd like, at the
+level of thinking about higher kinds of abstractions.
+Now here, again, we've got a choice.
+In a compiled language, those abstractions are then first
+checked, as they did before, but then converted back into
+low level code.
+So there is a special thing, or special process, inside the
+computer called a compiler that takes the checked
+sequence of instructions and reduces or converts them back
+down to those basic computer instructions that we know we
+need and those are then run through the interpreter in
+order to execute the actual process.
+So this is certainly one way to do it, a compiled language.
+There's an alternative.
+And the alternative is, again, to have a high level language,
+run it through the checker as before.
+But in an interpreted language, there's a special
+program that converts that source code to an internal
+data structure and then sequentially converts each
+step into a low machine instructions and executions.
+That says we're going to, one instruction at a time, do the
+conversion and execution.
+And in this case, this is the kind of like
+you're going to use.
+In this course, we're going to use Python, which belongs to
+this class of interpreted programming languages.
+Now, you might say, so what are the choices?
+What are the tradeoffs here?
+And there are a couple of tradeoffs.
+In a compiled language, the code typically is faster
+because we do all the work ahead of time, through the
+compiler, to convert our instructions into the low
+level machine instructions.
+So we can make them very efficient, which means they'll
+run faster.
+But one of the challenges is if we have a bug or an error
+in our code, when the compiled code hits that error, it can
+often be difficult to figure out what caused it.
+Because we're way down in the weeds of those compiled
+instructions and figuring out what corresponding point in
+our actual instructions led to that error can be a challenge.
+In an interpreted language, it can be a little slower, not
+badly, but a little slower, because we're doing the
+conversion on the fly, one instruction at a time.
+On the other hand, when we do hit an error or a bug, it is
+usually easier to determine what caused that error because
+we know exactly at what point in our code we were at when
+that error occurred.
+Again, there are tradeoffs here.
+Different people like
+different versions of languages.
+For us, we're going to use Python, which has this
+property of being an interpretive language.

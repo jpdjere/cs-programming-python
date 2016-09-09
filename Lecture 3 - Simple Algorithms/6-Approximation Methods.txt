@@ -1,0 +1,155 @@
+ERIC GRIMSON: All right.
+We've been looking at guess and check algorithms.
+We just took a little bit of a detour to look at
+the floating point.
+And the reason we did it is that we want to come back to
+this idea of suppose we'd like to use guess and check to
+find, as we said, square roots or cube roots.
+In the case where we're dealing with integers, we
+could get away with this because we could simply
+generate all the possible guesses-- there's only a
+finite number of them--
+and check them to see which one was the right answer or
+whether there was no answer, if we basically went through
+all of them.
+When we start talking about trying to find answers,
+though, that are floating points where the number whose
+cube root we're trying to find is not a perfect cube, we
+can't do the same thing.
+There's an infinite number of possible things that
+we could guess for.
+So we need to be more clever about it.
+And that's where we're going to use this idea of
+approximation.
+We could certainly still generate, exhaustively, a
+number of different guesses, all
+differing by a small amount.
+So we could start at 0 and then say, for example, do
+0.01, 0.02, et cetera for whatever small amount we might
+want to use and use the same idea.
+But if we do that, in fact, we can't guarantee that we're
+going to get the exact answer.
+We'll just have to make sure that we're close enough.
+We can use that idea.
+We can still use exhaustive enumeration.
+The differences now are we're going to take small steps
+where we define how small the step size we're going to take
+to generate all the guesses in some order.
+And when we check, the check now has to take into account
+the fact that floating points are not exact.
+And we just have to see if we're close enough.
+Well, let's look at that.
+Here's a piece of code to do it.
+It looks a little daunting, but it's not too bad.
+I'm going to do this for a particular value, trying to
+find, in this case, the root of 25.
+And I'm going to set a little value up here called epsilon,
+which is going to be my way of saying, how close
+do I want to get.
+I have to pick a step size, which is going to say I'm
+going to start at 0.
+And then I'm going to keep going by increments or jumps
+of some step size.
+I'm going to arbitrarily pick the step size
+to be epsilon squared.
+We'll come back to that in a second.
+I'm going to do one other thing here.
+I'm going to keep track of how many times do I
+actually make a guess.
+So I'm going to set up a global variable called number
+of guesses, which I'm going to increment as
+I go through there.
+Then I'm going to start off with my answer equal to 0.
+And then here's the idea.
+I'm going to use another one of these iterative loops.
+I'm just going to walk through it.
+And here's what it's going to do.
+It's first going to check to see have I gone too far.
+What does it do?
+It says, if answer squared minus x, if the absolute value
+of that is bigger than epsilon, it says I've gone
+further than I can.
+Because remember, the answer is going to keep increasing.
+If it gets to the point where it's bigger than that, it's
+gone too far.
+I'm also going to check at the same time to say-- or rather,
+it's too far apart.
+I'm also going to check at the same time to say
+am I done or not.
+So this one is basically telling me am I done.
+So as long as the difference between answer squared and x
+is too big and I'm not done yet, I'm going to
+take another step.
+So I'm going to increase answer by step.
+Then I'm going to keep track of the number of
+guesses I have here.
+And I'm going to keep doing that.
+So here's my generate test.
+And I keep doing that until, in fact, my check, which is
+right here, turns out not to be true.
+And when that's not true, I jump out of it.
+I'm going to print out how many times
+did I actually guess.
+And then I'm going to check to see is the answer
+close enough or not.
+All right, it's got that same basic form.
+This is an exhaustive enumeration moving by step
+sizes, generating different guesses, and then checking
+them to see whether I've got something that's the answer I
+want or not.
+Let's see what happens if we try it.
+So over here, I've got that code.
+I'm going to do it with x equal to 25.
+And if, in fact, I now evaluate that, huh, it takes
+almost 50,000 guesses.
+But it basically says that I get an answer of 4.999.
+It's pretty close to the square root of 25.
+Now you know the square root of 25 is 5.
+This is OK that it didn't get the exact answer, because I
+just want it to be an approximation.
+Now what are some things that we might
+think about with this?
+Now one of them is how big a step size should I pick?
+It could be any small number.
+But one of the problems is, if I make it really small, it's
+going to take a long time to find the square root.
+On the other hand, if I make it too large, I might skip
+over the answer without actually getting close enough.
+Let's look at a couple of examples of that.
+So I'm going to go in here.
+And I'm arbitrarily going to change this from epsilon
+square to I'm going to take it as a step of,
+I don't know, 0.5.
+And I evaluate that.
+And I run it.
+In this case, I get lucky, because I actually got to the
+right point and I got it in 10.
+But if I go back over here and, I don't know, I make this
+a really big step size and I run it, it says, I don't find
+it after 13 guesses.
+OK, so if the step size is too big, I might skip right by it.
+So let's go back over here.
+And we'll make this now go back to being epsilon squared.
+It will actually just make life a little easier as we
+look for it.
+OK, let's try a different number here.
+So we saw I could find the solution
+for 25 pretty quickly.
+Let's try something different.
+Let's make x, oh, I don't know, something big.
+And let's try running that.
+Oh, it took a little while.
+It took, what is that, about a little over a million guesses.
+But it found a pretty good solution to it.
+It's found that that's close to the square root of 12345.
+So what does this say?
+Well, it says, if we go back over here, in general, it's
+going to take x over whatever the step size number of times
+through the code to find a solution.
+And you can see that tradeoff.
+If I want it to be fast, then I'd like to make the step size
+large, because that will make this smaller.
+But if I do that, I might miss the answer.
+So I'd like to find a more efficient way to actually
+solve this problem.
+And we're going to do that in the next sequence.

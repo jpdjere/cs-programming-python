@@ -1,0 +1,279 @@
+ERIC GRIMSON: So we've now seen some nice examples of
+using guess-and-check methods to find answers to things.
+But we want to take a slight to detour.
+We'd like to use guess and check but not just for
+integers value, not just finding
+cube roots of integers.
+We might like to try and find them for other values.
+But to do that, we have to think about using floating
+point numbers or float.
+And to do that, we also then need to take a little bit of a
+detour to understand how floats are represented inside
+of the computer.
+So bear with me for just a little bit.
+We're going to talk about floating point representations
+and then bring that back to see how we can still use those
+ideas to find approximation algorithms to get solutions
+using guess-and-check methods.
+So floats approximate real numbers, but how do they
+actually do this?
+And let's think for a second though, what is a decimal
+number, the kind of number we normally deal with?
+Well, 302 is really 3 * 10^2 + 0 * 10^1 + 2 * 10^0 which of
+course is just 1.
+So it's 3 * 100 + 0 * 10 + 2 * 1.
+That's because we're using base 10, handy because we got
+10 fingers and 10 toes is an easy way to do counting.
+Computers, not having fingers or toes, do things a little
+differently.
+They represent things in terms of binary numbers or powers of
+2, basically because in electronics it's easy to have
+a switch either be on or off, have a 0 or a 1.
+So a binary number will be a sequence of 1's and 0's that
+has the same form.
+So the binary number 1, 0, 0, 1, 1 is the same as 1 * 2^4 +
+0 * 2^3 + 0 * 2^2 + 1 * 2^1 + 1 * 2^0, which of course is 1.
+So if we wanted to convert it to decimal, that's basically
+16 + 2 + 1 is equal to 19.
+So decimals, base 10, binary numbers, base 2.
+Internally, the computer represents
+numbers in binary form.
+So one of the things we'd like to figure out is so how does
+it actually get to that kind of a stage.
+So let's look at that.
+What does it mean to think about converting a decimal
+that we type in into a binary form?
+How does the computer convert it into a form it can use?
+And then how are we going to think about that?
+Well, let's take an example.
+Suppose we give the computer some number.
+We'll call it x.
+And it turns out x is actually 1, 0, 0, 1, 1 in binary.
+But we don't know that.
+We want to figure that out.
+Well, knowing that it has some form like that,
+what could we do?
+The first thing we can do is if we take the remainder of x
+with respect to 2.
+What does that say?
+Well, that's says if we're going to divide each of these
+elements by 2 since x is this sum, we can
+divide that by 2 evenly.
+We can divide that by 2 evenly, that by 2 evenly, that
+by 2 evenly.
+But this only cannot.
+So when we do that, the remainder that's left is
+whatever that bit is.
+And that gives us the last binary bit, which is a 1.
+That's cool.
+So taking the remainder back with respect to 2 gives us the
+lowest order bit.
+If we then divide x by 2, what we really do is we just shift
+the bits left.
+You see that if we divide x by 2 that's going to change that
+to a 3, that to a 2, that to a 1, that to a 0.
+This goes away because remember we lose it.
+And what we've done, oh, just get exactly that form.
+We've shifted all the bits left by 1.
+And we can now do the same thing.
+If we take this new value and get the remainder of that with
+respect to 2, it's going to give me that, which
+gives me a second 1.
+And then shifting left will reduce that to 1, that to 0,
+then I'll keep going.
+And that will allow me to successively peel off each of
+the bits in order.
+So we can convert any decimal number into a binary form.
+Here's a little piece of code to do it.
+Let's just walk through it very quickly.
+This part up here I'm just going to let you look at it,
+but it's pretty straightforward.
+It's basically saying if the number I'm trying to convert
+is negative I'm going to take the absolute value, but I'll
+keep track of that so I can put the negative sign back out
+in front when I'm done.
+And then what does this piece in here do?
+Well, it basically walks through what I just said.
+It says I'm going to set result initially to be an
+empty string.
+I'm going to gather up the bits.
+And then if the number is 0, I just return 0.
+Otherwise, oh, there is one of those little iterative loops.
+It essentially says, let me strip off the bottom order
+bit, put it onto the result.
+There's a concatenation of the string, puts it to the left of
+whatever I've already gotten.
+Change number by dividing by 2, which shifts the bits left.
+And keep going.
+So this is getting me the next bit.
+This is just shifting left.
+And I do that, OK, until I get a number that's less than 2.
+And when I do, I'm done.
+result holds the thing I want.
+And all I need to do is just put a negative sign out in
+front if in fact what I started with
+was something negative.
+So this is just doing a conversion back.
+Cool.
+Let's take a check of this.
+See what it does.
+So here in IDLE, I've got an example of that.
+I've set a number to be 302.
+And let's look at what happens if I do that conversion.
+I type it in.
+Huh.
+Nothing showed up.
+That's right.
+Because I didn't ask it to print anything out.
+But I know that result now holds the value I want.
+And it says as a string there is 302 in decimal converted
+into a binary form.
+I could change to something else.
+Make it 256.
+And do the same thing.
+Save it away.
+And again, I need to see where the result is.
+I can do that over here.
+And go back down to where it was.
+Here is the result.
+And since I know 256 is a power of 2, that form looks
+roughly right.
+So what are we doing?
+Given a decimal number, we can convert it into binary form.
+And that's literally what the machine will do inside.
+Now let's think about what this says.
+First of all, I want to be able to get good
+approximations to things.
+So what about fractions?
+Why don't we deal with a fraction?
+Well, let's think about a number like 3/8 which
+In binary, it would be 0.375,
+which would be 3 * 10^-1, or
+
+
+1/10, + 2 * 1/100 + 5 * 1/1,000.
+So it has the same form.
+Now how could we figure out how to
+convert this into binary?
+Well, suppose we could find a power of 2 big enough so that
+when we multiplied it by this fraction it turned it into a
+whole number?
+If we can do that, then we could take the whole number,
+convert it into binary using the method we just had, and
+then when we're done divide by the same power of 2.
+It's just going to shift to the right.
+So, for example, 0.375 we kind of know this.
+We multiply it by 8.
+It gives me 3.
+That's in decimal form.
+I could convert 3 to binary form, which we know
+is just 0, 1, 1.
+And now that I've got that, I could just divide by 8, which
+is equivalent to shifting the binary point, if you like,
+three slots over to get 0.011.
+Cool.
+Let's do that.
+Here's my code.
+And it's really got almost exactly the same form.
+It's a little bit more than we had before, but let's just
+look at it.
+I've got something up here that's just going to input an
+x so I'm not having to type new values in.
+And here's a little iterative loop that simply looks for the
+power of 2 that converts it into a whole number.
+So it's just going to loop over p, looking for a value of
+p such that 2^p * x is a whole number.
+Its remainder with respect 1 is equal to 0.
+Cool little check.
+I'll just do that.
+Once I can do that, then I'll take x and I'll
+multiply it by 2^p.
+I've converted it now into a whole number.
+And there, I just did what I did before, simply run through
+that test to see how do I convert it back
+into a binary form.
+And once I'm done, then the last piece is I need to make
+sure I put enough zeroes out front by looking at how many
+values are there between the size of p and the length of
+the result.
+And then having done that, I just need to find the right
+place to put the decimal point.
+And there's a funky little piece of code that is
+basically finding the spot in between p where
+we want to do it.
+We'll let you look at the details of it.
+But that's basically what this code does, finds the power of
+p to make it a whole number, does the conversion, and then
+converts it back.
+OK.
+So let's see what we got here.
+Go over to my IDLE.
+And I've got a piece of code that captures that.
+All right.
+There's the piece of code right there.
+And let's run it and see what happens.
+I'm going to run that piece of code.
+It says give me a decimal number.
+In this case between 0 and 1 because that's where I'm going
+to deal with it.
+Well, let's try 0.375.
+Ahh.
+Runs through three steps to get the remainders, and it
+converts it into that binary form which
+we saw before, 0.011.
+Sounds cool.
+Let's try it again.
+We enter this-- oh, I don't know, something simple, 0.1.
+Ohh, it's working away here.
+And it's working away really hard trying to find something.
+And it says, my goodness, the binary representation of the
+decimal 0.1 is-- ohh, look at that--
+0.0001100110011001.
+Well, you get the idea.
+It's really boring and repetitive.
+Ha.
+So what happened here?
+That's a little different.
+We didn't get some nice, crisp, clean form.
+And in fact that's going to be an important factor when we
+think about binary numbers and decimal numbers
+and especially fractions.
+So what's one of the implications?
+If there is no integer p such that x * 2^p is a whole
+number, then the internal representation is always going
+to be an approximation.
+And in fact what happened here was that the Python system
+eventually stopped trying to expand it out any further and
+simply gave us a representation out to some
+arbitrary number of bits that are set by the internals of
+the Python system.
+So if it's not something that can be turned into a whole
+number by a power of p, it's always going to be an
+approximation.
+This has an important implication.
+It says, when I want to test two floats to see if they're
+the same I shouldn't use something like this because it
+might not be true because the approximations
+may be slightly different.
+I'm always better basically saying, is the absolute
+difference between them smaller than
+some arbitrary amount.
+And we're going to use that a lot.
+This is a standard place where people get into trouble by
+trying to test the quality of two floats and then being
+surprised when in fact the code doesn't
+do what they'd like.
+One of the things you could ask is, so why does print of
+0.1 give us back 0.1 if in fact 0.1 is represented as
+this long, funky kind of thing?
+And the answer is because the designers of Python decided to
+set it up this way, that it automatically rounds to some
+number of bits in order to give
+something that's much crisper.
+But in fact 0.1 is not represented as 0.1 inside of
+the machine.
+That's going to be important now as we think about taking
+this idea of iterative algorithms, especially
+guess-and-check algorithms, but dealing with floating
+point numbers.
+And we're going to do that in the next segment.

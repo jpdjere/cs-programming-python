@@ -1,0 +1,19 @@
+Eric Grimson: Welcome back to 600x.
+In this second lecture we are going to start developing knowledge of
+programming languages.
+We'll talk about how a computer converts a description of a how-to
+method that we write in a high level, although a semantically constrained
+manner, into a set of instructions that its internal
+circuitry can execute.
+To do this, we're going to begin to introduce the basic elements of
+Python, the language we're going to use in this course.
+We will introduce a bunch of things.
+Numbers, expressions that combine numbers arithmetically, ways to
+compare objects like numbers, Boolean operations on logical expressions,
+ways to abstract expressions by giving them names,
+strings or collections of characters and words and operations on them,
+combining expressions in a linear manner, and simple ways to make
+decisions and to take different options or branches
+based on those decisions.
+At the end of this lecture, you should be able to write simple programs that
+manipulate numbers or strings, make decisions, and print out results.

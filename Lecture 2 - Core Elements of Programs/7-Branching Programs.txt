@@ -1,0 +1,246 @@
+ERIC GRIMSON: So now we've got the beginnings
+of some simple programs.
+We can write straight-line programs, store them away in a
+file and run them in the Python interpreter
+whenever we want them.
+But basically they're still pretty simple things.
+A straight line because I'm just following a sequence of
+instructions in order.
+So I'm still, essentially, doing things like a
+calculator.
+When we talked about the machine we said one of the
+other things we wanted to be able to do was to make
+decisions, to do a test.
+And on the basis of that test jump to some other part in the
+sequence of instructions.
+Do one thing if the test is true.
+Do a different thing if the test is false.
+So we need branching programs, things that make decisions or
+branch based on that test.
+And the simplest branching statement in Python is a
+conditional.
+A conditional is the obvious statement because it basically
+says if we have some set of code when we get to the
+conditional we start by executing a test, which is a
+bool, a Boolean.
+And based on that Boolean, that expression that either
+evaluates to True or False, if the value of that test is True
+then there's a block of code called the True block that we
+execute based on that.
+If the value of the Boolean is False, then we may decide to
+do a different set of things.
+So there's a second block of code called the False block,
+the block of code we're going to do if the test is False.
+Now that second block is actually optional.
+We don't have to have it.
+We always need to have the True one.
+What do we do if the case is True.
+But if we decide the thing is, False, we
+don't need to do anything.
+We can simply skip that second portion of it.
+Either way, after we've gotten through that conditional set
+of expressions, we can pick back up with the next sequence
+of instructions in the code just as we would
+sequentially before.
+So this is a way of us now making decisions and based on
+the decision doing one thing in one case and something
+different in a different case.
+How do we get Python to recognize that?
+Well let's look at a simple example.
+And here's some code, which I also have over here in a
+Python file.
+I've got an instruction right here.
+This first one that says, this one right there, that says I'm
+going to, as I did before, ask for some input.
+And I want to create an integer.
+And then I want to do a set of instructions.
+And those set of instructions are going to first do a
+Boolean test.
+So there's that Boolean.
+And this is the remainder.
+It says if the remainder of x divided by 2 is 0 that says if
+I divide that x by 2 there is no remainder.
+So it says it's even.
+In that case I'm going to print something out.
+And notice the indentation here.
+That's important.
+That indentation tells me that this is a sequence of
+instructions to do based on what happens
+if the test is true.
+And that could be arbitrarily many instructions.
+I have similarly next to that if.
+And that if is a special form there that says do the
+evaluation of this expression.
+And it ends in a colon.
+Below it I've got another keyword, else,
+followed by a colon.
+And this tells me where to find a block of code to
+execute if the test is false.
+And again, notice the indentation here.
+So what this says is I'm going to execute that instruction.
+I'm then going to execute this test.
+And if that test is True, then I will execute that set of
+instructions.
+On the other hand, if that test is False I will look for,
+or rather Python will look for the else and execute that set
+of instructions.
+In either case, notice that there's no indentation here.
+So this is now the next instruction after this entire
+conditional right there.
+So let's go over to Python and see what happens here.
+So there is my file.
+I'm going to load that in.
+It's now executing the first instruction.
+So it's waiting and says, give me some input.
+I need to give it an integer.
+So I don't know, let's give it the value 6.
+Ah, and it prints out a blank line which came from that
+first print statement and then the word even,
+or the screen even.
+And then notice it prints out the done with conditional.
+Let's go back over here and load that up again.
+So again it's waiting for an input.
+I give it a 5.
+Now, in this case, since the test is False it jumps to the
+False block of code, after the else.
+Prints out a blank line.
+Prints out screen odd.
+And then in either case, as it said, that last expression is
+always the next expression done.
+It prints out the done with conditional.
+So you now see how I can make choices.
+And I can branch.
+I can do different things based on a
+particular value of a test.
+And we see the format here.
+In this case there's an if.
+Some Boolean test followed by a colon followed by a sequence
+of instructions that are indented.
+By the way, Python, or the IDLE system will do that
+automatically for us.
+And then followed by an else.
+OK let's make some observations here.
+We've already done that, but just to remind you, that
+expression x remainder 2 is that equal to 0 evaluates to
+True when, in fact, x divided by 2 has no remainder.
+As we said before, we're using the double quote for
+comparison.
+I'm sorry, we're using the double equal sign for
+comparison.
+Because a single equal sign is reserved for assigning a name
+to a value.
+We've already talked about the
+indentation which is important.
+It denotes a block of instructions.
+And that indentation gives us a nice visual structure that
+helps reflect the semantic structure of the program.
+We can look at the code and easily identify the different
+blocks of code associated with the True and the False block.
+Now some variations we can do here.
+We can have nested conditionals.
+So if we look at this, we've got an if.
+We've got a block of code.
+But that block of code is itself an if, which has
+another indented version for the True version and a
+separate else there.
+So let's now go over to Python and look at that.
+Here's second file.
+And I'm going to give an arbitrary value to x up here.
+Just I'm going to set it to 6.
+And then I want to see what happens if I evaluate this.
+Well I can look at the code structure to find
+out a sense of that.
+That first if I'm going to evaluate that expression and
+get a Boolean value back.
+If it's True I'm going to go in and oh, I'm going to
+evaluate that next if.
+And depending on whether that's True I'm either going
+to pick up that piece of code or pick up that piece of code.
+And you could see the structure here.
+If the remainder of x divided by 2 is 0 and the remainder of
+x divided by 3 is 0 then it's divisible by 2 and 3.
+I'm going to print that up.
+Otherwise if it's divisible by 2 but it's not divisible by 3
+then I'm going to basically print out something
+appropriate.
+However, if that first test, this test up here is not True
+then I'm going to jump down to a different special form here
+called elif.
+Which is else if.
+And that says if this is not True, then let me
+do another if test.
+Otherwise check to see if this is True.
+So there's another Boolean expression.
+And if that is True then I'll execute this piece of code.
+But if it's not True then I'm going to go, hm, where am I
+going to go?
+Well notice that I have no else clause here.
+And that's OK.
+Because if that's not True I'm simply going to skip to this
+point in the code and pick up the rest of it.
+Now I could have put an else there and had that else do
+something, but that's a choice I have.
+All right, let's go back over to Python and
+let's load this in.
+Let's see what happens.
+A-ha.
+It says divisible by 2 and 3.
+Which said back here in my code, if I use my little
+cursor here.
+It said that test was True and that test was True therefore I
+printed that up.
+Let's look at a different version of this.
+Let's change x to be 5.
+And let's now load that in.
+I need to save that away which I will do.
+Ah, it didn't print out anything.
+Why was that?
+Well it's not divisible by 2.
+So it goes to the elif clause, but it's not divisible by 3 so
+it simply skips down to the next point.
+And one of the ways I could have fixed that was to come
+back over here and say otherwise print not
+divisible by 2 or 3.
+Let's save that away.
+Ah, and now that's where it picks up the else clause.
+So you can now trace through the different ways through
+this code but using nested conditionals to control
+different branches.
+So that I don't just have a binary branch.
+I can have multiple branches through the code.
+Another way to do this is to use compound expressions for
+our Booleans.
+I don't need to do just a single Boolean test, but I can
+have two tests and put them together using the things I
+talked about earlier.
+So I could say, for example, if x is less than y and y is
+less than z then do something.
+Otherwise, do something different.
+So I can start putting together
+more complicated things.
+And we're going to be able to start using those to also
+control how we move our way through
+these branching programs.
+OK, so where are we with all of this?
+Well now that we've got conditions we have the ability
+to do different things based on that choice.
+And branching programs allow us to do that.
+Notice, however, it's still the case that at most each
+statement gets executed once.
+When I think about each statement in my code, I don't
+do them multiple times.
+I may skip some of them depending on the task.
+So each statement still gets executed at most once.
+And as a consequence, the maximum time to run a program
+like this depends only on the length of the program.
+We see that these programs, whether the straight line
+programs or simple branching programs run in what we call
+constant time, the amount of time it takes depends just on
+the length of the program.
+These are still very simple programs, although we can now
+make some decisions on them.
+And in the next lecture we're going to pick up on how we
+actually add one more piece to start getting more interesting
+elements to our programs.
+But nonetheless, you now have the ability to start writing
+simple programs to do computations for you.

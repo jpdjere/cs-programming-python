@@ -1,0 +1,161 @@
+ERIC GRIMSON: In the last section, we introduced a
+couple concepts in terms of writing programs or scripts.
+We had straight-line programs, where we had just a linear
+sequence of instructions and we executed them 1
+at a time in order.
+And we added the idea of branching, or conditionals,
+where we could do a test, and depending on whether that test
+was true or false, we might skip to 1 piece of code or a
+different piece of code.
+But in both cases, we're doing each instruction at most once.
+Useful, but not great.
+To get to the ability to write programs or scripts with
+arbitrary complexity, we need 1 more key concept, and that
+concept is the idea of being able to reuse a piece of code
+an arbitrary number of times.
+We might have a set of things we want to do once or
+depending on some value, twice, or depending on some
+value, 27 times or 1,000 times.
+And rather than having to copy the code that many times, we'd
+like to be able to have the computer automatically reuse
+the code as many times as desired.
+That notion of iteration is going to be incredibly
+valuable, and we're going to talk about some constructs to
+help us make that happen.
+The basic idea, though, is straightforward.
+Given that we have some code we're executing, when we get
+to an iteration loop, which is this chunk right here, we
+start with a test.
+That will be Boolean that will return either True or False.
+If it's True, we're going to go down and execute some set
+of instructions, the body of the loop, and then go back
+around and do the test again.
+And we'll keep doing that.
+As long as the test is True, we'll execute that same set of
+instructions in the body over, and over, and over, until
+finally, the test is False, in which case we skip around the
+loop body and pick up the computation elsewhere.
+This notice allows me, based on this Boolean test, to be
+able to do the code some arbitrary number of times, and
+that's really great.
+Let's look at an example.
+Here's a simple example that shows that idea, and I want to
+talk about the syntax of the construct, but also about what
+the example's going to do.
+This is a simple piece of code that squares a number.
+I want to get x squared, but I'm going to do a by just
+successively adding x to itself x times, which is of
+course what x squared actually does.
+I add x copies together.
+Notice what we've got.
+We're going to set up some value of x.
+I'm going to do a binding there.
+We're going to bind a variable ans for answer, which is where
+we're going to add up all the instances of x to get where we
+want to be.
+And we're going to need to keep track of how many
+versions of x do we still have to add in.
+So we're going to set up another variable called
+itersLeft, initially bound to x.
+The looping construct, the iteration construct, we have
+is called a while loop.
+And there's the key word while, and it has the
+following property.
+It has a Boolean test-- in this case, we're checking to
+see whether itersLeft is equal to 0 or not--
+followed by a colon, and then it has a set of indented
+instructions, which of course, are the body of the loop.
+The way the while loop works is it
+first tests that Boolean.
+If that Boolean is True, itersLeft is not equal to 0 in
+this case, it will then execute each of the
+instructions in the body in sequence.
+And when it gets to the end of that sequence of instructions,
+it's going to go back up and retest the Boolean again.
+So it will cycle through this code multiple times until that
+Boolean is finally False.
+When it is False, it will skip down to the end of the loop,
+which is shown by where the indentation stops, and pick up
+the new set of instructions and continue.
+So there's the structure, let's see if this does the
+right thing.
+Well, here's my code, and let's just walk through this.
+We won't run it on idle, we'll just walk through it.
+Initially, x is bound to 3, ans is bound to 0, and
+itersLeft is bound to 3.
+The while loop says, test to see if this is equal to 0.
+Since it is not equal to 0, the test is True, and
+therefore, I take the current value of ans, the current
+value of x, add them together, and rebind that to ans.
+I then take itersLeft, subtract one from it, and
+rebind that to itersLeft.
+So I've decremented itersLeft, and I've incremented ans.
+I go back up, and again, I check.
+Is that not equal to 0?
+It is not equal to 0.
+Therefore, I take ans and I take x, I add them together,
+and I rebind those to be the new value of ans.
+I change itersLeft by 1.
+That's my new value there.
+And again, I go back through the loop.
+That is not equal to 0.
+Well, the test is still True, so again, I take ans, I take
+x, add them together, create that to be my new binding for
+ans, which is 9.
+I take itersLeft, subtract 1 from it, there's my new value
+of itersLeft.
+And again, I go back to the top of the loop.
+At this point, 0 being not equal to 0 is False.
+Terrible way of saying it, but that test is no longer True.
+It's False.
+In which case, I will skip to the end of this loop, and
+print out that x * x, or if you like, 3 *
+3, is equal to 9.
+Cool.
+A little slow, but it does what I want.
+Notice I have reused this code an arbitrary number times.
+And in fact, if I were to change x to be something else,
+I will reuse that piece of code a
+different number of times.
+There's my iteration that I really want.
+You can also see some properties of
+an iterative loop.
+First of all, we need to set an iteration variable outside
+of the loop.
+In this case, it's x and itersLeft.
+Actually, the one I really care about here is itersLeft.
+I also need to test that variable to
+determine when I'm done.
+There's the use of itersLeft inside of the test.
+Now, it could be a simple test, it could be a more
+compound test, but that's basically what I need to test.
+And finally, I need to be changing that variable inside
+of the loop, right there.
+If I didn't, then that test value would never change,
+which means I would never stop the loop.
+But there's a property I need.
+When I set up an iterative loop, I need to say what's the
+variable I'm setting outside, how am I testing it, and am I
+making sure to change it somehow inside of the loop in
+order to ensure that I get the pieces that I want.
+So what do we have now?
+Well, that's a really valuable construct.
+We already saw that branching structures, things like
+conditionals, will let us jump to different pieces of code
+based on a test.
+Once we add in the idea of looping over the code, things
+like a while loop, that allows us to repeat pieces of code
+until the condition is satisfied.
+So it's a generalization of a conditional.
+On simple branching structures, we've already said
+that programs like that are constant time, that is, we
+execute each instruction at most, once.
+With looping structures, notice
+that things are different.
+Now, the program is going to take an amount of time that
+depends on values of variables as well as the amount of code
+or the number of instructions inside the loop, because it's
+going to depend how many times we walk through the loop, and
+that depends on the variable.
+Nonetheless, these loops are going to be really valuable,
+and we're going to turn to that next.

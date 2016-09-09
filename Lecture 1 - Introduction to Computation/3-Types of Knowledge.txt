@@ -1,0 +1,137 @@
+Eric Grimson: OK, so we want to think about computational
+problem solving.
+We want to understand, what does it mean to think
+computationally?
+That leads to the philosophical question, so
+what's computation?
+And like a good philosophical question, that leads to
+another, deeper philosophical question.
+To answer that question of what's computation, let's
+start by asking the question, what is knowledge?
+And, as we're going to see, we can divide
+knowledge up into 2 parts.
+There's declarative knowledge, which we can think of the
+statements of fact.
+And there's imperative
+knowledge, or how to's methods.
+Statements of facts give us true, but, as we'll see, they
+don't necessarily help us think about how to find new
+information.
+Imperative knowledge, how to methods or recipes, give us
+ways of finding new information, and that's going
+to be really valuable to us.
+Now, to look at this, let's look at an example.
+So, what do we mean by declarative knowledge?
+Well, here's a piece of declarative knowledge.
+That first statement says, the square root of a number x is a
+number y such that y * y = x .
+You know that's true from high school algebra.
+It's a statement of truth.
+It tells us something about how to decide whether a
+particular number is a square root or not, but can we use
+this to actually find a square root?
+And the answer is no.
+If we have a number x equal to 25 and we're trying to find
+the square root of that, and somebody gives us a guess y =
+5, we can use this statement to test to see if 5 * 5 = 25 ,
+which it does.
+But it doesn't tell us how to find the guess.
+So declarative knowledge, which is what much of
+knowledge is based on, isn't what we need.
+We want a different kind of knowledge, and for that,
+fortunately, we have imperative knowledge.
+As we said, imperative knowledge is how to kinds of
+knowledge, or methods or recipes for finding something,
+and here's a recipe for deducing square root.
+It's actually attributed to Heron of Alexandria, although
+there's some debate as to whether he was the original
+creator of this algorithm, but it dates from the first
+century AD.
+And you can see the description here.
+Description says if I want to find the square root of some
+number x, I'm going to start with a guess.
+I'll call it g.
+I'm going to take g and multiply it by itself and look
+if that result is close enough to x.
+If it is, I'm going to stop, and say that g is the answer.
+Otherwise, I'm going to make a new guess by averaging g and
+x/g , and using this new guess, which I will call g
+again, I'm going to repeat the process until we get something
+that's close enough.
+Notice, this is a mechanical set of steps and it has some
+basic forms.
+Right here there's a test.
+It's going to let us know when we're done,
+when we're close enough.
+If that test isn't satisfied, then there's some simple
+calculations, like here, that tells us what to do.
+And then, finally, there's a flow of control, or a loop,
+that tells us how to keep executing the same sequence of
+operations until we get, in fact, to a
+place where we're done.
+This is something that tells us how to find a square root.
+This is imperative knowledge and this is what we want.
+OK, let's try it out.
+Here's a little description of that.
+Let's see what happens if we were actually to do it.
+So I'm going to do a simple little simulation.
+I want to find the square root of 25.
+And, yeah, I know the answer is 5, but let's think about
+what might happen here.
+I'm going to start with a guess and I'm just going to
+initially guess 3.
+Heron of Alexandria's algorithm says
+multiply 3 by itself.
+That, of course, gives me 9.
+Is 9 close enough to 25?
+I don't think so, so let's get x/g , which is about 8.33.
+And now, let's take the average of x/g and g.
+So we add g and x/g , take the average of
+that, and we get 5.67.
+And then our little recipe says take
+that and do it again.
+So this now becomes my new guess, 5.67.
+I multiply those together.
+I happen to know that comes out to be about 32.5.
+I've gotten closer to 25, but it ain't there yet, so that's
+not close enough.
+Again, let's take x divided by this g which turns out to be
+about 4.41, and then I take g and x/g and I average them,
+and I get 5.04.
+And my algorithm says, my recipe says, take
+this and do it again.
+5.04 multiplied by itself is about 25.4, and I'm going to
+say, you know what, that's close enough, so my little
+recipe says there's the answer.
+Not perfect, but close enough.
+So, Heron had it right.
+This looks like a pretty good algorithm.
+This is a way of describing a method for doing something,
+and that idea, that notion of a recipe, is something we're
+going to use a lot.
+So we can think of algorithms as being recipes, sequences of
+mechanical steps for doing something.
+We put that analogy to a little bit more use, we can
+see that recipes have much of the same form, real recipes.
+Imagine I want to make some custard.
+Here's my recipe.
+I'm going to take all the ingredients of the custard,
+that mixture, put it into a pot over some heat, and I'm
+going to stir it.
+As I stir it, every once in a while, I'll dip a spoon into
+the custard, pull it out, and run my finger across the back
+of the spoon.
+If the spoon is clear, then I'm done and I'm going to
+remove the custard from the heat and let it cool.
+If not, I'm going to repeat.
+And notice what we have here.
+Again, we've got a test, right there.
+And we've got a way of, in fact,
+changing the flow of control.
+So, normally, the flow runs this way, but based on that
+test, we have a way of going back up and
+continuing the path.
+And this pattern is something we're going to repeat a lot.
+So, you want to capture recipes and we need to figure
+out how to get the computer to do that for us, which is what
+we're going to talk about next.

@@ -1,0 +1,155 @@
+PROFESSOR: So we're beginning to build up the kinds of things we
+want to do in Python.
+We can certainly type expressions directly into a Python interpreter,
+for example using an interface such as an IDLE shell, a shell that I've been
+talking to as I've been showing these examples here.
+But that's not going to be as convenient.
+We don't want to be constantly having to type things in.
+In general, we're going to want to include statements inside of a program
+file, a separate file that we store away inside the computer and then use.
+To do that, we're going to talk about both how we deal with that, but if
+we're going to do that, then executing an expression from a script that's
+stored away in a file will not produce any output.
+When I talk to the shell, it gives me an output.
+But inside of a script, it's not going to do that.
+We're going to need to give it an explicit command.
+And for that, we need statements, not expressions.
+And in particular, if we want to get an output, one of the things that we
+can do is we can actually use statements like print.
+And then I can give it an argument.
+Now, inside the shell, print does exactly what evaluating the
+expression would do.
+But inside of a piece of code that I've stored away in a file, it will do
+something different.
+And of course, by the way, print can be doing something like actually
+getting the value of an expression before printing it out.
+So it gets the value of the expression and then returns it.
+So we're going to need to have a way of actually specifying when we want to
+get output showing up on our shell, which I've just done.
+Similarly, we're also going to potentially need a
+way of getting input.
+We're going to write programs or scripts that we're going to store away
+and then execute later on.
+We're going to need a way to actually incorporate input from a user.
+And for that, we'll use a little Python function called raw_input.
+Let me show you a simple example of this.
+If I go to my Python shell and I type in name = , and then I'm going to use
+raw_input, which is a Python special function, it takes
+as argument a prompt.
+So I'm going to give it a prompt as a string--
+"Enter your name" --
+because it wants a string to prompt.
+And when I execute this, what raw_input is going to do when I call
+it, it is going to print that out as a prompt.
+And it is then going to wait for the user to type something
+into the Python shell.
+So if I type this, there's what it printed out.
+It's now the prompt.
+It says, "Enter your name".
+I'm going to give it something.
+And what raw_input does is it takes whatever's typed in as a string of
+characters and returns that as a string.
+So if I give it Eric, my name, I've now bound name to have a value.
+I can go look at it.
+And name is now bound to the string Eric.
+That's great, because it says I've now got a way of using things where I ask
+the user to provide input.
+It just did it.
+And that special function is provided a prompt and then taken input and
+stored it away.
+Because raw_input takes the input and treats it as a string, if in fact I
+wanted to give it a number, I would have to do some typecasting.
+Having input it in and given it some variable name, I'd have to do an int()
+or a float() on that name to convert it into the form I want to make sure I
+actually now have it as a number.
+In this case, though, I gave it in as a string.
+And so now that I've got it there, I can just use it.
+I said I've just got the value name.
+But I could do other things with this as well.
+For example, I could say, let's print out-- and I'm going to give it a
+sequence of things--
+"Are you " --
+and I use the value of name--
+and I'll put all of those pieces together.
+And I can say, "Are you Eric".
+That, of course, is also really nice because now I'm able to use things
+that I've typed in as input and just use them any place I
+would like to use them.
+Once we've got that, now we can start using the variable names anywhere that
+you'd use an expression.
+So we just saw an example of that where I said, for example, we bound
+the name name to a particular string.
+And I can use it elsewhere.
+Here are some other examples.
+I can give the variable myString a particular value of 'Too much'.
+I can give the variable weather 'snow'.
+And then I can print up things by just concatenating together the pieces as
+we just saw.
+So I begin to start having this opportunity to
+actually put things together.
+Now, one of the reasons we'd like to be able to do this in a file rather
+than just generally is that we can then save it.
+We can edit it.
+We can reuse it.
+We can do things with it that we wouldn't otherwise do if we're just
+typing directly into a shell.
+With this, we can start now building up some very simple code.
+I want to start with a very simple example.
+Suppose we actually type the following set of instructions into a file.
+And I've done that over here.
+If I go to my Python window, I've built a little file called Lecture 2.5
+Slide Four.
+And I've typed in a set of expressions.
+So the first one is going to bind x to 3.
+The second one is going to take x times x, get that
+multiplication, and rebind x.
+And right here I've got what's called a comment.
+That is, after that pound sign (#), I've got some
+description of what's there.
+Now, this is a boring little description that says I'm scoring the
+value of x.
+And then I have another set of instructions.
+I'm going to ask it to print out the value of x.
+I'm going to have y get some input, turn it into a Float, and I'm going to
+print out some value of that.
+Having saved this away in a file, I can now ask that file to be loaded
+into a Python shell.
+Separately, we're going to talk about details of how to do it.
+But the simple way to do it here is that I simply use the command F5.
+Notice what happened over here.
+The shell restarted.
+The shell basically said, I'm just reading in a file.
+And notice what appeared.
+It did a print.
+That print came from this print statement.
+I'd already bound x to 3.
+I'd multiply it by itself, rebound x to be 9.
+And now I'm executing this statement.
+And it's waiting for me to input something.
+So if I go back over here and I input the value 4, it reads it in, turns it
+into a Float by doing that type conversion, and then it prints out--
+remember from back over here--
+y times y and gives me that answer.
+So this is a simple little example of what we call a straight line program.
+It's a straight line program because I execute each instruction in turn.
+I simply walk through the sequence of instructions.
+But you now saw a little interaction.
+And you see how I can build code in a file, load it into the shell, and have
+it do some work.
+There are some observations.
+We've already made them.
+But let's just talk about them.
+You see comments appearing after the pound sign.
+And while my simple comment here was pretty boring, in fact, in general, I
+want comments because they tell me things about what I was thinking about
+as I wrote the code.
+They're going to help a user understand the decisions the
+programmer made.
+And in fact, a really good piece of code should be well-commented and
+therefore should be very readable by a user to understand where things are.
+Second observation we made is this is a straight line program.
+There's no variation in the order.
+It simply walks through things in order.
+And of course, more programs are going to require more sophisticated control
+of the flow through the code.
+And we're going to get to that next.

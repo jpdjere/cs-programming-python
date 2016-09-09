@@ -1,0 +1,151 @@
+PROFESSOR: We've been looking at the idea of exhaustive search.
+And we just saw, when we want to do this on things that don't have a
+finite number of choices, real value to floating point numbers, for
+example, we've got a problem.
+We need to make the step size small in terms of how many
+different things we sample.
+But as we keep making it smaller, it's going to make the search take longer
+and longer.
+Because if we're going to do it, we're going to put a lot of effort into
+trying to find the right answer.
+So we'd really like to have a way of having things still be very efficient,
+yet, find the answer we want.
+And it turns out, for a lot of problems, we can do that using a
+wonderful idea called bisection search.
+So what do we know?
+Let's go back to the idea of trying to find the square root.
+We know that the square root of x lies somewhere between 0 and x.
+We're assuming x is positive just to make life a little easier for us.
+That's a mathematical fact.
+Now, what we did was we said let's start with 0.
+Then, 0 plus a little bit.
+Then, 0 plus 2 times a little bit, and then 0 times 3 times a little bit,
+trying all of those examples, until we got to something that was close enough
+to the answer we wanted.
+That's exhaustive.
+Rather than doing that, suppose instead we say, look, we know that the
+square root of x is somewhere between 0 and x.
+So let's just pick a guess right here in the middle.
+Let's call that g.
+Let's just pick the midpoint between 0 and x and try it.
+Now, if we're lucky, the answer is close enough and then we're done.
+That's unlikely.
+But even if that is not the case, we have a good situation.
+Even if we're not close enough, we can now ask was that guess g
+too big or too small?
+Well, if g^2 is bigger than x, then we know that it's too big.
+We know that the square root has to lie somewhere between 0 and g.
+And that says we can now instantly just focus on this portion.
+Doing that, we can, again, take the midpoint of that.
+Let's call it another version of g.
+A new g.
+And again, we can say, is that close enough?
+If not, is it too big or too small?
+For example, in this case let's assume that g^2 is less than x.
+That says g is too small, and what does that say?
+It says, we know that the actual value has to lie somewhere between my new g
+and the previous g that I guessed.
+And again, we can pick the midpoint and guess again.
+If this works, and it does, this is really cool.
+Because it says, at each stage of this bisection search I'm cutting in half
+the size of the range of values I have to look at.
+We're bisecting them, which is why it's called that.
+At each stage we reduce the range of values that we have to search by half.
+And that is going to be really powerful.
+Rather than just at each stage throwing away a little bit, we're
+cutting down the problem, a big portion, each time through.
+So can we capture that idea?
+The answer is, sure, and it's not that hard to do.
+Again, there's some code.
+It looks a little bit daunting, but it's really not as bad as you think.
+What does it say?
+It says, I'm going to have some value of x I'm going to start with.
+OK, I'm going to pick an epsilon which is going to tell me how close I am,
+and I'm going to keep track of how many guesses I did as well.
+I'm going to set up, initially, a low and high value, which are to start
+with 0 and the value of x.
+That's my range where which I want to be trying to do the computation.
+My answer is initially going to be the midpoint halfway between low and high.
+And then, what do I do?
+I run through one of these little loops where, again, I basically say,
+am I close enough?
+If this is true, then I'm too far apart.
+I'm not close enough.
+And in that case, well, I'll print out some information that tells me where I
+currently am.
+I'll change the number of guesses and I'm about to make a new guess.
+And if I'm not close enough, what does it say to do?
+It says, if my current answer squared is less than x, I'm too small, and I'm
+going to change the lower end to be that guess.
+I'm moving up the lower end.
+On the other hand, if answered squared is bigger than x, then I'm too high
+and I'm going to reduce the high down to the answer.
+And I'm just going to keep doing that.
+If I keep doing that I'm going to keep chunking this thing in half, and
+having done either of those two pieces I then change my
+answer to gain the midpoint.
+And I do this one more time.
+So I'll just keep cycling through this, cutting in half each time, the
+size of the problem until I get to something that's close enough.
+We hope.
+OK, let's see what happens if we do it.
+Here's some code in my IDLE system that has it.
+It has exactly that.
+Let's do this, basically, let's start with something simple which we said
+was going to be 25.
+And let's see what happens if we evaluate that.
+Oh, look what happens.
+I start off, and let's look at that, I start off with a range
+between 0 and 25.
+And the answers is the midpoint.
+I then, cut down the high end.
+I then, cut down the high end again.
+I then, cut down the low end.
+I then, cut down the low end.
+And you can see at each stage it's reducing the range.
+And after only 13 guesses I get a pretty good guess for what the square
+root of 25 is.
+It's not exact.
+I happen to know it's 5, but in only 13 guesses I got it.
+Remember, last time we did 50,000 guesses to get to something that
+wasn't, in fact, much better.
+In fact, it wasn't even as good as this guess.
+So notice how it's cutting down the problem at each stage.
+All right, let's go try this other version of this, right?
+12345.
+Let's see what happens if we find, using by section first, the square
+root of that.
+We see it cranking along.
+Wow, in 26 steps, it got to something that took a million steps the last
+time around.
+In 26 steps it gets to a pretty good approximation.
+Let's try something even bigger.
+Let's see what happens if we do that one.
+All right.
+Again, you can see if you look at these numbers how quickly
+it's zeroing in.
+In only 36 steps, it got to the square root of a pretty big number.
+So in fact, this does it really well.
+What can we observe out of this?
+Well, here are some things that we see.
+First of all, bisection search radically reduces
+the computation time.
+And this is part of that original message that it's not just having a
+fast computer.
+It's being smart about how we think about solving the problem.
+And in this case, being smart about how we generate the guess is going to
+be really important.
+So when does this idea of bisection search work?
+Well, it should work well on problems where there's a
+sort of ordering property.
+Meaning, that the value of the function being solved varies
+monotonically with the input value.
+Another way of saying it is here the value I'm looking for is g**2.
+Then, it grows as g grows.
+And that says that there's this nice ordering of the solutions or the
+potential solutions, and so picking a midpoint gives me a good way of
+cutting the problem in half at each stage.
+We're going to come back to this idea of bisection search
+throughout the term.
+It's a really powerful tool, but you can already see how dramatically it
+reduces the computational cost.

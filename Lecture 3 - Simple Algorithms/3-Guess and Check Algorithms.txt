@@ -1,0 +1,235 @@
+SPEAKER 1: Now, as we've said, once we've got iterative algorithms, it
+gives us a lot more things we can do than just simple arithmetic.
+We can repeat that sequence of steps some multiple number of times based on
+a decision.
+And this leads to a whole new class of algorithms.
+Bunch of things that are going to be really valuable to us.
+One really useful example of an algorithm is what's often called a
+guess and check method, where we iterate through guessing different
+answers to a problem we're trying to solve, and then checking to see if
+we've got the right one.
+We've actually seen an example of this earlier on.
+Where was that?
+Well, remember when we talked about our declarative
+definition of square root?
+We said we had a definition of square root and if somebody gave us a good
+guess for a square root of a number we could use that definition to check it.
+So if we got a good guess we could check to see if that guess word was
+equal to x, the thing we're trying to find.
+All we need is a good way to generate guesses.
+Well, OK, let's think about that.
+Could we do it?
+The answer is sure.
+And, in fact, we're going to do it with a slightly different example.
+We're going to do it by finding cube roots.
+Just to do something a little different.
+Same idea would work with square roots.
+So one way that we could use this idea of generating guesses in order to
+find, say, the cube root of some number x.
+Let's assume, just make life a little easier, that x is an integer.
+So we're trying to find a cube root of a perfect cube.
+We could try zero cubed.
+Then one cubed, then two cubed, then three cubed, and keep going until we
+get to some place where k cubed is bigger than x.
+Once that's the case, we know we've gone too far, and if we haven't found
+something we're done.
+The nice thing here is that there's only a finite number of cases to try.
+So we can generate different guesses and see how well we do in terms of
+finding an answer.
+Let's take that idea, and the idea of iteration, and capture it by finding a
+piece of code, or writing a piece of code, to do what we like.
+So here are some code that we're going to use.
+We're going to have our code actually input something that generates--
+or gives us something we're going to try and find the cube root of.
+We're going to set up an initial variable called answer.
+Going to be zero.
+That's going to be our guess.
+And what are we going to do?
+We're going to walk through a loop where we look at answer cubed and see
+if it's less than x.
+If it's not we're going to increase answer so there's my iterative loop
+right there.
+And we're going to keep doing this until we find the first value where
+answer cubed is greater than or equal to x.
+So we're going to generate guesses.
+If answer cubed is less than x we know that we're not there.
+So we'll keep doing it until we find the first one where answer cubed is
+bigger than or equal to x.
+Once we're there we can then check.
+And we check to see is answer cubed actually what we want.
+Is answer cubed equal to x?
+If it's not we'll say so.
+And if it is well, then, we'll say, I found the thing that
+I was looking for.
+So, using that iterative loop, and now what I'm doing is I'm just walking
+through generating guesses for the cubed root of something until I find
+an answer that is either close enough or beyond where I want it to be.
+We can look at this in idle.
+So here's a piece of code that does it.
+It's exactly the code that I just set up there.
+And let's run it.
+I actually--
+now, when it says give me an integer.
+Let's take 27.
+And it gives me the right answer.
+We know what it did.
+It started out with zero.
+Zero cubed was less than 27 so I went to one.
+Which is less than cubed.
+Cubed is less than 27.
+Went to two.
+Which cubed is eight.
+Which is still less than 27.
+Went to three.
+Which cubed is 27.
+So it's still less than where we want to be.
+I'm sorry.
+It's no longer less than where we want it to be, so we could check to see was
+it in the right place.
+Let's try another couple of examples.
+Again I'll go back and I'm going to reload this function.
+It's going to say for a different one.
+Let's try 24.
+And, again, in this case, it keeps generating instances of answers
+starting at zero until it gets to the first one that is greater than 24.
+Which is when the answer is equal to 3.
+Since 3 cubed is 27, which is not equal to 24, in this case, it says, I
+don't have what I wanted.
+All right.
+So don't sweat the details of finding cube roots.
+This is a simple little thing.
+But notice that it does this generate and guess kind of idea.
+Now if we look at that code we can actually observe a couple things.
+One of which is it only works for positive integers.
+But we could find cube roots of negative numbers, we just know that
+it's going to be a negative version of whatever the cube root of that
+absolute value would be.
+So we could actually go back and fix this and we can do it pretty
+straightforwardly.
+Let's go back into our code and, in particular now, just
+add a couple things.
+One is we're going to look to see whether the thing we're checking for
+is less than the absolute value of x.
+And similarly to check to see whether the thing cubed is equal to the
+absolute value of x.
+That's nice.
+And that's straightforward.
+All we have to do is when we're done come down here and say once we've
+found the answer for, say, minus 27, we'll turn it into 27 and find the
+cube root of that.
+Which is, obviously, going to be three.
+And at the end we'll simply put the minus sign back in as we need it.
+Let's try that out in idle.
+That's pretty simple.
+Here's my code.
+It's exactly what I just showed there.
+And if we run this--
+OK, if we do 27 it still does the right thing.
+But if we run it--
+and we give it minus 27 it gives us back minus 3.
+The reason for showing this is to see that once I've got the idea for an
+algorithm I can often generalize it by looking at other cases and then
+reusing the same body of code for the key computation, and adding in pieces
+around it together to get it to do the things I like.
+OK, now, what are some of the properties of this idea?
+Well, we've already seen one of them.
+We said when we've got a loop we need to have a loop variable that's
+initialized outside the loop, the changes within the loop, and where the
+test for termination depends on that variable.
+When we start thinking about these guess and check kinds of methods, one
+of the things that's handy is it's often useful to think about what's
+called a decrementing function.
+What are the properties of these things?
+Well, this is a function that maps a set of program
+variables into an integer.
+When the loop is entered that value is non-negative.
+When the value is less than or equal to zero the loops going to terminate,
+and inside of it the value decreases every time through the loop.
+Often this decrementing function is going to measure how much work do we
+still have left to do.
+And so, for example, here, the decrementing function we're using is
+the absolute value of x minus answer cubed.
+That tells us how far away we are from the place where we
+would find a solution.
+And on each stage that gets smaller and smaller.
+Until eventually it gets either equal to zero or less than zero and I know
+that I'm done.
+OK, so those are the kinds of things we'll come back to.
+This idea of thinking about loop characteristics.
+But since we've written this piece of code, and since we've said that it's
+important to initialize the loop variable outside the loop and to
+change it inside the loop, let's see what happens if we don't do that.
+OK?
+Suppose, for example, we don't initialize the variable inside.
+So I'm going to do the following.
+I'm going to go back to my code and I'm going to remove the answer equals
+zero [INAUDIBLE].
+So if I go to my code, right over here, I'm simply going to
+comment that out.
+All right.
+So it says I'm not going to set up answer equal to zero.
+And now I'm going to run that and then save it away.
+I need to give a number.
+Let's give it, I don't know, we'll give it 27.
+Oh, goodness.
+What happened?
+Well, we hit an error.
+And, in fact, what we see in the screen is the thing that
+gets printed out.
+It's called a trace back that shows us where the problem was.
+It said, in that file that I was looking at, in line four--
+when I'm trying to evaluate in line four is while answer cubed is less
+than apse of x, it says, oh, the name answer is not defined.
+That makes sense.
+I didn't create an initial value for it so how can I be looking at answer
+to change things?
+So if we don't initialize the variable outside we get an error.
+Let's go back to our code.
+Let's remove that answer and let's make another change.
+Suppose we actually do initialize a variable but we don't change the
+variable inside.
+So let's remove the answer is equal to answer plus 1.
+So over here in my code I'm going comment that out.
+And just to be able to see what's going on, I'm going to put in here a
+print statement that says, let me print out answer.
+Make sure I have appropriate spacing here.
+Let's run this.
+Need to save it away.
+Again, I'm going to give it the variable.
+And let me make sure I give it something in the right window here.
+So I'll give it 27.
+Oh, goodness.
+What's happening?
+Well, this is now caught in an infinite loop.
+So, in fact, let me stop by hitting Control C, which is the
+command to stop it.
+If I go back to my code here and I know I accidentally typed in 27
+because I was in the wrong window.
+If I go back to my code here you can see what's happened, which is inside
+that [INAUDIBLE] loop, in my ever changing answer, or ANS,
+the answer is no.
+So if that variable initial, or that test initially was true, it's going to
+stay true, and nothing is changing.
+So with this in mind, I actually have a real problem.
+I have to, basically, have some way of getting a change to the test.
+Without it I'm caught in the loop forever.
+So you see that those properties are going to important.
+I need to initialize the loop variable, I need to be changing it
+inside, and, of course, I need to be testing some function of it in the
+actual test to make sure that I'm going to get through it.
+So what do we have?
+This is now a version of a guess and check method.
+So guess and check methods can work on problems where there's a finite number
+of possibilities.
+I'm going to guess different instances of the thing I'm looking for and check
+them until I see if I find them.
+And what we just saw here is a particular version of it called
+exhaustive enumeration.
+That is, we simply start at one end of the possible range of values and just
+try each one in turn.
+We exhaustively walk through all of them until we find a solution to it.
+And while it sounds like it could be really slow, and at times it can, you
+can also see for some problems it works just fine.
+We just used it to find the cube root of an integer.
+All right.
+With that we can move on to building on top of this idea.

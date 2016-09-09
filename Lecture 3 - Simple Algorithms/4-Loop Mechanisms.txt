@@ -1,0 +1,124 @@
+ERIC GRIMSON: Now we've got the idea of being able to
+generate guesses for things.
+Building on this idea of iteration.
+If we think about the code we just looked at in the previous segment,
+while loops generally iterate over a sequence of choices.
+And often, especially in exhaustive enumeration, that sequence of choices
+is a whole series of things in order.
+In examples we've seen so far, they've all been ints, or integers.
+If we're doing that kind of iteration, that kind of loop, over a sequence of
+choices, Python provides a very nice, specialized mechanism
+for handling this.
+And it's called a for loop.
+And the idea of a for loop is-- well, first of all, let me talk about the
+syntax of it.
+It has the following form.
+There is the special identifier for.
+And then some identifier--
+this will just be a name of something, so I put it in these
+angle braces to indicate.
+That could be, for example, for in.
+And then it's the key word in.
+And then some sequence, some collection of choices,
+followed by a colon.
+And then indented, a code block.
+So as before, this is going to tell us the things that we want to do-- that
+code block.
+And that's the form of it.
+Here's the basic idea behind a for loop.
+That identifier is initially bound to the first value in the sequence.
+The code block is then executed.
+The identifier is then bound to the next value in the sequence.
+And that code block is executed.
+Now if we stop here, you may get worried.
+You say, well, aren't I going to go through all possible
+choices in the sequence?
+And the answer is yes.
+I'll do that until I either run out of choices or until I hit a special
+keyword called break.
+When I hit a break statement, it pops me out, or stops me from computing
+things inside of that for and takes me to the next piece of code.
+So break will be a way to tell me, based on some test, when I actually
+want to jump out of the code.
+All right.
+We're going to look at an example of a for loop in a second.
+But there's the basic idea.
+I'm simply going to walk down the sequence of choices, doing something
+until I get to a test that causes me to hit a break or I run out of
+possible choices.
+I've got one more piece.
+How do I generate a sequence of integers, if that's what I want to do?
+I could generate sequences in a lot of cases, but in many cases, as I've
+seen, I like to do everything from, say, 0, 1, 2, 3, 4, up to some point.
+And for that, I've got a built-in function called range.
+And range, with one argument n-- notice it's in between those
+parentheses there--
+will give me the sequence of integers from 0 up to but not including n.
+If I want to get a sequence starting at some other point, I can give range
+two arguments, m and n.
+And it will give me the sequence of integers m, m + 1, all the way up to
+but not including n.
+With those two ideas, let's see what happens if we go back and clean up our
+cube root finder.
+Here's the code.
+It's similar to what I had before, but it's now a little crisper.
+And that's a good thing.
+Again, I'm going to have something that asks me for an integer that I'm
+going to deal with.
+I'll input it and to make sure it's an integer by doing a cast or a type
+conversion on it.
+And then notice the for loop right here.
+There's my identifier, for answer, ans, in.
+And there's range, so notice what range is going to do.
+It's going to generate a sequence of integers, 0, 1, 2, all the way up to
+the absolute value of x.
+The for loop says for answer in that range, starting at 0, I'm going to
+execute the body.
+Notice the form of the body.
+The body has a test, and if the test is true, it's going to hit a break.
+So there's our form.
+There's the generate step.
+And there's the test step, or if you like, the check step.
+I'm going to, in turn, have answer take on the values 0, 1, 2, 3, et
+cetera, up until x.
+Once I get past x, I'm going to stop.
+But inside of that loop, I'm simply going to say, let me check.
+If answer cubed is equal to absolute value of x, the thing I'm
+looking for, I'm done.
+And I'll hit break.
+And when I hit break, it throws me out of the loop and takes me down to the
+next piece of code.
+And in that case, I'll now check.
+Now why do I have to do one last check?
+Well, I don't know whether I hit a break or whether I actually ran out of
+values to try.
+So I'll see which case I'm in.
+If I'm in place where I'm out of values-- in other words, if answer
+cubed is not equal to the absolute value of x, which meant that this test
+was not what caused us to get there, I'll return the fact it's not a
+perfect cube.
+Otherwise, well, I'll just do what I did before.
+Make sure I know which sign I want to use and then print
+out the right thing.
+Let's check it out.
+Over here in IDLE, there's my code.
+It's got all of those pieces.
+And if I now just run this, it's going to ask for an integer.
+I'll just give it my good old 27.
+There it is.
+Let's try it again.
+And let's give it -27.
+And there it is.
+Let's try it one more time.
+And, I don't know, we'll give it something more interesting.
+OK.
+I probably knew that wasn't a perfect cube.
+It's a pretty efficient code.
+So what is this doing?
+It's generating a sequence of options exhaustively by using range to do them
+one at a time as I need them.
+And inside of each, it's doing a check to see have I found the
+value I want or not.
+And with that generating check idea, I can write actually a piece of code
+that does a nice job of finding the things I want.
+We're going to build on this idea as we move on.

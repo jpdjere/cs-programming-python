@@ -1,0 +1,143 @@
+ERIC GRIMSON: So now we've seen arithmetic expressions.
+We've seen giving names to those.
+We've seen how we can combine those together using names and
+places where we would use values.
+We can start doing some simple computations.
+But those are all dealing with scalar objects, numbers.
+Let's talk briefly about other kinds of objects.
+We'll come back to them later on, but we want to see what we
+can do here.
+So non-scalar objects are compound things, things whose
+proportions or components we can get at.
+We'll see a lot of these throughout the course of this
+subject, but the simplest one to start with are what are
+called strings, or objects that have a
+type str for string.
+And these are literally just sequences of characters that
+are all concatenated together.
+So how do we write them?
+Well literals of this type can be written either by putting
+them inside of a single quote or putting them inside of
+double quotes.
+And so if I go to my Python shell, for example, we can see
+that we can put things within a single quote.
+And that gives us that string back.
+By the way, we can give names to those things.
+So we can say, what's the value of foo, and, in fact, we
+can look at the type and we'll see that it gives us back
+something of type string or str.
+And, by the way, we can also put quotes around numbers.
+So this is a string.
+And just to see that, let's ask for the type of that.
+The type of that sequence of characters, numeral one,
+numeral two, numeral three, inside of the
+quotes is a string.
+And that is different than the type of the number itself
+which is in int.
+So we can put together strings.
+If we can put them together we'd like to be able to do
+things with them.
+And I want to show you some examples of those.
+So we can provide different operations on strings.
+Now some of these maybe a little surprising.
+So let's walk through them.
+The first one is we can ask for taking the string a and
+multiplying it by the number three.
+And that may sound strange.
+But what it gives us is a string with three copies of
+a's stuck together.
+Or, if you like, I could do it with a slightly more
+complicated string.
+And it literally is just concatenating or copying those
+versions of those strings together.
+We can put two strings together using addition to
+give us this concatenated string of a and b.
+And we can, of course, also concatenate together strings
+if we want to make sure that they are
+converted into strings.
+So we can take a number, convert it to a string and
+concatenate that together gives us the string a123.
+These are just different ways of dealing with strings and
+putting them together.
+It seems a little odd that we're using operators that
+don't normally deal with numbers.
+And this is an instance of what we call operator
+overloading.
+In which what we are doing here, here, here, is we are
+using the same operator to do different things.
+If we give them numbers it'll do one thing.
+If we give them a number and a string in the case of
+multiplication it will do something different.
+If we give them two strings it will do something different.
+So we're letting the operator use the type of the object to
+decide what the right operation is to do.
+The last one we show here is that given we say we now have
+a non-scalar object we need to know how many portions are
+there inside of it.
+And for that there's a built-in Python function
+called len for length.
+And if I want to ask for the length of a particular string
+it gives me back that answer.
+So I now have compound objects that I can do things with.
+Well obviously one of the things I'd like to do is not
+just put them together.
+I'd like to get parts out of them.
+So that leads to the interesting question of how do
+I get out elements of a compound object like a string.
+And here I want to show two examples.
+The first one is we can do what's called the indexing.
+And let me show you an instance of this.
+If I give the string 'abc'.
+Notice the single quotes around it so that is a string.
+And in square brackets are braces after it I give it an
+integer, like 0, it's going to give me out the element of the
+string corresponding to that index.
+Now how does it do this?
+Well it starts--
+well, if you want to think of it this way of
+counting from 0.
+So there's the string.
+The zeroth element is that one.
+And it will return that value.
+Similarly if I say from the string 'abc' give me the
+second element it starts at 0,1,2
+there's the second element.
+And it returns that string.
+Now you have to be careful.
+If I ask for the third element.
+Remember, I start counting at 0.
+There's 0, 1, 2.
+The third element, oh, there isn't one.
+And we get out an error.
+And we can seen this over here.
+If I, for example, just type it into Python.
+I can say give me the string 'abc.' And I'll take, in this
+case, the first element.
+And that will give me b.
+Because I start at 0 and go to 1.
+Now I can also though go backwards.
+So if I have a string 'abc' and I give it in square
+brackets or braces a negative number, it basically starts at
+0 and then counts backwards to minus 1 and then to minus 2.
+So that minus 1 index will return as the c.
+So it basically starts at the back end and counts backward.
+So we get out components of strings which is good.
+Now sometimes we'll want to get out not just a single
+element, we'll want to get out a substring of a string.
+And for that we have a technique called slicing.
+So we have a string called s, then this expression here
+where we have two expressions, a start and an end that are
+both integers or their values are integers that denotes the
+substring that starts at the index pointed to by start and
+stops just before the index pointed to by end.
+So just to see that.
+If I again take my string 'abc' and I say give me
+everything starting at one and stopping before the third
+index it returns for me the string bc.
+We're going to come back to doing things with strings
+later on, but we wanted to let you see that given compound or
+non-scalar objects like strings, not only can we
+combine together but we can also get out pieces of them.
+Either individual elements or subcomponents of them.
+And we'll use that as we start doing more interesting
+things moving on.
