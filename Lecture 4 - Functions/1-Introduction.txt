@@ -1,0 +1,18 @@
+Eric Grimson: In this fourth lecture, we are going to take our ideas of
+looping computations and abstract them.
+That means we'll capture the idea of a computational method inside a
+function, allowing us to separate the details of how we do the computation
+from the use of the computation.
+Something we call a black box abstraction.
+This is a very powerful idea that will let us build complex collections of
+functions that compute very interesting things without getting
+bogged down in the details.
+And in a way, that makes it easier to reuse methods, or to
+debug or correct them.
+We'll also introduce a formalism called environments to help us
+visualize how using functions within a Python interpreter controls the
+assignment of names to values, how those values are retrieved, and how we
+can use those ideas to conceptualize new algorithms.
+At the end of this lecture you will have the ability to write arbitrary
+computations as functions, and to use those functions as building blocks for
+other computations, a key element of computational thinking.

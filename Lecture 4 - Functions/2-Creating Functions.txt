@@ -1,0 +1,194 @@
+So far we've been building up our repertoire of Python
+expressions.
+We've seen numbers and strings as primitive data objects.
+We've seen assignment, the ability to
+give a name to a value.
+We've seen input and output characteristics.
+We've seen the ability to make comparisons, and we've added
+in looping constructs.
+Things like for and while loops.
+With that set of tools, they turn out to be sufficient to
+give us what we call a Turing complete language.
+And what does that mean?
+It says just with that set of tools, anything that's
+computable, we can compute.
+So we can compute anything.
+That's actually amazing.
+With just that set of tools, anything that's computable, we
+can capture with a description using those sets of tools.
+Sounds like we're done.
+And of course we're not, and part of the reason we're not
+is the code we're able to write so far, those scripts
+that we've done lack what we call abstraction.
+And let me give you some reasons of what I mean by
+that, and then what the definition of abstraction is.
+For example, as you saw before, every time I want to
+use a script, I've got to reload the file.
+And if I want to do it with some different parameters,
+I've got to change the values of variables
+before I run that file.
+Moreover, or more importantly, I can't use the same variable
+names other places in the code.
+If I've got a piece of code this using x, y, and z, I've
+got to make sure that they're not accidentally getting
+changed somewhere else.
+So I'm stuck with having to be very careful
+about the use of names.
+And finally, imagine I've got a piece of code that's
+computing the maximum of two numbers.
+I might want to use that many places.
+I'm going to have to copy it throughout the code.
+Doesn't sound too bad, except it gets very quickly
+cumbersome to be able to maintain that code.
+Suppose I change my mind about the actual details of how I do
+that computation.
+I've got to then search through the code and find all
+the places where I was doing that, and make that change.
+Otherwise I'm going to mess up.
+So I lack abstraction, and what we're going to do is add
+the idea of a function.
+A function is going to give us a way to capture a
+computation, to wrap it up in a package and then treat that
+function as if it were a primitive.
+Something provided to us by Python that we can just use.
+Let's look at that.
+Here's a very simple example, just to get us started.
+Suppose that we want to take two numbers whose names, or
+variable names are x and y, and we want to compute the
+maximum and bind that to the name z.
+Here's a very simple script that would do it.
+Assuming I've got values for x and y, I just do the
+comparison.
+If x is greater than y, I bind z to x.
+So there's a binding there, and if not I bind z to y.
+But as I already said, notice the problem here.
+I'm going to have to copy this everywhere that
+I want to use it.
+That's going to be a real pain.
+And I can't reuse x and y, because if I did, I might
+actually change the values here, and that's
+going to be a problem.
+So I want to capture this.
+I keep using that word capture, let's
+see what that means.
+The idea is that we want to wrap up that computation, that
+set of mechanical steps, that recipe within a particular
+scope so that we can treat that function, that
+computation as if it were a primitive.
+Then I could just use it by simply calling its name, using
+the name, and I'll get back that procedure object, and
+giving some input into that function.
+We'll see how to do that in a second.
+But a key thing by doing this is that the internal details,
+the steps inside of the computation are going to be
+hidden from the users.
+They won't know what they actually are, they're going to
+just treat this like what we call a black box.
+Something that we can use that satisfies a particular
+contract, but we don't need to know the details inside.
+And more importantly, what happens inside won't have any
+effect on computations outside the scope of this function.
+What does it look like?
+Well, here's the syntax for a definition of a function.
+It's got, let me in fact give you the next
+pieces of it here.
+It's got a keyword, def, that tells Python I'm about to
+create a definition of the procedure.
+It has a name for a function.
+And I've put that here in angle braces just to say it'll
+be some particular instance.
+And the name can be any legal Python name.
+And then within parentheses, we're going to have a sequence
+of 0, 1, or more formal
+parameters, names for variables.
+And those names are going to be used in the function body.
+And then we have a colon here.
+That is followed by the body of the function, which is any
+sequence of legal Python expressions that's going to do
+the actual computation.
+And what we'll see is that within that body, we're going
+to use the names of the formal parameters to identify the
+places where we want to use the values associated with
+those parameters.
+So those very lanes are going to be used inside
+the function body.
+And of course there's an indentation here just to help
+us determine the scope, or the length of the function
+procedure itself.
+That's the syntax.
+Let's look at an example.
+Well, let me go back to my idea of taking
+the max of two numbers.
+Here's a nice function definition.
+I say define, and there's the name, max.
+Inside of the parens here I've got two formal parameters, x
+and y, and then the body is simply a description of the
+computations I want to do.
+And I'm going to compare x to y, and depending on the value,
+whether x is greater than y or not, I'm either going to
+return the value of x, or return the value of y.
+We'll come back to return in a second, but let's just think
+about how would we use this?
+So we invoke this, or we call it, as we say, by simply using
+this sort of an expression.
+We say I want to bind z to, and there's the assignment
+statement, the value that this function max gives me on these
+arguments 3 and 4.
+When we do that function call, when we invoke max of 3 and 4,
+we literally get the values of these expressions,
+and those are easy.
+In this case they're just numbers.
+And given those values, we are going to locally bind x to the
+value of 3, y to the value of 4, just as if they were like
+assignment statements in a very particular scope.
+And then relative to those bindings, the body expressions
+are going to be evaluated.
+And you can see, then, this is going to do exactly what I did
+with my little script.
+So that's cool.
+Now, what about the body?
+Well, I said the body can be any legal Python expressions.
+And in the process, if you like, when I invoke or call a
+procedure definition, it's having bound the variable
+names to the values.
+I will simply execute or evaluate each of the
+expressions of the body in turn until one
+of two things happens.
+Either I run out of expressions, I get to the end
+of the body, in which case a very special value called None
+is returned, and that is the value of the computation.
+And if you think about my invocation, I said I was going
+to bind z to some value.
+If I get to the end of the expression and there's nothing
+returned, I'm going to just bind it to None.
+Alternatively, I will keep executing instructions until I
+hit that special keyword return that we saw earlier.
+And in that case, the expression immediately
+following that keyword return is evaluated, and that value
+is returned as the value of the function call.
+That value becomes, if you like, the semantic value of
+calling that function.
+And that suggests if you look back at my code, I'm going to
+be able to then in fact do the computation, and I'm going to
+be able to reuse it multiple times to get
+the max of two numbers.
+So, to summarize this then, the sequence of events are
+when we call a function, the expressions for each parameter
+are evaluated the normal way they would be in Python.
+And they are bound to the formal parameter
+names of the function.
+Should be 1 expression for each parameter name.
+We then transfer control to the first expression in the
+body of the procedure, in the body of the function, and we
+start evaluating.
+And those expressions are evaluated or executed until
+either that return keyword is reached, in which case we get
+the value of the following expression and return it back,
+or we run out of expressions, thereby returning None.
+And after that, the implication is bound to the
+return value, and as that return value is what is passed
+out to whatever asks for it, and control transfers to the
+next piece of code.
+In the next segment, we're going to look at some details
+of understanding mechanically how this happens, but there's
+the idea of a function definition.

@@ -1,0 +1,113 @@
+ERIC GRIMSON: We've now seen a bunch of examples of recursive functions.
+Seen some of the power of them.
+We keep coming back to this idea of break a problem down into smaller
+versions of the same problem.
+Really great way of trying to tackle a problem.
+We're going to do one last thing.
+And that goes back to when we ran fib.
+When we ran Fibonacci, we might have noticed that as we made the arguments
+larger and larger, it slowed down.
+Which is not surprising.
+It's calling itself multiple times.
+But suppose we wanted to actually count the number of times that fib
+called itself recursively.
+Multiple ways of doing it, but one of the ways in which we can do this is to
+use what's called a global variable.
+What does that mean?
+Well, so far, all the functions have communicated with their environment
+strictly through their parameters and their return values.
+If it's when we call a new function, it creates an environment with some
+parameters passed in.
+It does some work internally, and it returns a value as the
+value of its response.
+We can make a variable or declare a variable to be global.
+And what this means is that the name is defined at the outermost scope of
+the program, rather than the scope of the function within which it appears.
+It's global because it's going to appear up at the top level.
+It's going to be part of what we want to deal with when we're interacting
+with, for example, the Python shell.
+As it notes here, this can be a bit dangerous.
+And we'll talk about that in a second.
+But let's just look at how we might do this.
+So, here's the idea.
+We're going to call this a metered version of Fibonacci.
+It has much the same form as before.
+There is the recursive call, just as we had before, using a
+different name, of course.
+But we do two things.
+Right here, we make a declaration that says the variable numCalls is global.
+That means it's going to be bound way up at the top, at the highest-level
+environment.
+Inside of fibMetered, we're going to actually change numCalls.
+This says every time we call fibMetered, we're going to increase
+that global variable by one.
+Great.
+So that's going to count how many times it's called.
+We can test this with a little test script here.
+I'm going to run fib for some number.
+I'm going to have i roll over from 0 up to n.
+And notice what I'm going to do.
+Each time I go through the loop, I'm going to again say numCalls is a
+global variable.
+It's defined up in that top-level place.
+And I'm going to set it to zero.
+That is going to have the effect of in the global environment changing
+numCalls to zero.
+And then I'm going to actually do some work and print up some results.
+I'm going to do the work of figuring out what Fibonacci is.
+The call to fibMeter will, every time it calls it, change numCalls by one.
+And when I'm done and when it returns, I can print out how many times was
+that actually called.
+OK.
+Let's see what happens if we do this.
+I'm going to go over and start up over here inside of my IDLE environment.
+And if I load that in, let's actually do a test on fib.
+And this put means we're going to do up to five.
+And it now tells us, oh cool.
+When I call a fib on zero, the answer is one.
+It was called one time.
+Makes sense.
+When I call fib on one, the answer is one.
+It was also called one time.
+We knew those were the base cases.
+And then you can see the responses as we move up.
+So let's make this a little bit bigger.
+Let's do testFib--
+oh, let's make it up to 20.
+Then we'll see what it does here.
+You see it's moving pretty quickly.
+It's starting to slow down a little bit.
+But we're actually now calling testFib in that metered form.
+And it's showing us how many times it's called.
+Also notice, if you look at the numbers, it's clear that we're
+resetting numCalls each time around.
+And that, if we go back to our slides, came from right here.
+Each time through the loop and testFib, we reset numCalls to zero up
+in that top environment.
+So that when we go ahead and call fibMetered, it is starting from zero
+and doing a count for each time it calls recursively within itself.
+A nice tool.
+A tool that's really kind of handy, and something that we'll come back to,
+because it is a way of being able to keep track of some things.
+But I want to finish with a couple of comments.
+First one is use it with care.
+Putting a variable as a global variable is destroying the
+locality of the code.
+One of the beautiful pieces about recursive code is all of the function
+call contains within it all the information it needs.
+The parameter's passed in, it does all the work internally, locally, and it
+simply returns a value back out.
+That is an elegant way of being able to not only think about what's going
+on, but to be able to deal with the code.
+Once we have global variables, they can be modified or read in a wide
+range of places.
+And that's going to make it really easy to break the locality, especially
+if someplace outside of the function we're dealing with makes a change for
+global variable and that affects the computation inside that local call to
+a procedure.
+This is going to allow the potential for introducing bugs.
+And most computer scientists will be very strong about arguing that one
+should not use global variables if at all possible.
+It is much better to encapsulate the computation locally.
+But here's an example where we're metering things, where having a global
+variable can be really handy.

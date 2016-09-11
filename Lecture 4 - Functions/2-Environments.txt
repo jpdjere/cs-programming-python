@@ -1,0 +1,163 @@
+Now that we've introduced the idea of a function definition, I want to spend
+a little bit of time giving you a mechanical way of thinking about how
+function implications work and in particular how the right kinds of
+values get stored in the right places.
+So we're going to use the idea of what's often called an environment to
+understand how bindings of variables take place.
+And here's the basic idea behind an environment.
+It's going to be a formalism for tracking the bindings of
+variables and values.
+And it will in fact apply to general bindings of assignment statements as
+well as more broadly to when we do function calls.
+So indeed, whenever we do an assignment statement, that simply
+pairs a name and the value of the other expression together in a table,
+if you want to think of it that way, that we call an environment.
+If we want to get the value of a name, invoking that value or that name
+rather, just asking for the value of that name simply goes to the table,
+and looks up the value, and returns it.
+Generally when we're talking to a Python shell, there is an environment.
+It's often called the default or global environment.
+And it contains the bindings of all the expressions that we put in as we
+deal with it.
+And then, the key piece of this is when we evaluate a definition, it
+pairs the name of the function with the details of the function without
+actually evaluating those details.
+It creates a pairing up the name to what we call a procedure object.
+Let me show you a graphical way of thinking about this.
+Here's a little bit of a description that we're using.
+I have evaluated two expressions.
+I've evaluated an expression that binds x to 5 and that binds p to 3.
+And over here, I have my global environment.
+This is the environment to which the Python shell is talking.
+And in fact, when I evaluate these assignment statements, they create
+bindings of names to values.
+x is bound to 5.
+p is bound to 3.
+I've also bound result down here.
+bound to 1 over in that environment.
+That gives me variable names and values as associations.
+And now imagine I want to run a little piece of code, this
+little for loop here.
+I'm not going to worry too much about the details.
+We'll come back to it.
+But basically, this four-loop is going to run using an iterating variable
+turn over the range from 0 up to p minus 1, which we know is going to be
+0, 1, and 2.
+It's got a print statement in there.
+But it's also got an expression down here.
+And here's what will happen if I evaluate that.
+We know what should happen.
+But in terms of the environment, when I want to evaluate this expression, it
+says get the value of result by looking it up over here in the
+environment.
+Get the value of x by looking it up here in the environment.
+Multiplying them together, and then rebind result to that value.
+That was when term was equal to 0.
+Having done that, we go back and we say turn equal to 1.
+And we do the same thing.
+We get the value of result.
+We get the value of x by looking them up in this environment here, doing the
+computation, and rebinding result to 25.
+Turn goes up one more.
+That's equal to 2.
+It's going to be the last one.
+And we again, do the same kind of computation, getting result, x
+multiplying together and rebinding result.
+So my rules, now, are just amplified a little bit.
+I'm actually just keeping track in this environment of the bindings of
+variables, looking them up when I need them, and re-changing them with
+assignment statements when I have to.
+So after I've executed all of this, my environment would look like this.
+So that if in fact I said to Python, what's the value of result, it would
+look it up in that environment and return the value.
+So this computation does what I expected it would do.
+But we can see how this idea of an environment gives us a little bit more
+formalism for thinking about what happens as we do those evaluations.
+Now, let's see what happens when we create a procedure object.
+I'm going to bind, in this case, x to 5 and y to 3.
+And there are my bindings right there for it.
+And when I give the Python shell a definition, whether I load it in from
+a file or I type it in, it is going to associate with the name in the
+environment, what we call a procedure object.
+So it's got an identifier that says this is a procedure.
+And inside of it, it has the parameter list.
+And it has the body of the procedure.
+And notice the form which is important.
+It doesn't have substitutions for x and y here.
+It has them as variable names.
+That means that this procedure here can be used multiple times.
+And that's great.
+I've now captured that computation.
+I can refer to it by name because that name's available in that environment.
+And I ought to be able to use it.
+Great.
+So that procedure object is something that sits available to me, but again
+has not been evaluated.
+We don't have substitutions for x and y there.
+There is variable names.
+And the last piece is this little thing here we call
+an environment pointer.
+And it, from the procedure object, points back to the environment in
+which that procedure was defined.
+And we're going to see why we want that.
+But it basically tells us the context relative to which I want to evaluate
+my procedure objects.
+So this arrow points to the binding.
+This arrow is an environment pointer that comes back.
+Here's what happens when I actually call a function.
+If I want to evaluate some expression followed with, in parentheses, some
+other number of expressions, which would be what a function call would
+look like, I first evaluate this expression, which is a name.
+And that says I'm going to just look it up in the environment.
+And I will get back the value which is that procedure object.
+I then evaluate all of these other expressions to get the values of the
+parameters.
+Then I bind those parameter names in the procedure object to the values of
+the arguments that has passed in.
+And I do that in a new frame, which has, as a parent, the environment in
+which the procedure was defined.
+That's going to create a new context.
+It's going to look just like an environment.
+It's going to have names, in this case the parameters, with values
+associated with them.
+And relative to that environment, I'm going to evaluate
+the body of the function.
+And that's going to do just exactly the same rules.
+So I evaluate the body of the procedure relative to this new frame.
+So for example, if I were to now call max of 3 and 4, right there I'm going
+to bind the value of that to z when I'm done.
+What do I do?
+I first get the value of max.
+It's right there.
+And it is pointing to that object.
+I get the values of 3 and 4.
+Those are easy.
+They're just numbers.
+And then I bind the parameters of the procedure in a new frame.
+I'm calling this one E2 for Environment Two.
+I bind them to the values that I just got.
+And then relative to E2, I'm going to evaluate this body.
+That's great.
+Because now what do I have?
+I have a way of saying if x is greater than y-- and where do I get the x?
+It's right there.
+It's relative to this frame.
+So I only see that value of x.
+I only see that value of y.
+I don't get confused by things up here in the global frame.
+Because I've created a new environment right there.
+And relative to that environment, I evaluate the body of the procedure.
+Now you can see, this encapsulation is going to protect the interior details
+so that it doesn't matter, in fact, what names I use for the parameters
+here, or whether they have bindings elsewhere, because they're not going
+to get seen by Python.
+It's going to use the local context, and, in this case, return the max of
+these, which is the value 4.
+Mechanistic?
+Yes.
+A little bit boring?
+Yes.
+But really valuable for understanding exactly how the computation keeps
+track of what values to use, what variable names to use, and how to use
+the steps to do the computation we just captured inside
+that procedure object.

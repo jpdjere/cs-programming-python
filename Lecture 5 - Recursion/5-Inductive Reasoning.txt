@@ -1,0 +1,151 @@
+ERIC GRIMSON: Now, you may still be a little concerned.
+I've tried to show you that, using this environment model,
+we can see how the computation of a recursive function should
+do the right thing, but you may still be
+saying, wait a minute.
+Does this really work?
+How do we know that our recursive code will work?
+And when I say will work, how do we know both that it's
+actually going to stop, and how do we know that it
+computes the value that we want it to?
+So I'd like to walk you through that a little bit just
+to give you a sense of how we can reason about it.
+Let's start with the iterative version.
+iterMul we know terminates because b starts out initially
+positive, and each time through the loop, it
+decreases by 1.
+And just by simple logic, if it starts out as a positive or
+non-zero, non-negative value as an integer, and we keep
+decreasing by one, at some point, it's going to get down
+to 0, which was our test case, and it's going to stop.
+Great.
+Now, what about recursive mul?
+We can actually reason about it in a similar way.
+We know that recursive mul, if it's called with b as the
+value of 1, stops, because there's no
+additional work to do.
+The code simply said return a value.
+So we know it stops, and we also know it gives us back the
+right value.
+What else do we know?
+Well, we know from our code that if we call recursive mul
+with an integer bigger than 1 as a value of b, it makes a
+recursive call with a slightly smaller version,
+in fact, b - 1.
+But by exactly the reasoning that we just used here, we can
+apply the same argument to that call.
+It's going to make a recursive call with a
+smaller version of b.
+And because b is reducing by 1 each time, it started a bigger
+than 0, eventually we have to get to a place where it has a
+recursive call with b = 1, which says we're going to get
+back down to that case and we're going to stop.
+Great.
+So we know it stops.
+How do we know it does the right thing?
+Well, we're going to come to that.
+And to do that, I'm going to burrow with a little bit of a
+side tour a tool for mathematics.
+Because in fact, what we can do is we can use the idea of
+mathematical induction to reason about code.
+What's mathematical induction, say?
+Well, if you haven't seen it before, here's a simple
+definition.
+If we want to prove a statement, a mathematical
+statement that is indexed on the integers, that is, it's a
+statement where one of the parameters is an integer, if
+we want to show that that statement is true for all
+values of n, here's how mathematical induction works.
+We're first going to prove that it's true for n's
+smallest value, which will typically be when
+n = 0 or n = 1.
+And then we're going to prove that if that statement is true
+for an arbitrary value of n, you can show that it must be
+true when n is 1 bigger.
+If we can prove these things, we can prove it's correct for
+small values, and we can prove that, given any value, it's
+true for the next larger value.
+Then induction says we can assume it is true for all
+values of n.
+That's powerful, because it's a way of helping us deduce
+that our code, if we can use it there, works all the time.
+This may sound a little funny, so let's look at a very simple
+example from math.
+And here's the simple example.
+If I add up all the integers from 0, 1, all the way up to
+n, the claim is that that is equal to n * n + 1, all
+divided by 2.
+That's a little statement of fact from mathematics.
+But let's see how induction would actually
+let us prove that.
+So if we wanted to prove it, what do we have to do?
+Well, we've got to look at the base case, the simple case.
+If n = 0, what do we know?
+Well, this left hand side of that equation is just 0, so
+that's done.
+In the right hand side, I'll substitute n.
+If n = 0, that says 0 * 1 / 2, well that's 0, so
+we know it's true.
+OK.
+The inductive step says that we need to now assume that
+this statement is true for some value, let's call it k.
+And what we need to then show is that, as a consequence, we
+can also established that it's true for k + 1.
+So we're assuming it's true for smaller versions of the
+problem, and we want to show it's for
+the next larger version.
+If we can do that, then can prove it's
+true for all values.
+So what do we need to do?
+We need to show that this is equal to that.
+OK, but this left hand side, that is just the same as
+taking this part + k + 1.
+And that part, we've assumed is true.
+That was part of our assumption.
+We said it's true for smaller versions.
+So we know why that one is given by this definition.
+So that is simply this plus that.
+OK.
+That's nice.
+And then, I can just do a little bit of algebra.
+I'm not going to do it here, but if I just do the additions
+together, by a little bit of algebra, I can show that this
+piece here becomes that piece.
+Ah, and that's exactly what I wanted to prove, because this
+is just that definition where n = k + 1.
+What have I done?
+All right, so, I show it's true in the simple case, and
+then I said, let's assume it's true for all
+cases up to some size.
+Given that I can prove it's true for the next larger case,
+by induction, I can assume that it is true for all sizes.
+Great.
+What does that have to do with code.
+Well, the same logic applies to code.
+There's my recursive mul, and let's look what we have.
+In the base case, we can show that recursive mul stops, if b
+= 1, it just returns a value, and more importantly, it gives
+us the right answer.
+It gives us back a.
+OK. a * 1 is just a.
+And then what do we know?
+In the recursive case, we can assume that recursive mul
+correctly returns an answer for problems of size
+smaller than b.
+And then what do we know?
+Well, by this step right here, we know that this is not only
+going to give us an answer, it's going to give us back the
+correct answer for a * b - 1, and therefore, we can deduce
+that this will return an answer because it's just doing
+an addition, and giving us back the right answer.
+So it must give us back the correct answer for
+problem size b.
+And therefore, by induction, we've just shown that this
+code always stops and returns the correct answer.
+And when we say always stops, stops if we give it an
+appropriate value for a and b.
+We're not going to do a lot of proofs throughout this course,
+but this is one nice way of seeing how thinking
+recursively actually works very well.
+And we're guaranteed, if we do it properly, that it will give
+us correct answers, and it will terminate.

@@ -1,0 +1,15 @@
+Let's visualize what this idea of checking if something is
+a palindrome does.
+The basic idea is to check the first and last letter to see
+if they're the same.
+And then if they are, to check the remaining middle portion to see if
+it's a palindrome.
+So here's ablewasiereisawelba, all reduced down just
+to lowercase letters.
+And so at the first step, we check to see are the two end cases the same?
+They are, and that reduces to checking a smaller thing.
+Again, we check to see if the first and last character are the same, they
+are, and that reduces to checking a smaller thing.
+And at each stage, we keep checking the end characters.
+In this case they are all the same, and we keep reducing to smaller and
+smaller versions of the same problem.

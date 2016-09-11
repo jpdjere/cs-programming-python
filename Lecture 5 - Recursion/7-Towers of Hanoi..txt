@@ -1,0 +1,118 @@
+ERIC GRIMSON: OK.
+We've seen recursion.
+We've seen this idea of breaking problems down into a simpler version
+of problems.
+But at this stage, you may be looking at it and going, oh, come on.
+The examples you're showing, they're easy to solve in an iterative fashion.
+What's the big deal here?
+So I want to show you an example of a problem that is beautifully captured
+by thinking recursively, and really hard to do if you're going to try to
+think iteratively to give you the power of that recursive thinking.
+And the problem is an historical one, or a classic one called
+the Towers of Hanoi.
+And here's the legend behind it.
+The legend is that there's a temple in Hanoi.
+In that temple, there are three very tall spikes.
+And initially, one of those spikes starts off with a stack of 64
+different sized discs put on it, holed in the middle so you can lay them out.
+And they are initially in increasing order of size.
+Smallest one of the top, all the way down to the largest one on the bottom.
+For various reasons, the priests in that temple are trying to move that
+stack by moving the discs one at a time, and they have a property.
+They move one disc per second.
+But the idea is that they can only move one disk at a time, and they can
+never cover up a smaller disc with a larger disc.
+So they want to think about, how can we make that happen.
+And we'd like to write some code to print out the set of
+instructions for them.
+Let's look at a demo to see how this works.
+I want to think about Towers of Hanoi.
+I want to think about how to solve it.
+And I'd to think initially about, just could I solve it iteratively.
+So let's start with some simple examples.
+I've got a very simple version of Towers of Hanoi here.
+And if I start with just a stack of size one, then moving it to some place
+is really easy.
+I just move it, right?
+And if I now think about how to generalize this--
+Now, to move a stack of size two, I've got to be careful as I do the movement
+that I don't put a bigger over a smaller one.
+That looked OK.
+If I want to move a stack of size three, well, again, I've got to be
+really careful as I do this, making sure I'm always moving just smaller
+ones on top of smaller ones and so forth.
+And I'm sure you see the idea.
+And let's see what happens if we do a stack of size four.
+Can we actually make this go?
+Again, I'm trying to move different versions of these things around.
+And I've gotten it to the point where, oh good, now I can actually
+get that one over.
+And so now, I want to do those pieces, move this one to that place, I've
+still got to be really careful and if you're watching closely, you'll
+realize, I did it correctly.
+OK.
+So how do you write code to do this for 64?
+Wow, looks hard.
+But let's think about it recursively.
+If I think about it recursively, I want to move a stack of
+size n to some target.
+Here's the simple solution.
+I take a stack of size n minus 1, move it to the spare spike, move the bottom
+one, and move then this stack over there.
+And that's easy.
+That's straightforward.
+That's exactly what we want.
+Let's think about it again.
+Recursively, we're saying we'll take a smaller size problem, solve it, solve
+the base case, and then resolve that smaller size problem and we're set.
+OK.
+Having seen a set of examples of different sized stacks, we can now
+come back to asking this question.
+How would you write a program to print out the right set of moves?
+And as you saw, trying to think about that iteratively is hard, but thinking
+about it recursively is really easy.
+Because what did we say to do?
+We said, to do this move, the simple thing to do is to move a smaller sized
+stack, move that entire thing on to the spare place, move the bottom disc,
+the basic one, to the place you want to go, and then move that smaller size
+stack back to the place you wanted to go to.
+So it's just, solve the smaller problem, solve the basic problem,
+solve the smaller problem.
+It's a little different than before--
+We've got two recursions here--
+but the idea is exactly the same.
+We could write some code to do that, and that's pretty straightforward.
+I've got a little function that basically says, I'm going to print out
+a move going from a stack labeled as the from stack to the to stack, and
+that's just going to say, here's the instruction.
+And then the recursive call to Towers is pretty easy.
+If I'm in the base case, n is equal to 1, I'm going to simply print out the
+move, move the stack from the from place to the to place.
+Otherwise, move a smaller stacked on to the spare spot, from the place I
+started to.
+Then, move what's left, stack of size one, on to the target location.
+And now having put that smaller stack on spare, move it to the target
+location, and I'm set.
+Let's look at an example.
+So, here is that code, and I can simply say, let's move--
+Well, let's start off with a simple one.
+And I'm just going to give it some names.
+I'm going to say this is f, t, and s, for from, to, and spare.
+And it says on the base case, just move onto the place you want to.
+If I want to do something a little bigger, I can do that.
+And that looks like what we did before.
+It says, take the smaller disc off of the first stack, put
+it on a spare location.
+I've now got one disc left on the bottom one, move it on to the to
+location, and then move from spare back to to to make it go.
+And I can do, as you might expect, much larger size problems.
+To give it a stack of size five.
+Well there it is.
+It's a lot of moves, but it gets it done.
+What's important about this is to see how thinking recursively made this
+really easy.
+To move a stack of size n, move a stack of size n minus 1
+onto the spare location.
+Move the bottom disc where I'm trying to go, move that smaller stack over to
+where I'm trying to think about.
+Really easy to think about, and this is really nice.

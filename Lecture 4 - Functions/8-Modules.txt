@@ -1,0 +1,85 @@
+We've now seen a lot of things dealing with functions.
+They're going to be a really powerful tool for us.
+And let's deal with one last topic.
+We'll come back to it in more detail later on, but it's
+useful to highlight now.
+And that builds on the idea that if functions help capture
+modularity, they help capture computations that are useful
+in multiple places, this also suggests that it can be useful
+to group functions together that share a common theme.
+To capture them in something that sort of builds them into
+an element that has a lot of coherence to it.
+And one way we can do that is to put functions dealing with
+a common theme into a single Python file, a .py file.
+And if we do that, then we can import those functions, that
+file, into computations using the Import command.
+And let me show you an example of that.
+Here's some code that I could write that deals with some
+simple geometry.
+So I've got a value for pi.
+I've got a way of computing the area of a circle,
+circumference of a circle.
+I could do the same thing with surfaces of spheres and
+volumes of spheres.
+These computations that kind of mash
+together with one another.
+And imagine I saved this away into a
+file that I call circle.py.
+And I've in fact got it loaded up ready to go.
+What I'd like to do is to say, so how would I use this?
+And the way I use it is that I simply, whether in a Python
+shell or in another file, say, let me import things in.
+So in particular, I'm going to go over here
+and start up my Python.
+And I am going to type in Import Circle.
+And that has now brought in the functions that I've
+defined there.
+So I can define pi to have a really simple value, which I
+know is not true.
+And if I say what's the value of pi, it prints out that.
+But if I say, so what is the value of pi that is stored in
+the circle file?
+Aha!
+And so this notation right here, this dot notation, helps
+me specify that.
+The dot basically says from the context circle, import the
+variable pi.
+Or similarly, from the context circle, import that variable
+area, which is a function, and use it.
+So I can, for example, say, give me circle.area of, I
+don't know, three.
+And it brings in from the circle context the definition
+of area that I created when I actually stored it away inside
+of that file.
+So we'll come back to the dot notation, but it in essence
+lets us create modules with commonality to them and import
+things from them in a way that lets us use them very nicely.
+One way to do it is to simply say Import from circle.
+And every time I want to use something from that file, I
+need to specify it using that kind of a definition.
+There's another way I can do it, which is to say from
+circle, from that context, just import everything.
+Let's see what happens if I do that.
+So I'm going to go back over here and I'm going to say From
+circle, Import everything.
+I'm going to define pi again to be something
+simple, like 3.0.
+Actually, I'll make it even dumber.
+Let's say it's 0.0.
+And if I say, what's the value of pi?
+Ah, now I've gotten it in terms of that version.
+But if I say give me the area, it will get the area that was
+created from circle.
+If I say I want the value of pi from circle,
+I can specify it.
+So this version of Import basically says bring into my
+environment all the things from circle.
+If there is no binding in my environment, I will look it up
+from circle, but I don't have to specify it, which is why I
+could just say area.
+But I can also make changes in this environment, overriding
+what I saw in circle, such as this one, where I defined pi
+to have the particular value that I said I wanted to have.
+That tool basically gives us a way to bring modules captured
+together into our computation.
+And we're going to come back to that later on in the term.

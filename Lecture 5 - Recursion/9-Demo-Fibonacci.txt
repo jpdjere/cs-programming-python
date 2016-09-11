@@ -1,0 +1,15 @@
+Let's visualize what happens with a Fibonacci series, using the original
+idea from Leonardo.
+We start off with the single female.
+At the end of one month, she's pregnant.
+Which means at the end of the next month, she's still there, but she's
+given birth or whelped another female.
+At the end of the next month, that first female again has
+whelped one more time.
+The first offspring is now pregnant.
+And there are now three rabbits running around.
+And at each stage you can see that after one month of growth, if you
+like, each new rabbit produces another one.
+So at this next stage two of them whelp, at the next stage three of them
+whelp, at the next stage five of them whelp.
+And you can see we're going to have a ton of rabbits in a hurry.

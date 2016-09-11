@@ -1,0 +1,117 @@
+ERIC GRIMSON: Now that we've added functions to our
+armamentarium of tools, we're going to see that that gives
+us a lot of power in terms of thinking about computational
+ways of tackling problems.
+Functions give us, as we said, that ability to abstract, to
+capture a computation and then wrap it up as if it were a
+primitive, gives the user the ability to treat a function
+like a black box.
+You suppress the details and you just use the contract,
+that specification that says, if you give me things that
+satisfy certain constraints, this function will give you
+back answers that meet particular desires.
+That's great.
+But even functions can come in different flavors.
+And there's some real power to thinking about different ways
+of tackling a computational problem.
+And I wanted to spend a little bit of time in this section
+talking about that.
+Let's start with what we've seen so far.
+We've really been using looping constructs as our way
+of building algorithms.
+And those looping constructs, things like while loop, a for
+loop, lead naturally to what we would refer to as iterative
+algorithms.
+They iterate their way through the loop, going over and over
+the same computation with slight changes.
+And in particular, we can think of an iterative
+algorithm as capturing computation in a set of what
+we could call state variables.
+These are variables that describe the state of the
+computation.
+And those variables update or change their values on each
+iteration through the loop.
+Let's look at an example.
+So here's a simple little example.
+Imagine that we want to do multiplication, and we're
+going to do it just using successive addition.
+Our computer only comes with addition.
+It doesn't come with a built in multiply.
+I know that's dumb, but it gives us a simple
+example to deal with.
+If we wanted to do that, to do multiplication by successive
+additions, then a simple way to think about it is to say if
+we want to multiply a by b, we're just going to add a to
+itself b times.
+And iteratively, what does that mean?
+Literally, we could say computation's going to be
+captured by two variables.
+One is the iteration number.
+Which time through the loop am I at?
+That number, let's call it i, arbitrarily, is going to
+start off at b.
+And the second thing we're going to need is a state
+variable that captures how many additions
+we've already done.
+What the result is so far.
+Let's just call it result.
+So that's the current state of the computation.
+And that starts off at zero.
+So notice, each of these state variables has an
+initialization.
+We started off somewhere.
+And then we think of the computation as iterating
+through or updating those state variables.
+And those update rules, in this case, would be that on
+each iteration i, my iteration number, is going to reduce by
+one and result, the thing that's holding the
+computation, is going to take the current value of result,
+add the value of a to it, and that becomes the new value of
+that state variable.
+So these state variables have the property that if I stop
+the computation at any point, they tell me
+exactly where I am.
+And they have the property that not only are they
+initialized, but at least one of them will have a condition
+for telling me when I can stop.
+And in this case, I'll stop when the iteration count
+gets down to 0.
+I know I've done all the things I need to do.
+We've seen examples like that, but this idea of iteration is
+nicely captured.
+And if we put it into code, in fact, we see something that
+very nicely builds on that.
+We initialize one state variable.
+In this case, we're going to just use the parameter passed
+in as the other state variable.
+And it's initialized when it is passed in.
+And then the loop simply has updates.
+There's the updating of those state variables.
+And let me make a simple comment about this format,
+since we haven't used it before.
+That format is the same as saying let result be bound to
+result plus a.
+And this one is saying let b be bound to b minus 1.
+It's simple, little shorthand for doing that kind of
+computation.
+And of course, when I'm done, I'm going
+to return the result.
+We've seen these kinds of examples before.
+And you can see how iteration's a nice way of
+thinking about it.
+That loop actually captures what the changes in the state
+variables are at each point.
+And if we wanted to try it, we could certainly go
+over here to Python.
+And there is my definition of iterMul.
+And if I load it into an IDLE environment, then I can
+certainly say things like, give me the iterative
+multiplication of 3 and 5, and it does the right thing.
+And I can even be more fancy about it and say things like--
+And it does it pretty quickly.
+We haven't shown out the intermediate stages of the
+loop, but you've seen enough examples of this to realize
+that it is, in fact, doing that counting down of b while
+accumulating the results in result and then
+returning the value.
+Great.

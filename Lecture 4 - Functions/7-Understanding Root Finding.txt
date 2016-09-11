@@ -1,0 +1,270 @@
+Now, we've seen how to define functions, how to invoke
+functions, and especially how to understand the mechanisms
+by which Python keeps track of bindings of variables, both
+parameters of functions and other variables in order to be
+able to execute the kinds of computations that we want.
+Let's use this to look at a slightly more interesting
+example and to see how having functions allows us to easily
+refine computations.
+In particular, let's go back to that idea that we had
+earlier of bisection search.
+This is going to let us try and find roots of numbers.
+And we can now capture that in a procedure.
+In fact, what we have here is something called findRoot1.
+It looks exactly like the code that we wrote as a script.
+Except it's now captured as a procedure.
+It has number, a power, and an epsilon.
+And that's basically saying we're trying to find the
+number, a, such that a, to the p minus x.
+That difference is less than epsilon.
+Or if you like, we're trying to find an approximation to
+the p-th root of x.
+The code looks much like what we had before.
+The only difference is that we've got a return down here
+to return the answer when we want to get
+the answer back out.
+And it does this by taking, initially, 0 and the value x
+as the starting points, calling those high and low or
+low and high rather.
+Taking the midpoint as a guess and checking to see, if it's
+not in the right place, is it too high or too low.
+And using that either to search the bottom
+half or the top half.
+Again taking the midpoint and using that to decide whether
+to search the bottom half or the top half.
+And to keep on going.
+Let's try running this.
+So let's go over to IDLE.
+And we're going to actually try and run findRoot1 .
+So here we go.
+We've got findRoot1.
+And let's take an example.
+Let's find the root of 25, the square root of 25, to within a
+pretty good approximation.
+And we know the answer should be 5.
+It does pretty well.
+Let's do findRoot1 of 27.
+And let's do the cube root of that.
+We know it should be 3.
+That's pretty good.
+Now let's try findRoot1 of minus 27, the
+cube root of that.
+Which we know should be minus 3.
+Oh goodness.
+It's hung up.
+Hm.
+What's going on?
+Well let's stop this.
+And let's go back over here.
+And let's put in a little print statement.
+Let's put a print statement in right here that will just
+print out the current value of the answer.
+And let's reload that.
+And let's go back and try this computation again.
+So let's see what happens if we try findRoot1.
+Huh.
+OK, let me stop that.
+What happened here?
+Why does this fail on this example?
+This got caught up, obviously, in an infinite loop.
+And it looks like it's trying to guess at minus
+27 all the way along.
+And we can actually see the problem.
+The problem is in the logic, basically, in terms of what we
+take in terms of what's too big and what's too low.
+If we're looking between 0 and the number, and we take the
+mid guess, if the square of it is too small, it says we're
+too low and we're going to move up to the top half.
+But when it's a negative number, if the square of it's
+too small, we're going to move up to the wrong half.
+The logic here is wrong for negative numbers.
+So, how would we fix that?
+Well, we could try and change the logic for both one, saying
+if it's negative, do one thing, if it's positive, do
+something else.
+But in fact, there's a really nice little fix.
+Which is rather than looking over things just between 0 and
+x, let's basically say , look, if the number is positive, I
+want my low guess to be 0 and my high guess to be x.
+But if the number is negative, I want to reverse the logic.
+I'd like my low guess to be x, the negative number, and my
+high guess to be 0.
+And now I will do the search in the negative range rather
+than the search in the positive range.
+And this little change there does exactly what I'd like.
+While I'm at it, I'm going to clean things up.
+I'm going to add a little clause in here that basically
+says if it's a negative number, don't try and take
+even powered roots of that because we
+know we can't do it.
+So it's going to catch things that I don't want to
+try and deal with.
+Part of what we're seeing here is that as I test things, I
+ought to be thinking about a range of test cases.
+I started off initially just with positive numbers.
+I was taking roots of them.
+And it's only when I got to a negative number that I
+realized I had a gap in my reasoning.
+And I needed to think about it.
+With that in mind, we can go back and fix it.
+And in fact, I want to create, now, findRoot2 .
+I've got that over here in my Python.
+And if I now try findRoot2 on minus 27.
+And I take the cube root of that.
+I get what I would like.
+That's great.
+OK.
+Now that we've got that, let's see we might take roots of.
+Again, notice my tests have all been larger numbers.
+What about a number between 0 and 1.
+So let's try and find the root of 0.25, the
+square root of that.
+Huh.
+Looks like it's stalled again.
+It looks like it's stuck.
+What's going on?
+Something is not working here.
+So let me stop out of that and ask the question why does it
+fail in this case.
+Well, in some sense, the reason we can think about if
+we think about what bisection search is doing.
+So we've made these changes.
+But we're failing on that case.
+So let's think about it.
+When we call find root with a number between 1 and, I don't
+know, some big number, bisection search says take 0--
+we could have started with 1-- but take 0 and that number and
+take the midpoint.
+And that's going to get us closer to the guess that we
+would like.
+And we're going to keep doing that.
+But when we call it with a fractional argument, like
+0.25, we're basically saying in our code start with
+something between 0 and a quarter.
+And our first guess is going to be at an 1/8.
+Ooh, that's not good, right?
+That's moving in the wrong direction.
+We know that the solution is out here somewhere.
+But we're going to focus only on this range.
+And we're going to get caught into an infinite loop or we're
+just going to zero down at the minus end.
+The original idea used the fact that the root of x was
+between 0 and x.
+But when x is fractional, the root is actually
+between 0 and 1.
+And I want to focus my search on that range.
+I'd like to start zeroing in only on that range.
+So it turns out that there is a nice, easy
+way to fix this code.
+And it simply says change my initial guesses.
+So if it's a number above 1, my min will be minus 1 and the
+number will be whatever the original number
+was as the high end.
+And I'm going to do the right kind of search.
+If it's negative, it's going to be down at the other end.
+But if it's fractional, between minus 1 and 1, I'm
+going to focus the search just within that range.
+I've called this findRoot3.
+And if in fact I now try that, I will find that findRoot3
+does the right thing.
+Oh, only if I type findRoot3 will it.
+So let's try that again.
+FindRoot3 of 0.25 to 0.001.
+And what about negative numbers?
+Oh, right, I can't take the square root
+of a negative number.
+So let's try something a little different.
+findRoot3 , let's do it with a quarter.
+But let's find the cube root.
+And that gives me a good approximation.
+And if I do the same thing with minus 0.25, and I find
+the cube root, great.
+And you know what, I should go back and check some of the
+earlier ones I did as well just to make sure I haven't
+accidentally broken things that I had done originally.
+So if I do 25 to end a small epsilon, a ha, I get
+the thing I'd like.
+And if I do minus 27 cube root, small number, again I
+get the thing I'd like.
+So why is this advantageous?
+By writing a function, I make it easy to write test cases.
+I make it easy to check them.
+And it let's me, more importantly, easily go in and
+just fix things inside the function.
+If I was writing this as a script, I would have this code
+replicated in many places throughout my code.
+And if I discovered this area, I would have to find every one
+of those places and change it.
+Here, the encapsulation of the function isolates the change I
+have to make to just the code inside of the function.
+And that's really powerful.
+I'm going to add one last thing now to my function,
+something that you should do as a good programmer.
+And that's to add a specification.
+And that's the thing showing up here in a triple set of
+double quotes.
+This, basically, defines as the creator of this code what
+the user ought to expect.
+And I've given a description of it.
+I've said x and epsilon are either integers or floats.
+Power is an integer.
+Epsilon is positive.
+Power is greater than or equal to 1.
+Those are assumptions I'm making.
+And if those assumptions are met, then this function should
+return a float that satisfies certain properties.
+That spec is really valuable because it lets a user, or in
+fact a coder, understand what the intent of this code is.
+And in fact, if I were to use that when I type findRoot3
+into a Python shell and I open up the paren to give it a set
+of parameters, it will print out that information for
+me to remind me.
+The reason this is valuable is that the specifications now
+become a contract between the implementer and the user.
+It defines assumptions.
+What are the conditions that the implementer is assuming
+must be met by users of the function?
+It's typically constraints on the parameters, like what kind
+of type it should be.
+Sometimes it defines acceptable ranges of values.
+And in essence, it tells the user, if you don't satisfy
+these constraints, all bets are off.
+It often will also provide guarantees.
+It will specify conditions that must be met by the
+function, provided that it's been called in a way that
+satisfies the assumptions.
+It says I'm going to guarantee you an answer that satisfies
+these conditions if you give me good inputs.
+And that spec lets us complete this notion of the black box.
+All the user needs to know is the details of the
+specification.
+And they can freely use the code wherever they would like,
+relying on it giving back answers that satisfy the
+guarantees that the implementer put on them.
+This allows us, then, to sort of
+close the loop on functions.
+What do functions do?
+We now can create new procedures and treat them as
+if they were primitives.
+It closes the loop in which we can create new primitives to
+add to our code.
+And the functions have two really nice properties.
+They satisfy the property of decomposition.
+That says we can easily now break problems up into modules
+that are self-contained.
+And they can be reused in other settings.
+So I might have a module that's used in a cube root
+function, and in a square root function, and in a quadratic
+root function.
+And that module I can easily reuse any place
+I would like it.
+The second big property we've talked about, and that's
+abstraction.
+Functions let us hide details.
+The user just needs to know how to use the function.
+He does not need to know the interior details.
+And that simplifies design by suppressing details that are
+not essential to the thinking of a user trying to do
+something more complicated.
+And so functions, now, are a great addition to the set of
+things we have in our toolbox.

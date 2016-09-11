@@ -1,0 +1,16 @@
+In this fifth lecture we're going to first talk about the functions we've
+been writing, especially about how we can think of them as iterative
+computations that capture the heart of a computation as a set of state
+variables that update with each iteration through a loop.
+We will then build on that to talk about the wonderful concept of
+recursion, where we reduce a computation to a simpler version of
+the same problem, and then use that idea to very crisply and cleanly
+capture computational processes.
+We will show how this idea of recursion builds on
+the concept of induction.
+And we will in particular use this to reason about why
+recursive algorithms work.
+And, we'll use that idea to guide general principles in designing
+recursive algorithms.
+To demonstrate this, we will show you a number of classic and fun recursive
+algorithms, especially algorithms we call divide and conquer methods.

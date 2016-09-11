@@ -1,0 +1,155 @@
+ERIC GRIMSON: So we've been seeing recursive functions.
+We started to see the power of them.
+They're a really powerful way of thinking about breaking a problem down
+into simpler pieces.
+And as we saw with things like Towers of Hanoi, what looks like a very
+complex problem sometimes has a beautiful solution by thinking
+recursively in terms of smaller versions of the same problem.
+We're going to do one more example, because so far what we've really
+focused on is things dealing with numbers.
+And while that's great, we can use recursion in other places.
+So here's an example of doing recursion on non-numerical values.
+In particular, suppose we're given a string of characters and we'd like to
+know is it a palindrome.
+And if you don't remember, a palindrome says, does it read the same
+left to right, and right to left?
+Is it the same in either order?
+Classic example, attributed supposedly to Napoleon, although that's highly
+unlikely, is something like, "Able was I ere I saw Elba." And if you look at
+it on the slide, you'll see if I read it from left to right or from right to
+left, it's exactly the same.
+Another wonderful example--
+"Are we not drawn onward, we few, drawn onward to new era?" Another
+great example of a palindrome.
+So we're going to try and build this.
+We're going to do it, though, in a couple of stages.
+First one is, we're going to strip out all of the spaces, the punctuation.
+Because they won't really matter.
+We just want to know are the characters the same.
+And secondly, we don't care about capitalization.
+So we're going to reduce all of the characters to lowercase.
+And then we're going to tackle this problem in terms
+of a recursive function.
+So how do we solve it?
+We first convert the string to just characters.
+We'll look to that in a second.
+And solving it recursively is actually pretty easy.
+If I have a string that's either of length zero or of length one, it's a
+palindrome.
+So length one is just one character.
+Otherwise, to solve this, what I'm going to do is take the string and ask
+the following question.
+If the first and last character are the same, then
+they satisfy the condition.
+And let me then simply look at the remaining string, throwing away the
+first and last character, and ask is that a palindrome.
+Wonderful.
+There's that recursive property again.
+If I can break it down into that problem, I'm set.
+So I could write code to do that.
+Just to give you the example again, this says I'm going to take something
+like "Able was I were I saw Elba" and reduce it to just that string of
+characters without the spaces or any punctuation.
+And then, to test whether that string is a palindrome, that's the same as
+asking are the first and last characters the same?
+Is that test.
+And if I take everything else in between, I can ask is that also a
+palindrome.
+If the answer to both of those is true, then the bigger problem is also
+palindrome, and I'm done.
+OK.
+So here's the code to deal with it.
+And there's a few new things I want to point out here.
+I'm defining isPalindrome to be procedure.
+Inside of there, I've got two definitions for other procedures.
+And that's a little different.
+These are now called internal procedures.
+But this is perfectly fine.
+These are quite straightforward ways of creating new procedures.
+And in particular, they are going to belong only to this function.
+If you think about our environment model, when I call isPalindrome, it's
+going to evaluate the body.
+Which is going to cause these two definitions to be
+evaluated and created.
+And the bindings for those names is going to be within the frame resulting
+from the call to isPalindrome.
+So only isPalindrome has access to those.
+This is a nice way to capture functions if they're really only going
+to belong to a single function.
+The first one is just doing what I asked earlier.
+That is to convert this string into just a set of characters.
+There are a couple of things I want to point out here.
+The first one is right here.
+Here we're actually using a method of a string.
+We're going to come back to that later in the term.
+But it simply says, given that s is a string, the dot notation says get the
+method called lower associated with that.
+That is a procedure or a method, so I'm going to call it by giving an open
+and close paren after it.
+And in essence, what that does is it uses a particular internal procedure
+or method or function to convert s into all lowercase.
+And I'm going to rebind that to s over here.
+Then I'm just going to run through a loop.
+I'm going to store a ans, or answer, a string of all of the characters.
+And for each character in that converted s, I run through a loop
+where I first check to see is it one of the lowercase characters.
+So c in that string literally basically says for each character in
+there, I return--
+if it is in there, I return an answer.
+If it's not in there, I don't add it in.
+And this loop lets me walk through all the characters in s, keeping only
+those that are lowercase values.
+And I just return the answer.
+All right.
+Some housekeeping.
+Palindrome, or isPal, the actual checking, is exactly
+what I would expect.
+It says, if I've got something of length less than or equal to one, it's
+a zero or one, the answer is true.
+It is a palindrome.
+And otherwise, notice what I do.
+I use the properties of strings.
+I get the first and last character, and I say, are those the same?
+And if they are, I then also ask is everything else the same?
+And notice this slicing right here.
+This pulls out substring out of s, starting at the first not zeroth
+element and stopping just before the last one.
+So getting everything but the first and last character.
+And there's the recursive call.
+And then finally, isPalindrome simply uses toChars to convert the string,
+calls isPal on that, and returns the answer computed by that as the answer
+to the overall solution.
+And if we want to actually check this, we can.
+If I go over to my IDLE window and I load this in, I can now say
+isPalindrome, and I will give it some simple example.
+So let's do abba.
+That should be a palindrome, and it is.
+I'm going to ask if my colleague John Guttag has a last name that is a
+palindrome.
+And the answer is close, but not quite.
+If he changes his name, which he will not do, to Guttug, it is a palindrome.
+And finally, just as one last example, let's look at Able
+was I ere I saw Elba.
+And that is also a palindrome.
+And this is doing exactly the kinds of things we would have expected.
+Now this is a nice example of a broader kind of problem.
+This is, as some of the other things have been, is an example of what we
+call a divide and conquer algorithm.
+And that kind of approach says, to solve a hard problem, we can do that
+by breaking it into a set of sub-problems--
+more than one--
+with the property that the sub-problems are easier to solve than
+the original one.
+Either because they are a smaller version of the same problem, or they
+may just be an easier sub-problem to solve.
+And that the solutions of the sub-problems can be combined to solve
+the original.
+In the case of testing palindromes, I'm checking two things.
+And these are tests on the first and last character and a simpler version
+of the same problem.
+And the answer to both of those combines together to give me the
+answer to the overall problem.
+We're going to come back to these ideas of divide and conquer
+algorithms later on.
+They are an incredibly powerful tool that we're going to use in many places
+to solve interesting and challenging problems.

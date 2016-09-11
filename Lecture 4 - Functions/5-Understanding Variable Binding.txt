@@ -1,0 +1,153 @@
+Now we've seen some examples of how bindings of variables
+take place when functions are called.
+Let's do a couple of other examples to just really
+reinforce this point.
+Because it's really important for you to understand bindings
+of variables and how they take place.
+For this one, I'm actually going to just go over to
+Python and IDLE, and type in a little example.
+Imagine I say I'm going to create f(x) to have the
+following property.
+I'm going to bind y to 1.
+I'm going to bind x to be x + y.
+I'm going to then print out the current value of x, that x
+is equal to--
+sorry.
+I'm printing out the string x is equal to and then the
+actual value of x.
+And then I'm going to return the value of x.
+And now inside of Python, I set x to 3.
+I set y to 2.
+And I'm sorry.
+I mistyped that.
+So let's do that properly.
+There's y is equal to 2.
+And I bind z to be f(x) .
+And I run it.
+And it says x is equal to 4.
+And if I now ask, what's the value of z?
+It's 4. x is 3.
+And y is 2.
+Hm.
+I want to see, so why does that happen?
+Why is it that x is now returning an
+internal value of 4 here.
+But externally is 3.
+And z is 4.
+And y is equal to 2.
+So why does this happen?
+This is going to give us a chance, again, to look at what
+happens inside of the binding.
+So let's look in detail at what happens here.
+I create a definition of f.
+And in my global environment for Python, that says I've got
+a binding of f to that procedure.
+And to remind you, inside there, there's the formal
+parameter for x.
+And there is the interior.
+And I didn't repeat all of it.
+It's got that print statement to it.
+But basically there is that interior that deals with all
+of those pieces.
+And notice that it's just there as text.
+It hasn't actually been evaluated yet.
+I then go ahead and do the bindings of x is 3 and y is
+equal to 2.
+And at this stage in the computation, I've got bindings
+for them inside the environment.
+Key thing to notice.
+In the global environment x is 3, y is 2, and f is bound to a
+procedure object whose body has references to x and y but
+nothing more.
+Let's move on in the computation.
+I now say I want to invoke f.
+I'm going to eventually bind z to the value returned by
+calling f on x.
+But I'm invoking f of x right there.
+What does that do?
+Well I get the binding for f, which is this procedure.
+And that says I'm going to copy this environment pointer.
+So I'm going to create a new frame whose parent is that
+global environment.
+And inside there, I'm going to bind a parameter x--
+and that is coming from there--
+to the value passed in by the value of the call to f.
+And that x refers to this one.
+OK, a little funky.
+But it's important to see that the rules actually tell me how
+to do that.
+My invocation of f says create a frame in which the formal
+parameter x is going to have a binding.
+And what's the binding for that value?
+It's the value of this expression.
+And that expression is a variable name.
+So I'm doing that evaluation here in the global
+environment.
+I get that value of x, which is 3.
+So I've now created a local binding for x to be 3.
+And now I'm ready to move on.
+So relative to this environment, I am now going to
+evaluate the body of f.
+So let's step on.
+The body of f says, first expression is to create a
+binding for y.
+Remember that's happening here.
+That's happening in the frame associated with the function
+invocation.
+So I'm going to bind y, have the value 1 there.
+That's interesting because it's not
+changing things up here.
+It is making that binding there.
+So that step of the computation
+creates that change.
+And If I now move on, the next expression in f says get the
+value of x.
+Remember, I'm doing that relative to this frame.
+Get the value of y, which I'm doing relative to this frame.
+And then do that computation and change the binding, which
+is why it goes from 3 + 1, and I'm changing
+that binding to 4.
+From the perspective of f, it never sees that version of y.
+It only sees this version of y.
+From the perspective of f, it only saw that version of x,
+which was originally 3.
+And then the binding, this, happens in this frame.
+And that's why that version of x changes.
+Having done that, we can move on.
+And it says return the value of x, which is 4, and that is
+what z is going to be bound to.
+And that binding, remember, takes place up in this frame
+because that expression is being evaluated relative to
+the global environment.
+It's a long-winded way of saying notice that this
+particular expression here, the body of f, got a value for
+y that it had bound locally, got a value for x which was
+the local parameter, and did the change locally inside of
+that environment.
+But the return value was a binding that took place up in
+the global environment.
+And that's why if I were now to go ahead and print out,
+control reverts to the global environment.
+And that's where the values of x, y and z are visible, which
+is why I am going to, in fact, now do the values that I saw
+printed when I did that in my environment.
+So the point of this is that those bindings actually take
+place in frames that make sense.
+Here are some observations.
+Each function call creates a new environment, a new scope,
+where the bindings of the formal parameters and the
+values passed in take place.
+And where, as we saw, local variables, things created as
+assignments within the body, take place, that
+local binding of y.
+And that creates an environment in which we
+actually do the computation.
+This scoping is often called either static or lexical.
+Because the scope within which a variable has a value is
+defined by the extent of the code boundaries.
+That definition of f had, lexically, a scope around that
+said I'm locally binding y.
+I'm locally using the formal parameter of x.
+All computations take place within that scope.
+So that gives us a sense of why we see the particular
+examples that we just did.

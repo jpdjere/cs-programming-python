@@ -1,0 +1,136 @@
+ERIC GRIMSON: So we've now starting to see some
+interesting examples of recursion.
+In the case of Towers of Hanoi we saw an example of where the
+recursive call might involve multiple subproblems,
+in that case too.
+We also will see examples of recursion where it may have
+multiple base cases.
+And let's look at another classic
+example, Fibonacci numbers.
+The history of this is several centuries ago Leonardo of
+Pisa, also known as Fibonacci, wanted to model how quickly
+rabbits breed.
+And he built a model that's not completely realistic, but
+still gives you an interesting process.
+And he described it as follows.
+He took a newborn, or he wanted to take, rather, a
+newborn pair of rabbits, 1 male, 1 female, and
+put them in a pen.
+He assumed that rabbits mate at age of 1 month, and that
+the gestation period for a rabbit is also a month.
+So after 1 month rabbits can mate, a month later, the
+female will produce offspring.
+And in particular, he assumed that the females will always
+produce a new pair, 1 male, 1 female, every month from the
+second month on.
+And finally he assumed that rabbits don't die.
+Which is not true, but it's an interesting way to try and
+deal with it.
+And the question was, how many female rabbits are there at
+the end of 1 year, 2 years, however many years?
+So, that was the model.
+Here's how we can actually think about it
+computationally.
+We want to know the number of females.
+So at the end of 1 month, let's call it
+0, we've got 1 female.
+That's what we started with.
+After the second month, there's still 1 female, but
+she's now pregnant.
+And at the third month, she's going to deliver.
+So, in fact, not only is there now that female, but there's a
+second female.
+1 pregnant.
+1 not.
+And in general, we can figure out the formulation of the
+recursive expression, if you like.
+Because in general, every female alive at month n - 2 is
+going to produce a female at month n.
+It takes 2 months for that to happen.
+Those new females that are generated at month n, can be
+added to those that were alive the previous month, because
+those are the new females.
+So the total number of females at month n is the number that
+were alive at month n - 2, because each one of them has
+produced a new offspring, plus all the ones that were alive
+at month n - 1.
+And so you can see at month 0 there will be 1.
+At month 1 there will be 1.
+At month 2.
+There will be 2.
+At month 3 there will be 3.
+And now you can see we're just adding to create the next one.
+At month 4 there will be 5.
+At month 5 there will be 8.
+And 13, and so on.
+OK.
+We don't really care whether this is a good model for
+rabbits, although you can see why Australia may be suffering
+the problems it does when 24 rabbits were introduced into
+their ecosystem.
+But let's think about just writing code to capture it.
+Description is nice and easy.
+And notice here, Fibonacci has 2 base cases.
+Base case for the zeroth month.
+Base case for the first month.
+That base case in both instances is 1.
+And then the recursive case is what we just described.
+OK.
+And the code, nice and simple.
+I'm going to add 1 new thing here, which is this assert
+statement right here.
+So let me spend a second on that.
+Here's my definition for Fibonacci.
+I've got a specification.
+It says assume that x is an integer and it's greater than
+or equal to 0.
+If that's the case, I'm going to return the
+Fibonacci number of x.
+Assert is something that basically takes an expression,
+which is a Boolean, and in this case, it's an expression
+that has 2 subexpressions, both of which are Booleans.
+And what assert does is it a checks to see is that
+statement true.
+So here what you see we've been doing is we're saying,
+given x, let's make sure that it is, in fact, an int by
+checking its type.
+And let's make sure that it satisfies the condition of
+being greater than or equal to 0.
+And if both of those are true, then the body of the procedure
+will be evaluated.
+But if either of them is not, if the overall expression for
+the assert is false, it's going to stop
+and return an error.
+Inside of fib, it's exactly what we'd expect.
+I've got two base cases.
+I happen to be checking them with just one Boolean
+combination.
+Two base cases and a value to return and otherwise I'm
+returning, just like in towers, a recursive call done
+twice, I'm returning the sum of fib(x) - 1 ,
+and fib(x) - 2.
+OK, let's try running it.
+So I'm going to go over to idle.
+I have my version of fib.
+And let's check.
+Let's check the base cases. fib(0) should be 1.
+It is.
+fib(1) should be 1.
+And then what did we also know?
+Well, we said that fib(2) ought to be the
+sum of those two.
+And it is.
+fib(3) ought to be the sum of the previous two.
+And it is.
+fib(4) ought to be the sum of the previous two.
+And it is.
+And you can see it's doing pretty well.
+And so, how many at month 12?
+233.
+Gets bad fairly quickly.
+Just to give an example of that, at 13 it jumps up.
+And If I go to something like say fib(15) , or fib(16) ,
+it's climbing pretty quickly.
+But there we are.
+We've got a way of computing Fibonacci.
+Great.

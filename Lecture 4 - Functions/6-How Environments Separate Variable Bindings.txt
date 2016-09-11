@@ -1,0 +1,224 @@
+We're getting a sense now of how functions capture
+modularity for us.
+They capture this notion of an abstraction
+that we can use it.
+And we're using this environment idea to help us
+understand how parameters get passed around, how they get
+bound, how they get used.
+And we've seen we can have local bindings for names of
+variables that are different from global bindings.
+And the system doesn't get confused.
+Let's do another example to look at what happens when we
+have multiple function calls.
+And so over here, I've got a simple little example.
+I'm going to define square.
+That's a very handy little procedure.
+It says, given something, let me multiply it by itself.
+Return that value.
+And then I'm going to write a somewhat
+strange little procedure.
+I'm going to call it twoPower.
+And the idea is I'm going to take two numbers, x and n.
+And I'm going to raise x to the n-th power, where n is
+itself a power of 2.
+And I'm going to do it with a simple loop.
+And the loop says, as long as n is bigger than 1, I'm going
+to take the current value of x, square it, and re-bind x to
+that value.
+And I'm going to take the current value of n, do the
+integer division with 2, which of course is
+going to lose n a remainder.
+But since n is a power of 2, you're just going to reduce it
+to the simpler power of 2 and re-bind n to that value.
+So I'm going to square n and reduce n by a factor of 2.
+And it's a little bit like saying x to the n is the same
+as x squared to the n/2, which is the same as x squared,
+squared to the n/4.
+And it's just giving me a quick way of doing that
+computation.
+When I'm done with the loop, I'll just return
+the value of x.
+OK.
+I want to see what happens when I run this.
+So I can certainly load that.
+And if I go over here to IDLE, I've got those functions, and
+I've loaded them in.
+First of all, I can certainly do square.
+If I square 5, I get back 25, And if I square, actually,
+something else, I get back appropriate things.
+And then twoPower.
+If I wanted to do this, I could do a twoPower of, for
+example, 2 to the 8th.
+And it gives me back 2 to the 8th power.
+Sort of what I'd expect.
+What I'd like to know, though, is if I again, as before, if I
+set up x to have some value like 5, and I set n to be some
+value of 1, and I now call twoPower of 2 to the 8th I
+should still get--
+I'm sorry.
+I didn't give it the right answer.
+Let me give you twoPower of 2 to the 8th.
+I should get back the same value.
+And we've seen that before.
+We're not going to get confused by the bindings.
+But we've got multiple procedures going on.
+So let's look at what happens.
+So if I evaluate in Python these two procedure
+definitions, they create for me bindings of the name
+"square" and the name "power." And they're both to
+procedures, which is great.
+I'm gong to stress again, the body of the
+procedure is just text.
+There are no substitutions in for x or n there.
+I'm simply creating them as text.
+And I have now done a local binding for x to 5
+and n equal to 1.
+So at this stage in the computation,
+this is what I have.
+OK?
+Just like before.
+Now, let's move on a step.
+Let's look at what happens if I were to call twoPower with
+arguments 2 and 8.
+And to be very careful about it, evaluating twoPower gets
+the binding of twoPower, which is this procedure.
+And that invocation creates a new frame.
+It's going to inherit from where the procedure says it
+should inherit from, the place where it was created.
+And inside of that frame, I'm going to take--
+the parameters x and n.
+
+And I'm going to bind them to the values of the arguments
+
+that were passed in.
+Technically, those are evaluated up in the global
+environment as 2 and 8.
+But I've now got a binding of x and n-- sorry about that
+bug-- to 2 and 8.
+And now I'm ready to start doing the computation.
+Because relative to this frame, I'm going to
+evaluate this body.
+OK.
+So I move on, and I've got the same bug.
+We'll make that an n.
+What do I have here?
+It says-- let's go through the while loop.
+While n is bigger than 1, which it is, first thing I'm
+going to do is I'm going to square x.
+Ah.
+Remember, I'm in this frame.
+And I say, what's the value of square?
+So I need to add something here.
+I don't have a binding for square in this frame.
+But because it inherits from this global frame, I can find
+a binding up there.
+So if there's not something locally here, I basically go
+up and look for the binding up there.
+So square is itself a procedure.
+Aha.
+That says, create a new frame--
+this is coming from the invocation of square--
+in which I take the formal parameter for that procedure.
+And yes, it's x once again.
+And I create a binding of x there to the
+value I have here.
+Remember, I was asking for the square of x in this frame.
+So that binding becomes the binding
+for x inside of square.
+And then relative to this frame, I
+actually evaluate square.
+It says, take the value of x, multiply it by
+itself, and return it.
+I know there's a lot going on, but it's important to see how
+those different frames come up.
+I've got a frame coming from calling square.
+It is being called with the value 2 as the
+local binding for x.
+I multiply it by itself and I return it.
+And that, of course, is going to give me a 4.
+And that's what I get.
+I get a binding of x equal to 4.
+This frame is now going to go away because I
+no longer need it.
+It came around-- it was around because I had square.
+And there's my bug.
+And the other piece, it says, is now take n, which was 8,
+and rebind it to be n divided by 2.
+So I've now got a new local frame here.
+Notice this is capturing a computation.
+I've gone from 2 to the 8th, to 4 to the 4th.
+Cool.
+That's what I'd like.
+Let's see what happens.
+I go back around that while loop.
+OK?
+There's my bug, that's n.
+n is still bigger than 1.
+So what does it say to do?
+It says, get square, Which I find by going up and finding
+that binding.
+Create the frame.
+And notice again, it's bound by where that says
+it should be bound.
+And inside of there, this procedure object says, bind x
+to the value past in, which was 4.
+It's getting that value of 4 from here.
+And relative to that, execute square, which multiplies x by
+itself and returns 16.
+And that's going to be what that gets bound to.
+And then I'm going to take n and reduce it by 2.
+So in fact, when I get to this stage, I now have a binding
+locally here for x of 16 and n of 2.
+And you can see it's doing the competition I'd like.
+This frame again is going to go away because it was what I
+used when I did that previous call to square.
+So what I want you to see is that each call to each
+procedure creates its own frame.
+It inherits from the environment where the
+procedure said it should.
+And locally, I'm still keeping track of this.
+So if I, in fact, go one more round around, again, I'm going
+to come to square here.
+It calls square one more time.
+That binding of x comes from what the square procedure
+should say.
+The value passed in is the value passed in from where I'm
+doing the computation.
+I do the squaring.
+And I get one more stage.
+And of course, now when I go around to the while loop, n is
+no longer bigger than 1.
+And I'm just going to return the value of x.
+And remember, this computation is taking place here.
+And so the right value of x gets returned, which is 256.
+And it gets printed out.
+I understand there were a lot of frames going on.
+But mechanically, you can see that those rules exactly
+describe it.
+Each local procedure has a local computation involving x.
+And in fact, one of the things you can see now is that this
+clears up that potential confusion about who's dealing
+with which version of what parameter.
+So let's capture that.
+Notice how each call to square created a new frame with the
+local binding for x for square.
+The value of x in the global environment was never confused
+with the value that was being used for square or the value
+that was being used inside that iterative
+loop inside of twoPower.
+That value of the call to square is different from that
+binding, in fact, for the value inside of twoPower.
+So each one of those was kept separate.
+And as a consequence, these rules make it clear that we
+can mechanically keep track of the right value.
+And the other thing this does is it lets us go back to that
+earlier issue, which is, can I reuse the same variable name?
+So I can, in fact, have the same variable name in
+different procedures.
+Because the rules for invoking the procedure keep track of
+which value matters.
+If this is confusing to you, walk through an example again
+just to see for yourself how each procedure call creates
+that local context, that lexical scoping that captures
+what versions of the parameters are important to
+each computation.

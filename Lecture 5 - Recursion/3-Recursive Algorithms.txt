@@ -1,0 +1,110 @@
+SPEAKER 1: So we now have this notion of iterative
+algorithms.
+Very powerful tool, thinking of things in terms of loops is
+a natural way of thinking of problems.
+But there's another way of thinking about problems, and
+let's go back to that idea of doing multiplication by
+successive additions.
+Here's a different way of thinking about this
+computation.
+This basically says, a times b-- well, that's the same as
+taking b copies of a and adding them together.
+But I could also think of that as saying, that's the same as
+taking a and adding it to whatever I get by doing that
+accumulation of b minus 1 copies of a.
+Now you're going, oh come on, this is pretty simple.
+You're just playing games here.
+But I'm not.
+It's a really important point here.
+I have just reduced this problem to a simple operation
+and a simpler version of the same problem.
+And in fact, what is this piece here, that is exactly
+the same as a times b minus 1.
+Ah-ha.
+That's a simpler version of the same problem.
+I've now thought recursively.
+Sounds like a highfalutin term.
+It's really not.
+It says, I have taken a problem, and I've essentially
+said, let me reduce this problem to a simpler or easier
+version of the same problem, plus some operations
+I know how to do.
+And so I've reduced the idea of multiplying a times b into
+a simpler problem.
+Add a to whatever I get by multiplying a times b minus 1.
+OK.
+That sounds nice, but what does it really mean.
+Well as I said, this is an idea of a recursive algorithm.
+And what we do when we think about something recursively,
+is we do two things.
+We first say, how can we reduce this problem to a
+simpler or smaller version of the same problem together with
+some operations I know how to do.
+And that's what we call the recursive step.
+We just saw that.
+Of course we can't keep unwinding that.
+Eventually we've got to stop, we've got to ground it out.
+And that's the second piece.
+And the second piece is, we're going to keep thinking about,
+how do we reduce this until we reach a case that is simple
+enough we can just solve it directly.
+We call that the base case.
+We don't have to do it in this order, we can
+do it either way.
+We can think about, what's the base case and what's the
+recursive step.
+But these two pieces are important.
+In my case of thinking about multiplication
+then, what do I have.
+What's the base case.
+I got a couple of choices, but an easy one would be to say,
+if b is equal to 1, then a times 1 is just a.
+So my base case is really straightforward.
+If b is equal to 1, I'm done.
+Otherwise, a recursive case is what I just said.
+I'm going to reduce a Mul b into a plus a Mul b minus 1.
+OK.
+You're being a little skeptical, I'm
+sure, saying, so what.
+So you've played some games here.
+But I've just described a wonderful algorithm for a
+different way of thinking about this computation.
+Because I could capture this in a recursive algorithm.
+And let's do it.
+Here's the code for a recursive version of
+multiplication.
+And notice it just nicely matches what I just described.
+This says given two values, a value for a and a value for b,
+check to see if b is equal to 1.
+That's my base case.
+There it is, right there, base case.
+And if it is, just return the value of a.
+Simple computation.
+Otherwise, I'm going to call the same function with a
+simpler argument.
+We could do recursive Mul again on a and b minus 1, and
+when that computation is done, it's going to get me back a
+value, and I'm going to return that value added to a.
+And there's my recursive step.
+Nice, simple code.
+Let's check it out, make sure it does the right thing.
+I go over to idle, I've got a definition of that right here,
+and I load it up.
+And let's try the same thing.
+So if I do recurMul--
+if I can type, which I will--
+Mul three and five.
+OK, and if I do recurMul on 26 and 35, it's giving me back
+the same answer.
+And notice it's also giving me an answer.
+Which may be worrying you as you look at this
+definition of the code.
+So in the next segment, let's look to see why does this do
+what it does.
+But the key thing to see here is this idea that given a
+computation, I'm going to break it down into a simpler
+version of the same computation, plus some things
+I know how to do, and I'm going to keep unwinding that
+computation until I get to a base case--
+something I can solve directly.
+We'll do that in the next segment.

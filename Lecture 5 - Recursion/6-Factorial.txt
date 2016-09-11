@@ -1,0 +1,100 @@
+ERIC GRIMSON: Now, we've seen recursive functions.
+We've seen this idea of inductions, a way of showing that
+these functions work.
+And we've seen this notion of recursion as breaking a problem down
+into a simpler version of the problem plus some other work.
+We're going to use that tool a lot.
+It's a powerful tool for taking complex problems and capturing them in
+a way that is easy to think about.
+So let's look at some examples.
+In the classic example to start with is to compute factorial.
+Factorial in math is written as n followed by an exclamation point, said
+verbally as n bang.
+And factorial is basically the product of the integers from 1 times 2 times 3
+all the way up to n.
+How would we think about solving this recursively?
+Well that's pretty straightforward, right?
+I need a base case.
+A simple case is if n is equal to 1.
+1 multiplied by itself, or just 1 is 1.
+That's simple.
+To get the recursive case, let's use that same thinking.
+To get the recursive case, what do I have?
+I want a simpler version of the same problem.
+In effect, right there that is n minus 1 factorial.
+So recursively I would say if I can get n minus 1 factorial, then to get n
+factorial I'd simply take that value and multiply it by n.
+And that gives me that reduction exactly like I saw before.
+Fantastic.
+There's a recursive definition factorial.
+Let's capture it in some code.
+And, in fact, to do it let's do both an iterative version
+and a recursive version.
+So the iterative version of factorial has the form we'd expect.
+I need some state variables.
+One of them is going to be just the parameter n that I'm passing in.
+And the other one I'm going to call result.
+I need to keep track of the computation as I go along.
+I'm going to set a result initially to 1 because I'm going to do successive
+multiplications.
+And then the iterative version basically says if you start off with n
+that's bigger than my base case, or the stopping point, rather, what do I
+want to do?
+I'm going to take my current value result, which is 1, multiply it by n,
+and store it away.
+And then I'm going to reduce n by 1.
+There are those update equations that are updating the state variables.
+I go around again, n is now one smaller.
+And again, I take the current value result, which at this point was n.
+I multiply it by the new value of n, which is n minus 1.
+And I update it.
+I reduce n by 1.
+And I keep doing this.
+And you can see that I want to start by taking n, n times n minus 1, n
+times n minus 2, and I'll keep doing that until I get down to a place where
+n is zero, in which case I stop and I return the result.
+Great.
+What about the factorial version recursively?
+Well, factR is nice and crisp.
+Here it is.
+It just says, if n is equal to 1, if you're in the base case, just return
+that value.
+Here I said return n, I could have said return 1, because I know it's
+going to be the same thing.
+Otherwise, get the solution to a slightly smaller problem by just
+recursively calling factR, multiply it by n, and just return that result.
+Beautiful code.
+Nice and clean and crisp.
+And you can see that it gives you a very clear sense
+of exactly the stages--
+my base case, my recursive case.
+My recursive case is a recursive call plus one other operation, which is to
+do multiplication.
+Let's see if it does the right thing.
+So in IDLE, I've got a version of both pieces of code, then let's try first
+theater diversion of factorial.
+And just to be careful, let's make sure it does the right thing on the
+base case, or n is equal to 1.
+If it does then let's give it the bigger one--
+I happen to know that 3 times 2 times 1 ought to be 6.
+So there we go.
+And if I give something a little bit bigger, wow, it actually computes
+factorial of 25.
+Pretty quickly.
+What about recursive version?
+Well let's test the same ones.
+On 1 it does the right thing.
+On 3 it does the right thing.
+On 25 it does the right thing.
+And you may notice this funny little form on the screen there where it's
+got an L at the end.
+This is just telling us that Python's got such a big number, it's
+representing it in what's called a large format.
+Don't worry about it.
+It just says, I got a really big number.
+I gave it back to you.
+So we didn't look at stepping through it.
+You can go do that.
+But you can see that the recursive version stops, computes the right
+answer, and the code itself is nice and crisp.
+OK, let's look at another example.

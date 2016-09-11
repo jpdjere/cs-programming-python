@@ -1,0 +1,152 @@
+OK, we've now seen a mechanical description of the evaluation of
+procedures, both what happens when we define them, and what happens when we
+actually use them, when we do a computation where we use the body of
+the procedure.
+We described a mechanical way of using environments, let's look at a couple
+of examples to really drive home that process.
+Here's a simple example.
+Let's suppose I want to compute the power of some number to some other
+power, a to the power of p.
+I'm going to do it with just successive multiplication.
+I know that Python provides a built-in version of this.
+But I would, say, for example, wanted to take a to the p-th power.
+And I do it by multiplying a by itself, storing that result away, then
+multiplying that by a, then multiplying that by a.
+And then just keeping track of how many multiplications do I need to do
+until I've done p of them, and keep track of the result, and return it
+when I'm done.
+So here's some code to do it.
+And it's pretty straightforward.
+In fact, we just saw it earlier.
+It was in my earlier example.
+I'm going to input some number for x.
+I'm going to input some number for p.
+And I'm going to make sure it's an int by doing a type casting there.
+I'm going to set up an intermediate variable, or a place
+to store the result.
+And I'm just going to run through that loop, where I'll print something up to
+tell me where I am, and I'll change the value in result.
+Let's look at an example to see if this does it.
+So if I go over to Python, I can load that computation.
+It is now saying give me a number, let's give it 3.
+It says give me an integer, let's give it 5.
+Oh, and it prints through the stages, telling me at each iteration what the
+current result is.
+It starts as 1, and then it's 3 and then it's 3 squared, and then it's 3
+cubed, and then it's 3 to the fourth.
+Wait a minute, didn't I want to take it to the fifth power?
+Well, notice that my print statement is just printing before I
+actually do the work.
+And in fact, when I'm done, what I've done is, I'll return
+the value in result.
+And there it is, it's 243.
+OK, we saw how that computation would take place previously.
+Now, let's capture it in a procedure.
+So I'm going to define a procedure called iterative
+power, there's the name.
+I'm going to give it two formal parameters, x and p.
+And then the body of the procedure is much like what I have for my
+computation before.
+I've got an internal definition of result, which I'm going to use.
+And the only big difference is, when I'm done with the computation of that
+for loop, I've got that special keyword return.
+That says return the value of this expression, which is just the value of
+result, when I'm done.
+Let's try it to see if it works or not.
+I've already loaded this over here.
+So if I say I'm going to int-- yeah, yeah, iterative power, I'm going to
+compute that.
+Let's do 3 to the 5.
+It runs through exactly the same stages, and notice what it printed out
+at the end.
+It printed out the value of the computation.
+And in fact, if I were to bind this and say z is equal to IterativePower
+of 3 and 5, it runs through the computation.
+And if I ask for the value of z, there it is, 243.
+So it does the computation I want, now let's think about what happens inside
+of the environments, how it does the scoping of the variables.
+So if I were to evaluate that definition, which I did, by loading it
+into my Python environment, what it does is, it creates a binding for the
+name IterativePower to a procedure object.
+And inside there, I have a list of formal parameters,
+and I have the body.
+I also have an environment pointer that points back to the environment in
+which I did the definition.
+In fact, we know we're going to use it.
+If I now call iterativePower with 2 and 5, what do we say happens?
+We get, first of all, the value of this expression, iterativePower, it
+points to that, it's a procedure object.
+I get the values of each of these expressions with respect to this
+environment.
+Numbers are always numbers, so it's just 2 and 5.
+And then I create a new environment, which I'm calling E2.
+This new environment here.
+It has as a parent the environment that the procedure
+object has as a parent.
+And then, inside of that environment I bind these formal parameters to the
+values of the expressions passed in.
+And then relative to this environment, I now evaluate the body of the
+expression.
+Ah, that's really cool.
+Because now, I've basically reduced a computation to a simpler computation.
+I'm now evaluating this expression or sequence of expressions relative to
+this environment.
+And that environment contains the bindings I want.
+So in fact, if I evaluate that body, what does it do?
+Well, the first expression it evaluates says bind result to 1.
+And notice where that happens, it happens down here in this environment.
+Not up in the global environment where I want to have some value that I might
+want to think about.
+It's happening inside of this environment created
+by a procedure call.
+Having done that definition, I run through the for loop.
+And that says look up the value of x, which is right there.
+Look up the value of result, which is right there.
+Multiply them together and change the binding for result.
+And then do it again and again, you get the idea.
+All of this computation takes place in this environment, E2.
+What that says, then, is that the loop rebinds that local variable until we
+get to the exit, until when we're done and we hit that return expression.
+And return says look up the value of result in this environment.
+Because that's where I'm doing the computation for the procedure.
+There it is.
+That's what's actually returned.
+Cool, that's exactly what it said we should do.
+Now, let's drive home a point.
+Imagine that we had actually done some bindings for x and p
+before we called it.
+In fact, let me go back over here to Python.
+And I want to say, let's set x equal to 3.
+Let's set p equal to 4.
+Let's set result equal to 5.
+And now let's call z as iterativePower 6 and 7.
+It runs through the computation.
+And notice what's happening.
+What's the value of z?
+Well, that is 6 to the seventh power.
+But more importantly, what's the value of x?
+Still 3.
+The value of p?
+Still 4.
+The value of result?
+Still 5.
+Those were bindings in a global environment.
+When I called the procedure, it created its own frame, its own
+context, did all the computation.
+And that local environment had separate bindings for x and p, which
+are not visible to the environment where we did the function call.
+So this point captures that notion of encapsulating the computation.
+And what that then says is, to say it in a little more detail, we have
+bindings for x and p up here.
+When we call the procedure, we do local bindings to the values passed
+in, we do local bindings for result.
+And when we do that computation, the evaluation of the body only sees the
+bindings down here in E2.
+So we created a black box.
+Details don't matter.
+I can re-use this procedure anywhere by simply using its name.
+If I decide to change, for example, the names of the parameters in here,
+I'm free to do that.
+And it doesn't change any computation that relies on just using
+iterativePower.
+So procedures give us this wonderful notion of abstraction.

@@ -1,0 +1,199 @@
+ERIC GRIMSON: We just showed you a recursive algorithm.
+You may be a little worried about it.
+You may be going, OK, but how does it know which values of
+the variables to use?
+Because I'm not seeing any explicit
+changes to those values.
+How does it make sure it really stops?
+Why doesn't it just keep unwinding?
+Didn't your high school geometry teacher never to use
+definitions where you defined a term in terms of itself.
+Good news is not to worry.
+And we've got a tool to help us understand that.
+Let's go back and simply look at a simple call to recurMul,
+recursive multiplication, using that set of environments
+to see how computation flows.
+So here's my code, I've just got a copy of it here.
+And in particular, if I evaluate this, or load this if
+you like, into a Python environment, a shell, we know
+what's going to happen.
+Which is we're going to create a frame over here, in which
+that name, recurMul, is bound to a procedure object.
+And it's got inside of it both the parameter list and the
+body, the set of things it's supposed to do.
+OK, let's see what would happen if we
+actually called it.
+So let's call it.
+Calling it says, I am going to evaluate this
+expression down here.
+And I'm going to first get the value of recurMul.
+I know what that is.
+It's given by that pointer there.
+It's a procedure object.
+And so I know that calling it says I'm going to create a new
+environment.
+It's going to inherit, or have as a parent, the same
+environment that the procedure has, the environment that was
+in place when we defined the procedure.
+So it was going to point to that frame.
+And inside of there, first I'm going to get the values of
+these two expressions, and I'm going to then bind the
+parameters of the procedure to those values.
+All right.
+I'm saying it in a long winded way, but
+you've seen this before.
+We've now created a new environment in which a is
+bound to 2 and b is bound to 3.
+And relative to that environment we're going to
+evaluate the body of this procedure.
+OK.
+Let's start evaluating the body.
+The body says is b equal to 1.
+No it isn't.
+It's 3.
+So it's going to go to the else clause.
+And the else clause says, I'm going to return a value.
+Great.
+I'm going to get a value back.
+And it says the value is going to be the value of a.
+Remember I'm doing it relative to this frame here so I know
+the value of a.
+It's 2.
+And I'm going to add to a the value of the recursive call,
+another call to recurMul, with different arguments.
+Now think of this very straightforwardly.
+This is Python.
+This is an interpreter.
+That's an expression.
+It says to get the value of that expression, what do I
+need to do?
+You need to get the value of recurMul, oh
+that's it up here.
+OK.
+Now, I need to get the value of a.
+And remember I'm doing it all with respect to this, and in
+fact I should have done that better.
+To get the value of recurMul with respect to this
+environment, I'm going to go up and find it there since
+it's not bound down here.
+I need to get the value of a.
+There it is.
+And I need to get the value of b minus 1.
+Well that's easy.
+There's b, and subtract 1 from it.
+And since recurMul is a procedure, what
+am I going to do?
+I'm going to create a new frame.
+Cool.
+That's exactly what I want.
+Because now I've got a computation that's taking
+place with respect to this frame.
+And how did I set that up?
+Well I got the value of a.
+I got the value of b minus 1 from here.
+I've bound those in this procedure because that's what
+it tells me to do.
+And I'm now saying, evaluate this procedure in this frame.
+Remember, when I get the value of this I'm going to give it
+back to this frame to complete that addition.
+But I've now reduced this to simpler computation.
+Notice something else really nice.
+You may have been saying, well, how do I keep track of
+my iteration variable?
+It's not really iteration, it's recursion.
+But notice I've reduced b.
+And that's exactly what's going to happen.
+I'm going to keep unwinding this computation until I
+ground that out.
+OK.
+We're now in pretty good shape.
+Because what do we want to do?
+It says I need to get the value of this procedure, this
+body, this body here, with respect to this environment.
+What do I do?
+Well, let's say is b in this environment equal to 1?
+No it is not.
+So I'm going to return the value of a from this
+environment, which is right there, to
+another procedure call.
+I'm doing another procedure call on recurMul.
+What do I do?
+From here, I get the value of recurMul.
+And I trace up that chain to say, there it
+is, it's that procedure.
+I need to get the value of a in this environment.
+That's easy.
+And I need to get b minus 1 in this environment.
+Well, that's easy, as well.
+B here is 2, I subtract 1, and that leads naturally to yet
+another recursive call.
+Now, you're going to be glad I only did this with 2 and 3,
+and not 2 and 57.
+But you get the idea.
+I am now evaluating the body of this procedure with respect
+to this environment.
+What do I do?
+I say, OK, is b equal to 1?
+Thank God, it is.
+But if b is equal to 1, what do I do?
+I return the value of a from this environment.
+So that computation gives me back a 2.
+That's really nice.
+Because what does that say?
+It says, gee, here's where I am.
+I'm now returning the value of a because I was in that
+recursive call.
+It says the value of this recursive call is 2.
+I'm going to give it back to the place that was waiting for
+it, which was up here.
+And what was I doing?
+I was waiting to get the recursive value.
+I want to add that to a.
+So the 2 is returned.
+It gets passed back up here.
+It gets added to that a.
+Those two pieces come to there.
+And what was that doing?
+That was saying, give me a return of those two values to
+the computation that was waiting here.
+So, in fact, the 4 and the 2 get added
+together to give me 6.
+And what was that doing?
+It says, I'm now done because that procedure said return
+that value as the overall value.
+And that's going to get passed back up as the final value.
+Cool.
+A little slow in our computation but really cool.
+And, in particular, let's see what we can deduce from this.
+Each recursive call of a function creates its own
+environment, with a local scoping of variables.
+So evaluating the body of the function in that environment
+is going to be very clear as to which value of a and b it's
+using, or any other variable that it's using.
+Secondly, the bindings for variables in
+each frame are distinct.
+And you saw that.
+I had a different frame for each one of them.
+And those bindings are not changed when we're doing the
+recursive call.
+They are set up as we make the call.
+That is, I'm going to compute a new value of b, making it in
+this case b minus 1, in order to bind it in the frame.
+But I'm not changing bindings in other frames when I'm
+within one frame.
+I don't have access to them.
+And finally we can see that the flow of control can
+naturally pass back to an earlier frame once the
+function call returns its value.
+So, finally, you can also see that inherently this recursive
+call to a function, if done right, has the equivalent of
+reducing a state variable.
+We saw how each instance, each frame, had a different value
+of b, that got smaller and smaller until we got down to
+the base case.
+So we know that this is, in fact, going to ground out.
+It's going to complete its computation.
+That's great.
+So hopefully this gives you a better sense of how, in fact,
+the rules of evaluation allow a recursive thinking of a
+problem to create a very nice version of the code.
